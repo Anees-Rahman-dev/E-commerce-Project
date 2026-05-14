@@ -7,7 +7,7 @@ function Cart() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { items } = useSelector((state) => state.cart)
-  const total = items.reducer((sum, item) => sum + item.price * item.quantity, 0)
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
   if (items.length === 0) {
     return (

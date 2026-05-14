@@ -9,7 +9,7 @@ import ProtectedRoute from './router/ProtectedRoute'
 import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import WishList from './pages/WishList'
-
+import CheckOut from './pages/CheckOut'
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
         <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path='/orders' element={<ProtectedRoute><Orders /></ProtectedRoute>} />
         <Route path='/wishlist' element={<ProtectedRoute><WishList /></ProtectedRoute>} />
+        <Route path='/checkout' element={<ProtectedRoute><CheckOut /></ProtectedRoute>} />
       </Route>
     </Routes>
 

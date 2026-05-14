@@ -1,37 +1,43 @@
-import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
-import { GetUsersOrder } from "../../services/OrderService";
-import { act } from "react";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getUserOrders } from "../../services/OrderService";
 
 export const fetchOrders = createAsyncThunk(
-    'fetch/orders',
-    async ( ) => {
-        console.log()
-        const res = await GetUsersOrder( )
-        // console.log(userId)
-        return res.data
+  "orders/fetchOrders",
+  async (userId, thunkAPI) => {
+    try {
+      return await getUserOrders(userId);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
-)
-const orderSlice = createSlice({
-    name: 'order',
-    initialState: {
-        order: [],
-        status: 'idle',
-        error: null
-    },
-    reducers: {},
+  }
+);
 
-    extraReducers: (builder) => {
-        builder.addCase(fetchOrders.pending, (state, action) => {
-            state.status = 'Loading...'
-        })
-        builder.addCase(fetchOrders.fulfilled, (state, action) => {
-            state.order = action.payload;
-            state.status = 'Succeeded'
-        })
-        builder.addCase(fetchOrders.rejected, (state, action) => {
-            state.status = 'Failed'
-            state.error = action.error.message
-        })
-    }
-})
-export default orderSlice.reducer
+const orderSlice = createSlice({
+  name: "orders",
+  initialState: {
+    orders: [],
+    status: "idle",
+    error: null,
+  },
+
+  reducers: {},
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchOrders.pending, (state) => {
+        state.status = "loading";
+      })
+
+      .addCase(fetchOrders.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.orders = action.payload;
+      })
+
+      .addCase(fetchOrders.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      });
+  },
+});
+
+export default orderSlice.reducer;

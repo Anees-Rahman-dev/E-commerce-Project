@@ -1,15 +1,12 @@
 
-import axios from 'axios'
-const getAllProducts  = async () => {
-    const res = await axios.get(`http://localhost:3001/products`)
+import api from './api';
+
+export const getAllProducts = async () => {
+    const res = await api.get('/products')
     return res.data
 }
 
-const SingleProductById = async (id) => {
- 
-    const res = await axios.get(`http://localhost:3001/products/${id}`)
+export const getProductById = async (id) => {
+    const res = await api.get(`/products/${id}`)
     return res.data
-    console.log(id)
 }
-
-export { SingleProductById , getAllProducts } 

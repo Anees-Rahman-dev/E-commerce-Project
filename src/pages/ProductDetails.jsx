@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { addToCart } from '../redux/slices/cartSlice';
-import { SingleProductById } from '../services/ProductService';
+import { getProductById } from '../services/ProductService';
 
 function ProductDetails() {
 
@@ -18,19 +18,48 @@ function ProductDetails() {
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
-    SingleProductById(id)
+    getProductById(id)
       .then((res) => setProduct(res))
       .finally(() => setLoading(false))
     console.log(product)
     console.log(id)
   }, [id])
 
+  
+  // const handleAddToCart = () => {
+  //   if (!isAuthenticated) return navigate(`/login`);
+  //   dispatch(addToCart({ ...product, quantity }))
+  //   setAdded(true)
+   
+  // }
+
   const handleAddToCart = () => {
     if (!isAuthenticated) return navigate(`/login`);
     dispatch(addToCart({ ...product, quantity }))
     setAdded(true)
-    setTimeout(() => setAdded(false), 2000)
+    useEffect(() => {
+  let timer;
+
+  if (added) {
+    timer = setTimeout(() => {
+      setAdded(false);
+    }, 2000);
   }
+
+  return () => clearTimeout(timer);
+}, [added]);
+  }
+//    useEffect(() => {
+//   let timer;
+
+//   if (added) {
+//     timer = setTimeout(() => {
+//       setAdded(false);
+//     }, 2000);
+//   }
+
+//   return () => clearTimeout(timer);
+// }, [added]);
 
 
   const handleWishlist = () => {

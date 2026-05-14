@@ -107,7 +107,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { LoginUser } from '../services/userService';
 import { loginSuccess } from '../redux/slices/authSlices';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, User } from 'lucide-react';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -126,8 +126,13 @@ export default function Login() {
     e.preventDefault();
     setError('');
     setLoading(true);
+    if(!form.email.trim() || !form.password.trim()){
+    
+     alert('fill all the fields')
+    }
     try {
       const users = await LoginUser(form.email.trim(), form.password.trim());
+       console.log(users)
       if (!users || users.length === 0) {
         setError("Invalid email or password.");
         return;
@@ -161,6 +166,7 @@ export default function Login() {
             value={form.email}
             onChange={handleChange}
             required
+            autoComplete="off"
             className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
           />
 
@@ -172,6 +178,7 @@ export default function Login() {
               value={form.password}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full border px-4 py-2 pr-12 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
             />
             <button

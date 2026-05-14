@@ -41,6 +41,20 @@
       "password": "334455",
       "role": "user",
       "id": "oLWOZwrJRAU"
+    },
+    {
+      "name": "newuser",
+      "email": "newuser@gmail.com",
+      "password": "88877655",
+      "role": "user",
+      "id": "EXR71jwoysE"
+    },
+    {
+      "name": "messi",
+      "email": "messi@gmail.com",
+      "password": "12345",
+      "role": "user",
+      "id": "vvIQg5kMIU0"
     }
   ],
   "products": [

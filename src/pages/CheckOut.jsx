@@ -9,8 +9,9 @@ export default function CheckOut() {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
-  const { items } = useSelector((state) => state.cart)
-  const total = items.reducer((sum, item) => sum + item.price * item.quantity)
+ const { items } = useSelector((state) => state.cart);
+const { user } = useSelector((state) => state.auth);
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity)
 
   const [loading, setLoading] = useState(false)
   const [address, setAddress] = useState({
@@ -24,35 +25,40 @@ export default function CheckOut() {
   };
 
   const handleSubmit = async () => {
-    if (!address.street || !address.city || !address.state || !address.pincode) {
-      return alert('Please fill all the fields')
-    }
-
-    setLoading(true);
-
-    try {
-      await PlaceNewOrder({
-        userId: userId.id,
-        items: items.map((i)({
-          productId: i.id,
-          name: i.name,
-          quantity: i.quantity,
-          price: i.price
-        })),
-        total,
-        address: `${address.street}, ${address.city}, ${address.state}, ${address.pincode}`,
-        status: 'placed',
-        date: new Date().toISOString(),
-      });
-      dispatch(clearCart());
-      navigate('/orders');
-    } catch (err) {
-
-      alert('Order failed Please Try Again.')
-    } finally {
-      setLoading(false)
-    }
+  if (
+    !address.street ||
+    !address.city ||
+    !address.state ||
+    !address.pincode
+  ) {
+    return alert("Please fill all fields");
   }
+
+  setLoading(true);
+
+  try {
+    await placeOrder({
+      userId: user.id,
+      items: items.map((i) => ({
+        productId: i.id,
+        name: i.name,
+        quantity: i.quantity,
+        price: i.price,
+      })),
+      total,
+      address: `${address.street}, ${address.city}, ${address.state}, ${address.pincode}`,
+      status: "placed",
+      date: new Date().toISOString(),
+    });
+
+    dispatch(clearCart());
+    navigate("/orders");
+  } catch (err) {
+    alert("Order failed. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
   if (items.length === 0) {
     navigate('/cart')
     return null

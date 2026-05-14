@@ -25,21 +25,21 @@
 
 
 
-import axios from 'axios';
+import api from './api';
 
-const USER_API = 'http://localhost:3001/users';
+export const LoginUser = async (email, password) => {
+  const res = await api.get('/users', {
+    params: {
+      email: email,
+      password: password
+    }
+  });
 
-const RegisterUser = async (user) => {
-  const res = await axios.post(USER_API, user);
   return res.data;
 };
 
-const LoginUser = async (email, password) => {
-  // ✅ Use template literal directly in URL — most reliable with JSON Server
-  const res = await axios.get(`${USER_API}?email=${email}&password=${password}`);
-   console.log(res.config.url)
-  console.log(res.data)
+export const RegisterUser = async (user) => {
+  const res = await api.post('/users', user);
+
   return res.data;
 };
-
-export { LoginUser, RegisterUser };

@@ -1,15 +1,8 @@
-import axios from "axios"
+import api from './api';
 
-const ORDER_API = 'http://localhost:3001/orders'
-const PlaceNewOrder = async (order) => {
+export const PlaceNewOrder = async (order) =>
+  (await api.post('/orders', order)).data;
 
-    const res = await axios.post(ORDER_API,order)
-    return res
-}
 
-const GetUsersOrder = async (userId) => {
-    const res = await axios.get(`${ORDER_API}?userId=${userId}`)
-    return res.data
-} 
-
-export { PlaceNewOrder , GetUsersOrder }
+export const getUserOrders = async (userId) =>
+  (await api.get(`/orders?userId=${userId}`)).data;
