@@ -98,7 +98,7 @@ export default function Orders() {
   useEffect(() => {
     if (!user) { navigate('/login'); return; }
     dispatch(fetchOrders(user.id));
-  }, [user]);                           // ✅ guard before accessing user.id
+  }, [user]);                           // guard before accessing user.id
 
   if (status === 'loading')
     return <p className="text-center mt-20 text-gray-400">Loading orders...</p>;

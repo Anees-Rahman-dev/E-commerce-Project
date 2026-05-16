@@ -1,40 +1,35 @@
 
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const cartSlice = createSlice({
-//   name: 'cart',
-//   initialState: { items: [] },
-//   reducers: {
-//     addToCart: (state, action) => {
-//       const existing = state.items.find(i => i.id === action.payload.id);
-//       if (existing) {
-//         existing.quantity += 1;
-//       } else {
-//         state.items.push({ ...action.payload, quantity: 1 }); // ✅ fixed
-//       }
-//     },
-//     removeFromCart: (state, action) => {
-//       state.items = state.items.filter(i => i.id !== action.payload);
-//     },
-//     updateQuantity: (state, action) => {
-//       const item = state.items.find(i => i.id === action.payload.id);
-//       if (item) item.quantity = action.payload.quantity;
-//     },
-//     clearCart: (state) => {
-//       state.items = [];
-//     },
-//   },
-// });
-
-// export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions;
-// export default cartSlice.reducer;
 
 import { createSlice } from "@reduxjs/toolkit";
 
-const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+const getStoredUserId = () => {
+  try {
+    const u = JSON.parse(localStorage.getItem("user"));
+    return u?.id || null;
+  } catch {
+    return null;
+  }
+};
+
+const storedCart = (() => {
+  const uid = getStoredUserId();
+  try {
+    if (uid) return JSON.parse(localStorage.getItem(`cart_${uid}`)) || [];
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  } catch {
+    return [];
+  }
+})();
 
 const saveCart = (items) => {
-  localStorage.setItem("cart", JSON.stringify(items));
+  try {
+    const uid = getStoredUserId();
+    if (uid) localStorage.setItem(`cart_${uid}`, JSON.stringify(items));
+    // keep a global fallback key for compatibility
+    localStorage.setItem("cart", JSON.stringify(items));
+  } catch (e) {
+    console.warn("Failed to save cart to localStorage", e);
+  }
 };
 
 const cartSlice = createSlice({
@@ -46,9 +41,7 @@ const cartSlice = createSlice({
 
   reducers: {
     addToCart: (state, action) => {
-      const existing = state.items.find(
-        (i) => i.id === action.payload.id
-      );
+      const existing = state.items.find((i) => i.id === action.payload.id);
 
       if (existing) {
         existing.quantity += action.payload.quantity || 1;
@@ -63,17 +56,13 @@ const cartSlice = createSlice({
     },
 
     removeFromCart: (state, action) => {
-      state.items = state.items.filter(
-        (i) => i.id !== action.payload
-      );
+      state.items = state.items.filter((i) => i.id !== action.payload);
 
       saveCart(state.items);
     },
 
     updateQuantity: (state, action) => {
-      const item = state.items.find(
-        (i) => i.id === action.payload.id
-      );
+      const item = state.items.find((i) => i.id === action.payload.id);
 
       if (item) {
         item.quantity = action.payload.quantity;
@@ -86,14 +75,15 @@ const cartSlice = createSlice({
       state.items = [];
       saveCart([]);
     },
+
+    // Replace entire cart (used when switching users / on login)
+    replaceCart: (state, action) => {
+      state.items = Array.isArray(action.payload) ? action.payload : [];
+      console.log(action.payload)
+      saveCart(state.items);
+    },
   },
 });
 
-export const {
-  addToCart,
-  removeFromCart,
-  updateQuantity,
-  clearCart,
-} = cartSlice.actions;
-
+export const { addToCart, removeFromCart, updateQuantity, clearCart, replaceCart } = cartSlice.actions;
 export default cartSlice.reducer;

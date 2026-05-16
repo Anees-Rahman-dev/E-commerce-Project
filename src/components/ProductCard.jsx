@@ -12,14 +12,18 @@ const ProductCard = memo(function ProductCard({ product }) {
   const handleAddToCart = (e) => {
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login');
+    // console.log(product)
     dispatch(addToCart({ ...product, quantity: 1 }));
   };
 
   const handleWishlist = (e) => {
     e.stopPropagation();
-    const current = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    if (!isAuthenticated) return navigate('/login');
+    const uid = JSON.parse(localStorage.getItem('user'))?.id;
+    const key = uid ? `wishlist_${uid}` : 'wishlist';
+    const current = JSON.parse(localStorage.getItem(key) || '[]');
     if (!current.find(i => i.id === product.id)) {
-      localStorage.setItem('wishlist', JSON.stringify([...current, product]));
+      localStorage.setItem(key, JSON.stringify([...current, product]));
     }
   };
 
@@ -33,7 +37,7 @@ const ProductCard = memo(function ProductCard({ product }) {
           src={product.image.startsWith('http') ? product.image : `http://localhost:5173${product.image}`}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          loading="lazy"                  // ✅ lazy load images
+          loading="lazy"                  //  lazy load images
         />
         {product.stock === 0 && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -61,7 +65,7 @@ const ProductCard = memo(function ProductCard({ product }) {
           </div>
           <button onClick={handleAddToCart} disabled={product.stock === 0}
             className="bg-[#3B1F0A] text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-amber-800 transition disabled:opacity-40 text-xl font-bold">
-            +
+          ✢
           </button>
         </div>
       </div>

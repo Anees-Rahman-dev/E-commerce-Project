@@ -84,27 +84,36 @@
 
 import React, { useState } from 'react'
 import { addToCart } from '../redux/slices/cartSlice'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function WishList() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((s) => s.auth.user);
+  const userId = user?.id;
+  const storageKey = userId ? `wishlist_${userId}` : 'wishlist';
 
   const [wishlist, setWishlist] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("wishlist")) || [];
+      return JSON.parse(localStorage.getItem(storageKey) || '[]');
     } catch {
       return [];
     }
   });
 
+  const save = (items) => {
+    setWishlist(items);
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(items));
+    } catch {}
+  };
+
   const handleRemove = (id) => {
     const updated = wishlist.filter((item) => item.id !== id);
 
-    setWishlist(updated);
-    localStorage.setItem("wishlist", JSON.stringify(updated));
+    save(updated);
   };
 
   const handleMoveToCart = (item) => {

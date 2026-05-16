@@ -7,7 +7,7 @@ import { getProductById } from '../services/ProductService';
 function ProductDetails() {
 
   const { id } = useParams();
-
+console.log(id)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -18,55 +18,60 @@ function ProductDetails() {
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
+    console.log(product)
     getProductById(id)
       .then((res) => setProduct(res))
       .finally(() => setLoading(false))
-    console.log(product)
     console.log(id)
   }, [id])
 
-  
+
   // const handleAddToCart = () => {
   //   if (!isAuthenticated) return navigate(`/login`);
   //   dispatch(addToCart({ ...product, quantity }))
   //   setAdded(true)
-   
+
   // }
 
   const handleAddToCart = () => {
     if (!isAuthenticated) return navigate(`/login`);
     dispatch(addToCart({ ...product, quantity }))
+    console.log(product.name, quantity)
     setAdded(true)
-    useEffect(() => {
-  let timer;
-
-  if (added) {
-    timer = setTimeout(() => {
-      setAdded(false);
-    }, 2000);
   }
 
-  return () => clearTimeout(timer);
-}, [added]);
-  }
-//    useEffect(() => {
-//   let timer;
+  useEffect(() => {
+    let timer;
 
-//   if (added) {
-//     timer = setTimeout(() => {
-//       setAdded(false);
-//     }, 2000);
-//   }
+    if (added) {
+      timer = setTimeout(() => {
+        setAdded(false);
+      }, 2000);
+    }
 
-//   return () => clearTimeout(timer);
-// }, [added]);
+    return () => clearTimeout(timer);
+  }, [added]);
+  //    useEffect(() => {
+  //   let timer;
+
+  //   if (added) {     csandgue 
+  //     timer = setTimeout(() => {
+  //       setAdded(false);
+  //     }, 2000);
+  //   }
+
+  //   return () => clearTimeout(timer);
+  // }, [added]);
 
 
   const handleWishlist = () => {
-    const current = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    if (!isAuthenticated) return navigate(`/login`);
+    const uid = JSON.parse(localStorage.getItem("user"))?.id;
+    const key = uid ? `wishlist_${uid}` : 'wishlist';
+    const current = JSON.parse(localStorage.getItem(key) || '[]');
     const exists = current.find((i) => i.id === product.id);
     if (!exists) {
-      localStorage.setItem("wishlist", JSON.stringify([...current, product]));
+      localStorage.setItem(key, JSON.stringify([...current, product]));
       alert("Added to wishlist!");
     } else {
       alert("Already in wishlist!");
@@ -90,15 +95,15 @@ function ProductDetails() {
       </button>
 
       <div className=" mt-20 flex flex-col md:flex-row gap-10">
- <div className="rounded-2xl overflow-hidden shadow bg-grey flex items-center justify-center h-80 w-full md:w-96">
-  <img
-    src={product.image}
-    alt={product.name}
-    // Use object-contain so nothing is cut off
-    // Use p-4 to give the product some "breathing room"
-    className="w-full h-full object-contain p-4" 
-  />
-</div>
+        <div className="rounded-2xl overflow-hidden shadow bg-grey flex items-center justify-center h-80 w-full md:w-96">
+          <img
+            src={product.image}
+            alt={product.name}
+            // Use object-contain so nothing is cut off
+            // Use p-4 to give the product some "breathing room"
+            className="w-full h-full object-contain p-4"
+          />
+        </div>
 
         <div className="flex-1">
           <span className="text-xs bg-amber-100 text-amber-700 px-3 py-1 rounded-full">
@@ -166,7 +171,7 @@ function ProductDetails() {
                 onClick={handleWishlist}
                 className="border border-amber-800 text-amber-800 px-6 py-2 rounded-lg hover:bg-amber-50 transition"
               >
-                🤍 Wishlist
+                ♡ Wishlist
               </button>
 
             </div>

@@ -29,32 +29,53 @@
       "id": "4QjpEd2hQYc"
     },
     {
-      "name": "luffy",
-      "email": "luffy@gmail.com",
-      "password": "778899",
+      "name": "newUser",
+      "email": "newUser@gmail.com",
+      "password": "123456",
       "role": "user",
-      "id": "cLsugX96540"
+      "id": "f-YOX4XtroY"
     },
     {
-      "name": "zara",
-      "email": "zara@gmail.com",
-      "password": "334455",
+      "name": "akhil",
+      "email": "akhil@gmail.com",
+      "password": "22334455",
       "role": "user",
-      "id": "oLWOZwrJRAU"
+      "id": "zJJ0T1GL6dU"
     },
     {
-      "name": "newuser",
-      "email": "newuser@gmail.com",
-      "password": "88877655",
+      "name": "theertha",
+      "email": "theertha@gmail.com",
+      "password": "332244",
       "role": "user",
-      "id": "EXR71jwoysE"
+      "id": "0Y_WrfSTm4k"
     },
     {
-      "name": "messi",
-      "email": "messi@gmail.com",
+      "name": "raj",
+      "email": "raj@gmail.com",
+      "password": "445566",
+      "role": "user",
+      "id": "DevF3pLROI8"
+    },
+    {
+      "name": "boopathi",
+      "email": "boopathi@gmail.com",
+      "password": "12344",
+      "role": "user",
+      "id": "EA4pLHPTJbM"
+    },
+    {
+      "name": "shalu",
+      "email": "shalu@gmail.com",
+      "password": "223344",
+      "role": "user",
+      "id": "NS24ARc9VEM"
+    },
+    {
+      "name": "niyas",
+      "email": "niyas@gmail.com",
       "password": "12345",
       "role": "user",
-      "id": "vvIQg5kMIU0"
+      "id": "WdKDyddHxeI"
     }
   ],
   "products": [
@@ -281,6 +302,210 @@
       "status": "delivered",
       "address": "123 MG Road, Kanhangad, Kerala",
       "date": "2025-04-10T10:30:00Z"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Malabar Dark",
+          "quantity": 4,
+          "price": 299
+        }
+      ],
+      "total": 1196,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T04:32:19.886Z",
+      "id": "ud2Ylq0cWus"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Malabar Dark",
+          "quantity": 2,
+          "price": 299
+        },
+        {
+          "productId": "3",
+          "name": "Malabar Noir",
+          "quantity": 1,
+          "price": 279
+        }
+      ],
+      "total": 877,
+      "address": "thaistreets, bangkok, undefineddd, 2233",
+      "status": "placed",
+      "date": "2026-05-15T04:40:47.370Z",
+      "id": "RNW6YquGuuI"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "9",
+          "name": "Malabar Dynasty",
+          "quantity": 12,
+          "price": 699
+        }
+      ],
+      "total": 8388,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T05:09:35.462Z",
+      "id": "1k_YrThVo68"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Malabar Dark",
+          "quantity": 3,
+          "price": 299
+        }
+      ],
+      "total": 897,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T08:43:34.924Z",
+      "id": "ekc05cuf4gg"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "5",
+          "name": "Coffee Coast Dark",
+          "quantity": 1,
+          "price": 369
+        }
+      ],
+      "total": 369,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T09:03:04.854Z",
+      "id": "RwkMPK6kaKc"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "20",
+          "name": "Hazel Royale",
+          "quantity": 1,
+          "price": 329
+        }
+      ],
+      "total": 329,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T09:48:14.068Z",
+      "id": "ouCKHAGB9lo"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "20",
+          "name": "Hazel Royale",
+          "quantity": 1,
+          "price": 329
+        }
+      ],
+      "total": 329,
+      "address": "sm street, edappal, afff, 1234e",
+      "status": "placed",
+      "date": "2026-05-15T09:50:56.379Z",
+      "id": "hYzic96BbdE"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Dark Velvet",
+          "quantity": 6,
+          "price": 349
+        }
+      ],
+      "total": 2094,
+      "address": "sm street, edappal, afff, 1234e",
+      "status": "placed",
+      "date": "2026-05-15T10:16:33.450Z",
+      "id": "dyEAOqXvjAg"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "3",
+          "name": "Malabar Noir",
+          "quantity": 1,
+          "price": 279
+        }
+      ],
+      "total": 279,
+      "address": "sm street, edappal, afff, 1234e",
+      "status": "placed",
+      "date": "2026-05-15T10:16:53.675Z",
+      "id": "7OiHQtaP3Vg"
+    },
+    {
+      "userId": "EA4pLHPTJbM",
+      "items": [
+        {
+          "productId": "6",
+          "name": "Royalty",
+          "quantity": 2,
+          "price": 319
+        }
+      ],
+      "total": 638,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T10:38:19.712Z",
+      "id": "tp3_vCuT8PU"
+    },
+    {
+      "userId": "f-YOX4XtroY",
+      "items": [
+        {
+          "productId": "4",
+          "name": "Monsoon Dark",
+          "quantity": 1,
+          "price": 449
+        },
+        {
+          "productId": "1",
+          "name": "Dark Velvet",
+          "quantity": 1,
+          "price": 349
+        }
+      ],
+      "total": 798,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T10:55:07.163Z",
+      "id": "ol7F0_7vaxo"
+    },
+    {
+      "userId": "NS24ARc9VEM",
+      "items": [
+        {
+          "productId": "10",
+          "name": "Velvet Crown",
+          "quantity": 1,
+          "price": 1199
+        }
+      ],
+      "total": 1199,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-15T16:03:21.248Z",
+      "id": "l8R0jmLeZf4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

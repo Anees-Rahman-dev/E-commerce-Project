@@ -2,6 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../redux/slices/authSlices';
+import { clearCart } from '../redux/slices/cartSlice';
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function Navbar() {
     <nav className="bg-[#3B1F0A] text-white px-4 md:px-8 py-4 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="text-xl md:text-2xl font-bold font-serif tracking-wide">
-          🍫 MalaBars
+           MalaBars
         </Link>
 
         <div className="flex items-center gap-3 md:gap-6 text-sm font-medium">
@@ -40,9 +41,9 @@ export default function Navbar() {
           {isAuthenticated ? (
             <div className="flex items-center gap-2 md:gap-3">
               <span className="text-amber-200 text-sm hidden md:block">
-                Hi, {user?.name?.split(' ')[0]}
+                Hi, {user?.name?.split(' ')[0].toUpperCase()}
               </span>
-              <button onClick={() => { dispatch(logOut()); navigate('/login'); }}
+              <button onClick={() => { dispatch(logOut()); dispatch(clearCart()); navigate('/login'); }}
                 className="bg-amber-700 hover:bg-amber-600 px-3 md:px-4 py-1.5 rounded-lg transition text-sm">
                 Logout
               </button>
