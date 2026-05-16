@@ -112,7 +112,7 @@ export default function Orders() {
     );
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
+    <div className="max-w-3xl mx-auto p-6 pt-30">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">My Orders</h1>
       <div className="space-y-6">
         {orders.map(order => (

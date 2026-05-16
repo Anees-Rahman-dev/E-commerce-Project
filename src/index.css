@@ -22,3 +22,47 @@
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
+.cousine-regular {
+  font-family: "Cousine", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cousine-bold {
+  font-family: "Cousine", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+.bungee-shade-regular {
+  font-family: "Bungee Shade", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.autour-one-regular {
+  font-family: "Autour One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.cousine-regular-italic {
+  font-family: "Cousine", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.cousine-bold-italic {
+  font-family: "Cousine", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.smooch-sans-headers {
+  font-family: "Smooch Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.wire-one-regular {
+  font-family: "Wire One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

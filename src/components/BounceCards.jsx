@@ -77,7 +77,7 @@ export default function BounceCards({
   className = "",
   images = [],
   containerWidth = "100%",
-  containerHeight = "420px",
+  // containerHeight = "200px",
   animationDelay = 0.5,
   animationDuration = 0.8,
   easingValues = [0.175, 0.885, 0.32, 1.275],
@@ -85,9 +85,9 @@ export default function BounceCards({
 }) {
   return (
     <div
-      className={`relative mx-auto w-full max-w-[500px] ${className}`}
+      className={`relative w-full max-w-[500px] ml-10 md:ml-20 lg:ml-28 ${className}`}
       style={{
-        height: containerHeight,
+        height: '300px',
       }}
     >
       {images.map((image, index) => (

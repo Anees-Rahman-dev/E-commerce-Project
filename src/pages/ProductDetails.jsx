@@ -7,7 +7,7 @@ import { getProductById } from '../services/ProductService';
 function ProductDetails() {
 
   const { id } = useParams();
-console.log(id)
+  console.log(id)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -136,10 +136,10 @@ console.log(id)
               {/* Quantity Selector */}
               <div className="flex items-center border rounded-lg overflow-hidden">
                 <button
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                 disabled={quantity === 1} onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                   className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-lg"
                 >
-                  −
+                  -
                 </button>
                 <span className="px-5 py-2 font-medium">{quantity}</span>
                 <button

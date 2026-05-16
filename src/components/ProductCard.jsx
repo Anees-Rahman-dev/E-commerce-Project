@@ -1,5 +1,5 @@
 
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/slices/cartSlice';
@@ -8,12 +8,22 @@ const ProductCard = memo(function ProductCard({ product }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(s => s.auth.isAuthenticated);
+const cartItems = useSelector((state)=> state.cart.items)
+  const [Quantity,setQuantity] = useState(1)
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
-    if (!isAuthenticated) return navigate('/login');
-    // console.log(product)
-    dispatch(addToCart({ ...product, quantity: 1 }));
+  if (!isAuthenticated) return navigate('/login');
+
+const existingItem = cartItems.find((find) => find.id === product.id)
+
+
+if(existingItem && existingItem.quantity >= product.stock){
+  alert('cannot buy more than ', product.stock)
+  return
+}
+
+dispatch(addToCart(product))
   };
 
   const handleWishlist = (e) => {
@@ -25,6 +35,7 @@ const ProductCard = memo(function ProductCard({ product }) {
     if (!current.find(i => i.id === product.id)) {
       localStorage.setItem(key, JSON.stringify([...current, product]));
     }
+    alert(`${product.name} added to WishList go to wishList`) +  navigate(`/wishlist`)
   };
 
   return (

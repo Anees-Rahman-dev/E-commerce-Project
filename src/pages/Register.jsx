@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, replace,Navigate } from "react-router-dom";
 import { RegisterUser } from "../services/userService";
+import { useSelector } from "react-redux";
 export default function Register() {
+
   const navigate = useNavigate();
+  const {isAuthenticated} = useSelector((state) => state.auth)
+
+  if(isAuthenticated){
+  return <Navigate to='/' replace/>
+  }
   const [form, setForm] = useState({ 
     name: "",
      email: "", 
