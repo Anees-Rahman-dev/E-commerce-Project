@@ -76,6 +76,13 @@
       "password": "12345",
       "role": "user",
       "id": "WdKDyddHxeI"
+    },
+    {
+      "name": "anfas",
+      "email": "anfas@gmail.com",
+      "password": "112233",
+      "role": "user",
+      "id": "9TiApVo333s"
     }
   ],
   "products": [
@@ -528,7 +535,120 @@
       "status": "placed",
       "date": "2026-05-16T07:11:13.707Z",
       "id": "SeqV7-0yHjo"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "10",
+          "name": "Velvet Crown",
+          "quantity": 8,
+          "price": 1199
+        }
+      ],
+      "total": 9592,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-17T10:00:32.832Z",
+      "id": "zvpZheX8Ww8"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "4",
+          "name": "Monsoon Dark",
+          "quantity": 1,
+          "price": 449
+        }
+      ],
+      "total": 449,
+      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
+      "status": "placed",
+      "date": "2026-05-17T10:01:24.299Z",
+      "id": "y17ZMJEFHY8"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "9",
+          "name": "Malabar Dynasty",
+          "quantity": 1,
+          "price": 699
+        }
+      ],
+      "total": 699,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-17T10:03:05.321Z",
+      "id": "7knjgA3iCt0"
+    },
+    {
+      "userId": "EA4pLHPTJbM",
+      "items": [
+        {
+          "productId": "6cA31rqIiX4",
+          "name": "Malabar Dynasty",
+          "quantity": 2,
+          "price": 699
+        }
+      ],
+      "total": 1398,
+      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
+      "status": "placed",
+      "date": "2026-05-17T10:05:09.019Z",
+      "id": "E6TbIlXeHNA"
+    },
+    {
+      "userId": "EA4pLHPTJbM",
+      "items": [
+        {
+          "productId": "2",
+          "name": "Malabar Dark",
+          "quantity": 1,
+          "price": 299
+        }
+      ],
+      "total": 299,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-17T10:06:16.635Z",
+      "id": "k2UMjn6POVg"
+    },
+    {
+      "userId": "EA4pLHPTJbM",
+      "items": [
+        {
+          "productId": "9",
+          "name": "Malabar Dynasty",
+          "quantity": 1,
+          "price": 699
+        }
+      ],
+      "total": 699,
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "placed",
+      "date": "2026-05-17T10:07:53.321Z",
+      "id": "oERp_VqNDH8"
+    },
+    {
+      "userId": "9TiApVo333s",
+      "items": [
+        {
+          "productId": "4",
+          "name": "Monsoon Dark",
+          "quantity": 1,
+          "price": 449
+        }
+      ],
+      "total": 449,
+      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
+      "status": "placed",
+      "date": "2026-05-17T10:14:11.797Z",
+      "id": "g_wocNPm1NU"
     }
   ],
+  "cart": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

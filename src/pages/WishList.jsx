@@ -123,7 +123,7 @@ export default function WishList() {
 
   if (wishlist.length === 0) {
     return (
-      <div className="text-center py-24 text-gray-500">
+      <div className="text-center py-24 text-gray-500 pt-30">
         <p className="text-5xl mb-4">🤍</p>
 
         <p className="text-xl font-medium">
@@ -141,7 +141,7 @@ export default function WishList() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 pt-30">
+    <div className="max-w-3xl mx-auto p-6 pt-39">
 
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
         My Wishlist

@@ -39,7 +39,7 @@ export default function CheckOut() {
     setLoading(true);
 
     try {
-      await PlaceNewOrder({
+      const createdOrder = await PlaceNewOrder({
         userId: user.id,
         items: items.map((i) => ({
           productId: i.id,
@@ -52,9 +52,8 @@ export default function CheckOut() {
         status: "placed",
         date: new Date().toISOString(),
       });
-      console.log(items.status)
       dispatch(clearCart());
-      navigate("/orders");
+      navigate("/order-success", { state: { order: createdOrder } });
     } catch (err) {
       alert("Order failed. Please try again.");
     } finally {
@@ -62,12 +61,12 @@ export default function CheckOut() {
     }
   };
   if (items.length === 0) {
-    navigate('/cart')
+    navigate("/order-success", { state: { order: createdOrder } })
     return null
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 grid md:grid-cols-2 gap-10">
+    <div className="max-w-4xl mx-auto p-6 grid md:grid-cols-2 gap-10 pt-30">
       {/* Address Form */}
       <div>
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Delivery Address</h2>

@@ -105,7 +105,7 @@ export default function Orders() {
 
   if (!orders.length)
     return (
-      <div className="text-center py-24 text-gray-500">
+      <div className="text-center py-24 text-gray-500 pt-30">
         <p className="text-5xl mb-4">📦</p>
         <p className="text-xl font-medium">No orders yet</p>
       </div>

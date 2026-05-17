@@ -125,7 +125,7 @@ export default function Navbar() {
 
   <Link
     to="/"
-    className="relative hover:text-amber-300 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1px] after:bg-amber-300 after:transition-all after:duration-300 hover:after:w-full autour-one-regular"
+    className="relative hover:text-amber-300 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1px] after:bg-amber-300 after:transition-all after:duration-300 hover:after:w-full cousine-bold"
   >
     Home
   </Link>
@@ -134,14 +134,14 @@ export default function Navbar() {
     <>
       <Link
         to="/wishlist"
-        className="relative hover:text-amber-300 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1px] after:bg-amber-300 after:transition-all after:duration-300 hover:after:w-full smooch-sans-headers "
+        className="relative hover:text-amber-300 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1px] after:bg-amber-300 after:transition-all after:duration-300 hover:after:w-full cousine-bold "
       >
         Wishlist
       </Link>
 
       <Link
         to="/orders"
-        className="relative hover:text-amber-300 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1px] after:bg-amber-300 after:transition-all after:duration-300 hover:after:w-full wire-one-regular"
+        className="relative hover:text-amber-300 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[1px] after:bg-amber-300 after:transition-all after:duration-300 hover:after:w-full cousine-bold"
       >
         Orders
       </Link>
@@ -164,13 +164,13 @@ export default function Navbar() {
 
   {isAuthenticated ? (
     <div className="flex items-center gap-4">
-      <span className="text-sm opacity-80">
+      <span className="text-md opacity-80 cousine-bold">
         Hi, {user?.name.toUpperCase() || "User"}
       </span>
 
       <button
         onClick={handleLogout}
-        className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-full transition"
+        className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-full transition cousine-bold"
       >
         Logout
       </button>

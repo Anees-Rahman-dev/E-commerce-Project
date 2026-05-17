@@ -19,7 +19,7 @@ const existingItem = cartItems.find((find) => find.id === product.id)
 
 
 if(existingItem && existingItem.quantity >= product.stock){
-  alert('cannot buy more than ', product.stock)
+  alert('cannot buy more than '+ product.stock)
   return
 }
 

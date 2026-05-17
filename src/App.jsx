@@ -10,6 +10,7 @@ import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import WishList from './pages/WishList'
 import CheckOut from './pages/CheckOut'
+import OrderSuccess from './pages/OrderSuccess'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/orders' element={<ProtectedRoute><Orders /></ProtectedRoute>} />
         <Route path='/wishlist' element={<ProtectedRoute><WishList /></ProtectedRoute>} />
         <Route path='/checkout' element={<ProtectedRoute><CheckOut /></ProtectedRoute>} />
+        <Route path='/order-success' element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
       </Route>
     </Routes>
 

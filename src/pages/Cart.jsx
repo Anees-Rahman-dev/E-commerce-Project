@@ -11,10 +11,10 @@ function Cart() {
 
   if (items.length === 0) {
     return (
-      <div className='pt-30'>
+      <div className='text-center py-24 text-gray-500 pt-30'>
         <p className="text-5xl mb-4">🛒</p>
         <p className="text-xl font-medium">Your Cart Is Empty</p>
-        <button onClick={() => navigate(`/`)}>
+        <button onClick={() => navigate(`/`)} className="font-bold text-2xl text-amber-800">
           Shop Now!
         </button>
       </div>
