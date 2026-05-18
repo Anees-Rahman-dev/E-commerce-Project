@@ -1,21 +1,23 @@
 import { useState } from "react";
-import { useNavigate, Link, replace,Navigate } from "react-router-dom";
+import { useNavigate, Link, replace, Navigate } from "react-router-dom";
 import { RegisterUser } from "../services/userService";
 import { useSelector } from "react-redux";
 export default function Register() {
 
   const navigate = useNavigate();
-  const {isAuthenticated} = useSelector((state) => state.auth)
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
-  if(isAuthenticated){
-  return <Navigate to='/' replace/>
+  if (isAuthenticated) {
+    return <Navigate to='/'  />
   }
-  const [form, setForm] = useState({ 
+  const [form, setForm] = useState({
     name: "",
-     email: "", 
-     password: "" });
+    email: "",
+    password: ""
+  });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [confirm, setConfirm] = useState('');
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,14 +26,22 @@ export default function Register() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    try {
-      await RegisterUser({ ...form, role: "user" });
-      navigate("/login");
-    } catch {
-      setError("Registration failed. Try again.");
-    } finally {
-      setLoading(false);
+
+    if (form.password !== confirm) {
+      alert('password must match')
+      setLoading(false)
+      return
+    } else {
+      try {
+        await RegisterUser({ ...form, role: "user" });
+        navigate("/login");
+      } catch {
+        setError("Registration failed. Try again.");
+      } finally {
+        setLoading(false);
+      }
     }
+
   };
 
   return (
@@ -46,13 +56,14 @@ export default function Register() {
           </p>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
           <input
             name="name"
             placeholder="Full Name"
             value={form.name}
             onChange={handleChange}
             required
+            autoComplete="name"
             className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
           />
           <input
@@ -62,6 +73,7 @@ export default function Register() {
             value={form.email}
             onChange={handleChange}
             required
+            autoComplete="email"
             className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
           />
           <input
@@ -71,6 +83,17 @@ export default function Register() {
             value={form.password}
             onChange={handleChange}
             required
+            autoComplete="new-password"
+            className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+          />
+          <input
+            name="confirm password"
+            type="password"
+            placeholder="Password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            required
+            autoComplete="new-password"
             className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
           />
           <button

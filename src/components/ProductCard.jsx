@@ -8,23 +8,24 @@ const ProductCard = memo(function ProductCard({ product }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(s => s.auth.isAuthenticated);
-const cartItems = useSelector((state)=> state.cart.items)
-  const [Quantity,setQuantity] = useState(1)
+  const cartItems = useSelector((state) => state.cart.items)
+  const [Quantity, setQuantity] = useState(1)
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
-  if (!isAuthenticated) return navigate('/login');
+    if (!isAuthenticated) return navigate('/login');
 
-const existingItem = cartItems.find((find) => find.id === product.id)
+    const existingItem = cartItems.find((find) => find.id === product.id)
 
-
-if(existingItem && existingItem.quantity >= product.stock){
-  alert('cannot buy more than '+ product.stock)
-  return
-}
-
+    if (existingItem && existingItem.quantity >= product.stock) {
+      alert('cannot buy more than ' + product.stock)
+      return
+    }
 dispatch(addToCart(product))
+    
   };
+
+  
 
   const handleWishlist = (e) => {
     e.stopPropagation();
@@ -35,7 +36,7 @@ dispatch(addToCart(product))
     if (!current.find(i => i.id === product.id)) {
       localStorage.setItem(key, JSON.stringify([...current, product]));
     }
-    alert(`${product.name} added to WishList go to wishList`) +  navigate(`/wishlist`)
+    alert(`${product.name} added to WishList go to wishList`) + navigate(`/wishlist`)
   };
 
   return (
@@ -76,7 +77,7 @@ dispatch(addToCart(product))
           </div>
           <button onClick={handleAddToCart} disabled={product.stock === 0}
             className="bg-[#3B1F0A] text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-amber-800 transition disabled:opacity-40 text-xl font-bold">
-          ✢
+            ✢
           </button>
         </div>
       </div>

@@ -26,6 +26,7 @@ export default function Home() {
 
   const filtered = useMemo(() => {
     return [...safeItems]
+
       .filter((p) => p.name?.toLowerCase().includes(search.toLowerCase()))
       .filter((p) => category === "All" || p.category === category)
       .sort((a, b) => {
@@ -34,7 +35,7 @@ export default function Home() {
         return 0;
       });
   }, [safeItems, search, category, sort]);
-
+  // console.log(safeItems)
   const bestSellers = useMemo(() =>
     safeItems.filter((p) => p.rating >= 4.8).slice(0, 3),
     [safeItems]);
@@ -89,13 +90,24 @@ export default function Home() {
             ]}
           />
         </div>
-
-        {/*  Fixed SVG wave — xmlns added, no stray <path /> */}
-
+        <div className="relative -mt-1 overflow-hidden leading-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 120"
+            preserveAspectRatio="none"
+            className="block w-full h-[80px]"
+          >
+            <path
+              d="M0,64L80,69.3C160,75,320,85,480,85.3C640,85,800,75,960,69.3C1120,64,1280,64,1360,64L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+              fill="#f5f5f4"
+            />
+          </svg>
+        </div>
       </section>
 
+
       {/* ── WAVE CONNECTOR ── */}
-      <div className="bg-amber-800 -mt-1">
+      <div className="bg-amber-800 -mt-1 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 60"
@@ -105,6 +117,7 @@ export default function Home() {
           <path d="M0,60 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="#FDF6EC" />
         </svg>
       </div>
+
 
       {/* ── TAGLINE BANNER ── */}
       <section className="bg-amber-800 text-white py-10 px-8">
@@ -135,6 +148,7 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* ── BEST SELLERS ── */}
       {bestSellers.length > 0 && (
         <section className="max-w-7xl mx-auto px-8 py-16">
@@ -156,9 +170,26 @@ export default function Home() {
           </div>
         </section>
       )}
+      {/* TOP WAVE */}
+      <div className="overflow-hidden leading-none bg-[#FDF6EC]">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          className="block w-full h-[70px]"
+        >
+          <path
+            d="M0,64L80,69.3C160,75,320,85,480,85.3C640,85,800,75,960,69.3C1120,64,1280,64,1360,64L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+            fill="#3B1F0A"
+          />
+        </svg>
+      </div>
+
+      <section className="bg-[#3B1F0A] text-white py-12 px-8"></section>
 
       {/* ── SECOND BANNER ── */}
       <section className="bg-[#3B1F0A] text-white py-12 px-8">
+
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
           <img
             src="/royalty.jpeg"
@@ -191,6 +222,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <div className="bg-[#3B1F0A]-800 -mt-1 ">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="w-full block"
+        >
+          <path d="M0,60 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="rgba(32, 3, 3, 0.88)" />
+        </svg>
+      </div>
 
       {/* ── ALL PRODUCTS ── */}
       <section id="products" className="max-w-7xl mx-auto px-8 py-20">
@@ -217,7 +258,7 @@ export default function Home() {
                     ? `bg-amber-800 text-white shadow-lg scale-105 border border-amber-800
             `
                     :
-                    `bg-white/90 text-amber-800 border border-amber-200 hover:bg-amber-50 hover:border-amber-400 hover:shadow-lg hover:-translate-y-0.5  hover:scale-105
+                    `bg-white/90 text-amber-800 border border-amber-200 hover:bg-amber-50 hover:border-amber-400 hover:shadow-lg hover:-translate-y-0.5  hover:scale-108
 
             `}`}>
                 <span className="relative z-10">{c}</span>
@@ -297,8 +338,20 @@ export default function Home() {
         )}
       </section>
 
+
+      <div className="bg-[#3B1F0A] -mt-1 overflow-hidden leading-none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          className="w-full block"
+        >
+          <path d="M0,60 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="#FDF6EC" />
+        </svg>
+      </div>
       {/* ── FOOTER ── */}
       <footer className="bg-[#3B1F0A] text-amber-200 py-12 px-8">
+
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-white font-bold text-xl font-serif mb-3">MalaBars</h3>

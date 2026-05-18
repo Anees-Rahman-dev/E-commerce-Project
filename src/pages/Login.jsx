@@ -29,7 +29,7 @@ export default function Login() {
     setLoading(true);
     try {
       const users = await LoginUser(form.email.trim(), form.password.trim());
-      console.log('Login response:', users);
+      // console.log('Login response:', users);
       if (!users || users.length === 0) {
         setError('Invalid email or password.');
         return;
@@ -43,7 +43,7 @@ export default function Login() {
       } catch (e) {
         // ignore
       }
-      console.log('Dispatched user to auth state:', user);
+      // console.log('Dispatched user to auth state:', user);
       navigate('/');
     } catch (err) {
       console.error('Login error:', err);

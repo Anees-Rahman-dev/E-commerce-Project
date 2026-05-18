@@ -1,6 +1,7 @@
 
 
 import { createSlice } from "@reduxjs/toolkit";
+import { setCartDb } from "../../services/CartService";
 
 const getStoredUserId = () => {
   try {
@@ -21,12 +22,15 @@ const storedCart = (() => {
   }
 })();
 
-const saveCart = (items) => {
+export const saveCart = (items) => {
   try {
     const uid = getStoredUserId();
     if (uid) localStorage.setItem(`cart_${uid}`, JSON.stringify(items));
+
     // keep a global fallback key for compatibility
     localStorage.setItem("cart", JSON.stringify(items));
+
+    
   } catch (e) {
     console.warn("Failed to save cart to localStorage", e);
   }
@@ -53,6 +57,7 @@ const cartSlice = createSlice({
       }
 
       saveCart(state.items);
+     setCartDb(state.items)
     },
 
     removeFromCart: (state, action) => {
@@ -67,7 +72,6 @@ const cartSlice = createSlice({
       if (item) {
         item.quantity = action.payload.quantity;
       }
-
       saveCart(state.items);
     },
 
@@ -76,11 +80,11 @@ const cartSlice = createSlice({
       saveCart([]);
     },
 
-    // Replace entire cart (used when switching users / on login)
     replaceCart: (state, action) => {
       state.items = Array.isArray(action.payload) ? action.payload : [];
-      console.log(action.payload)
       saveCart(state.items);
+      // console.log(action.payload)
+      // console.log(state.items)
     },
   },
 });

@@ -30,9 +30,8 @@ const authSlice = createSlice({
       const user = action.payload;
       state.user = user;
       state.isAuthenticated = true;
-      // Ensure user object is properly stored
       localStorage.setItem("user", JSON.stringify(user));
-      console.log('Login success - User stored:', user);
+      // console.log('Login success - User stored:', user);
     },
     logOut: (state) => {
       state.user = null;

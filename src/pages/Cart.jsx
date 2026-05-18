@@ -12,7 +12,9 @@ function Cart() {
   if (items.length === 0) {
     return (
       <div className='text-center py-24 text-gray-500 pt-30'>
-        <p className="text-5xl mb-4">🛒</p>
+        <p className="text-5xl mb-4"><span class="material-symbols-outlined">
+          shopping_cart
+        </span></p>
         <p className="text-xl font-medium">Your Cart Is Empty</p>
         <button onClick={() => navigate(`/`)} className="font-bold text-2xl text-amber-800">
           Shop Now!
@@ -44,8 +46,8 @@ function Cart() {
 
             {/* Quantity Controls */}
             <div className="flex items-center border rounded-lg overflow-hidden">
-              <button 
-                onClick={() => 
+              <button
+                onClick={() =>
                   item.quantity === 1
                     ? dispatch(removeFromCart(item.id)) + alert(`${item.name} removed from the cart`)
                     : dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
@@ -56,8 +58,8 @@ function Cart() {
               </button>
               <span className="px-4 py-1">{item.quantity}</span>
               <button
-                onClick={ () =>
-                  dispatch ( item.quantity < item.stock ? updateQuantity({ id: item.id, quantity: item.quantity + 1 }) : alert(`cannot buy more than ${item.stock}`) )}
+                onClick={() =>
+                  dispatch(item.quantity < item.stock ? updateQuantity({ id: item.id, quantity: item.quantity + 1 }) : alert(`cannot buy more than ${item.stock}`))}
                 className="px-3 py-1 bg-gray-100 hover:bg-gray-200"
               >
                 +
