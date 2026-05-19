@@ -88,7 +88,7 @@ export default function Navbar() {
               to="/cart"
               className="relative text-2xl hover:scale-110 transition"
             >
-              <span class="material-symbols-outlined">
+              <span className="material-symbols-outlined">
                 shopping_cart
               </span>
 

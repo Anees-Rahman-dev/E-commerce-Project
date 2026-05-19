@@ -27,12 +27,10 @@ export const saveCart = (items) => {
     const uid = getStoredUserId();
     if (uid) localStorage.setItem(`cart_${uid}`, JSON.stringify(items));
 
-    // keep a global fallback key for compatibility
     localStorage.setItem("cart", JSON.stringify(items));
 
-    
-  } catch (e) {
-    console.warn("Failed to save cart to localStorage", e);
+  } catch (err) {
+    console.warn("Failed to save cart to localStorage", err);
   }
 };
 
@@ -46,6 +44,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const existing = state.items.find((i) => i.id === action.payload.id);
+      // console.log(action.payload)
 
       if (existing) {
         existing.quantity += action.payload.quantity || 1;
@@ -54,10 +53,11 @@ const cartSlice = createSlice({
           ...action.payload,
           quantity: action.payload.quantity || 1,
         });
+        
       }
 
       saveCart(state.items);
-     setCartDb(state.items)
+  
     },
 
     removeFromCart: (state, action) => {

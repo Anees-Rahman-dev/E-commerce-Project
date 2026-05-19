@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link, replace, Navigate } from "react-router-dom";
 import { RegisterUser } from "../services/userService";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 export default function Register() {
 
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export default function Register() {
   if (isAuthenticated) {
     return <Navigate to='/'  />
   }
+  
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -28,7 +30,7 @@ export default function Register() {
     setLoading(true);
 
     if (form.password !== confirm) {
-      alert('password must match')
+      toast.error('password must match')
       setLoading(false)
       return
     } else {

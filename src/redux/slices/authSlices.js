@@ -6,17 +6,17 @@ const getStoredUser = () => {
     const data = localStorage.getItem("user");
     if (!data) return null;
     const user = JSON.parse(data);
-    console.log('Restored user from localStorage:', user);
+    // console.log('Restored user from localStorage:', user);
     return user;
   } catch (err) {
-    console.error('Error parsing stored user:', err);
+    // console.error('Error parsing stored user:', err);
     localStorage.removeItem("user");
     return null;
   }
 };
 
 const storedUser = getStoredUser();
-console.log('Auth initial state - stored user:', storedUser);
+// console.log('Auth initial state - stored user:', storedUser);
 
 
 const authSlice = createSlice({

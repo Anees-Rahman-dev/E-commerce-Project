@@ -40,6 +40,24 @@ console.log("BASE URL:", BASE);
 
 
 export const setCartDb = async (data) => {
-    // console.log(typeof(data))
+    // console.log(data)
     const res = await axios.post(`${BASE}/cart`,data)
+    return res.data
 }
+
+export const removeCartFromDb = async (id) => {
+    console.log(id)
+    const res = await axios.delete(`${BASE}/cart/${id}`)
+    return res.data
+}
+
+export const setWishDb = async (data) => {
+    // console.log(data)
+    const res = await axios.post(`${BASE}/wishlist`,data)
+    return res.data
+}
+
+export const removeWish = async (id) => {
+  const res = await axios.delete(`${BASE}/wishlist/${id}`);
+  return res.data;
+};

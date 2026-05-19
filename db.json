@@ -104,6 +104,20 @@
       "password": "12345",
       "role": "user",
       "id": "l3YS_7Jpm2A"
+    },
+    {
+      "name": "kiki",
+      "email": "kiki@gmail.com",
+      "password": "12345",
+      "role": "user",
+      "id": "qGamVgX31R4"
+    },
+    {
+      "name": "user",
+      "email": "user@gmail.com",
+      "password": "12345",
+      "role": "user",
+      "id": "jOxFU4jDV6I"
     }
   ],
   "products": [
@@ -688,152 +702,666 @@
   ],
   "cart": [
     {
-      "id": "OKI7fUeyATM"
+      "name": "FitFuel Chocolate",
+      "category": "High Protein",
+      "price": 279,
+      "description": "Smooth fitness-focused chocolate packed with energy and satisfying cocoa flavor.",
+      "image": "/fitfuel.jpeg",
+      "stock": 45,
+      "rating": 4.4,
+      "productId": "15",
+      "quantity": 1,
+      "id": "N0LgXqMD3WA"
     },
     {
-      "id": "zBi7p4RjvE8"
+      "name": "FitFuel Chocolate",
+      "category": "High Protein",
+      "price": 279,
+      "description": "Smooth fitness-focused chocolate packed with energy and satisfying cocoa flavor.",
+      "image": "/fitfuel.jpeg",
+      "stock": 45,
+      "rating": 4.4,
+      "productId": "15",
+      "quantity": 1,
+      "id": "Z_7fiOu9yH4"
     },
     {
-      "id": "wJPr-OZtZ70"
+      "name": "Malabar Dynasty",
+      "category": "Royal Collection",
+      "price": 699,
+      "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
+      "image": "/malabardynasty.jpeg",
+      "stock": 12,
+      "rating": 5,
+      "productId": "9",
+      "quantity": 1,
+      "id": "XyD-c51QOyk"
     },
     {
-      "id": "H2wcwDitsFU"
+      "name": "Royalty",
+      "category": "Royal Collection",
+      "price": 319,
+      "description": "Luxurious chocolate crafted with a royal touch and silky premium cocoa.",
+      "image": "/royalty.jpeg",
+      "stock": 35,
+      "rating": 4.7,
+      "productId": "6",
+      "quantity": 1,
+      "id": "qYIaU2wkxFw"
     },
     {
-      "id": "Zkpdj_EzgkA"
+      "name": "raj",
+      "category": "High Protein",
+      "price": 309,
+      "description": "High-protein chocolate bar crafted for strength with rich Malabar cocoa.",
+      "image": "/malabarmusclebar.jpeg",
+      "stock": 28,
+      "rating": 4.5,
+      "productId": "12",
+      "quantity": 1,
+      "id": "PiSCS2sb-vw"
     },
     {
-      "id": "GbcrIFVgv6U"
+      "name": "raj",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9,
+      "productId": "4",
+      "quantity": 1,
+      "id": "DbLL1m5nEX8"
     },
     {
-      "id": "AtFgQ6J5RBY"
+      "name": "raj",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4,
+      "productId": "3",
+      "quantity": 1,
+      "id": "facelyaR8yM"
     },
     {
-      "id": "TaVf6rzhcak"
+      "name": "raj",
+      "category": "Royal Collection",
+      "price": 289,
+      "description": "Golden premium chocolate inspired by the legendary Zamorin heritage of Kerala.",
+      "image": "/zamoringold.jpeg",
+      "stock": 40,
+      "rating": 4.3,
+      "productId": "8",
+      "quantity": 1,
+      "id": "R2FEkvhHZf4"
     },
     {
-      "id": "vi59EP_BGT8"
+      "name": "raj",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6,
+      "productId": "2",
+      "quantity": 1,
+      "id": "fK2Qt5wsXoU"
     },
     {
-      "data": [
-        {
-          "id": "9",
-          "name": "Malabar Dynasty",
-          "category": "Royal Collection",
-          "price": 699,
-          "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
-          "image": "/malabardynasty.jpeg",
-          "stock": 12,
-          "rating": 5,
-          "quantity": 12
-        },
-        {
-          "id": "4",
-          "name": "Monsoon Dark",
-          "category": "Dark",
-          "price": 449,
-          "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
-          "image": "/monsoondark.jpeg",
-          "stock": 20,
-          "rating": 4.9,
-          "quantity": 8
-        },
-        {
-          "id": "1",
-          "name": "Dark Velvet",
-          "category": "Dark",
-          "price": 349,
-          "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
-          "image": "/darkvelvet.jpeg",
-          "stock": 50,
-          "rating": 4.8,
-          "quantity": 6
-        },
-        {
-          "id": "3",
-          "name": "Malabar Noir",
-          "category": "Dark",
-          "price": 279,
-          "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
-          "image": "/malabarnoir.jpeg",
-          "stock": 25,
-          "rating": 4.4,
-          "quantity": 5
-        },
-        {
-          "id": "12",
-          "name": "Malabar Muscle Bar",
-          "category": "High Protein",
-          "price": 309,
-          "description": "High-protein chocolate bar crafted for strength with rich Malabar cocoa.",
-          "image": "/malabarmusclebar.jpeg",
-          "stock": 28,
-          "rating": 4.5,
-          "quantity": 1
-        }
-      ],
-      "id": "Vxz77SrH9Mg"
+      "name": "raj",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6,
+      "productId": "2",
+      "quantity": 1,
+      "id": "v0yMq97nROE"
     },
     {
-      "data": [
-        {
-          "id": "9",
-          "name": "Malabar Dynasty",
-          "category": "Royal Collection",
-          "price": 699,
-          "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
-          "image": "/malabardynasty.jpeg",
-          "stock": 12,
-          "rating": 5,
-          "quantity": 12
-        },
-        {
-          "id": "4",
-          "name": "Monsoon Dark",
-          "category": "Dark",
-          "price": 449,
-          "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
-          "image": "/monsoondark.jpeg",
-          "stock": 20,
-          "rating": 4.9,
-          "quantity": 9
-        },
-        {
-          "id": "1",
-          "name": "Dark Velvet",
-          "category": "Dark",
-          "price": 349,
-          "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
-          "image": "/darkvelvet.jpeg",
-          "stock": 50,
-          "rating": 4.8,
-          "quantity": 6
-        },
-        {
-          "id": "3",
-          "name": "Malabar Noir",
-          "category": "Dark",
-          "price": 279,
-          "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
-          "image": "/malabarnoir.jpeg",
-          "stock": 25,
-          "rating": 4.4,
-          "quantity": 5
-        },
-        {
-          "id": "12",
-          "name": "Malabar Muscle Bar",
-          "category": "High Protein",
-          "price": 309,
-          "description": "High-protein chocolate bar crafted for strength with rich Malabar cocoa.",
-          "image": "/malabarmusclebar.jpeg",
-          "stock": 28,
-          "rating": 4.5,
-          "quantity": 1
-        }
-      ],
-      "id": "WvOAqiluyaM"
+      "name": "raj",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6,
+      "productId": "2",
+      "quantity": 1,
+      "id": "mXKxXE_0qU0"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6,
+      "productId": "2",
+      "quantity": 1,
+      "id": "ZGr2WhE-9yM"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6,
+      "productId": "2",
+      "quantity": 1,
+      "id": "voxeEfjKSWY"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 50,
+      "rating": 4.8,
+      "productId": "1",
+      "quantity": 1,
+      "id": "ALb9MHy3ChE"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 50,
+      "rating": 4.8,
+      "productId": "1",
+      "quantity": 1,
+      "id": "y8ug4523WOA"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 50,
+      "rating": 4.8,
+      "productId": "1",
+      "quantity": 1,
+      "id": "sd4_MLxN9hE"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9,
+      "productId": "4",
+      "quantity": 1,
+      "id": "r5HYQaP-6xY"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9,
+      "productId": "4",
+      "quantity": 1,
+      "id": "JVJoJD_-bQE"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9,
+      "productId": "4",
+      "quantity": 1,
+      "id": "DhaMiCPWZNY"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9,
+      "productId": "4",
+      "quantity": 1,
+      "id": "wFUI_MAsgR0"
+    },
+    {
+      "name": "raj",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9,
+      "productId": "4",
+      "quantity": 1,
+      "id": "6Cq8rzeYN6E"
+    },
+    {
+      "id": "8N1lAy2_DLQ",
+      "name": "Zamorin Gold",
+      "category": "Royal Collection",
+      "price": 289,
+      "description": "Golden premium chocolate inspired by the legendary Zamorin heritage of Kerala.",
+      "image": "/zamoringold.jpeg",
+      "stock": 40,
+      "rating": 4.3
+    },
+    {
+      "id": "BLp3QnaVwKg",
+      "name": "Royalty",
+      "category": "Royal Collection",
+      "price": 319,
+      "description": "Luxurious chocolate crafted with a royal touch and silky premium cocoa.",
+      "image": "/royalty.jpeg",
+      "stock": 35,
+      "rating": 4.7
+    },
+    {
+      "id": "fmYbPCuYA-4",
+      "name": "Whey Nadu Crunch",
+      "category": "High Protein",
+      "price": 389,
+      "description": "Protein-packed crunchy chocolate bar with a bold Kerala-inspired twist.",
+      "image": "/wheynadu.jpeg",
+      "stock": 22,
+      "rating": 4.7
+    },
+    {
+      "id": "fPMX_9u779k",
+      "name": "Malabar Muscle Bar",
+      "category": "High Protein",
+      "price": 309,
+      "description": "High-protein chocolate bar crafted for strength with rich Malabar cocoa.",
+      "image": "/malabarmusclebar.jpeg",
+      "stock": 28,
+      "rating": 4.5
+    },
+    {
+      "id": "lo6m7TPcqns",
+      "name": "Malabar Muscle Bar",
+      "category": "High Protein",
+      "price": 309,
+      "description": "High-protein chocolate bar crafted for strength with rich Malabar cocoa.",
+      "image": "/malabarmusclebar.jpeg",
+      "stock": 28,
+      "rating": 4.5
+    },
+    {
+      "id": "I2RCOlULQJU",
+      "name": "Whey Nadu Crunch",
+      "category": "High Protein",
+      "price": 389,
+      "description": "Protein-packed crunchy chocolate bar with a bold Kerala-inspired twist.",
+      "image": "/wheynadu.jpeg",
+      "stock": 22,
+      "rating": 4.7
+    },
+    {
+      "id": "ug1nKSBkRBo",
+      "name": "Coconut Silk Crunch",
+      "category": "Nut Fusion",
+      "price": 439,
+      "description": "Silky coconut chocolate blended with a satisfying crunchy texture.",
+      "image": "/coconutsilkcrunch.jpeg",
+      "stock": 24,
+      "rating": 4.6
+    },
+    {
+      "id": "kTyNC6bsjdo",
+      "name": "Malabar Nut Royale"
+    },
+    {
+      "id": "WbZlRgFKEHA",
+      "name": "PowerBite Elite"
+    },
+    {
+      "id": "A3-dSJ3vUxs",
+      "name": "PowerBite Elite"
+    },
+    {
+      "id": "9xlyPfdHwXs",
+      "name": "Coconut Silk Crunch",
+      "category": "Nut Fusion",
+      "price": 439,
+      "description": "Silky coconut chocolate blended with a satisfying crunchy texture.",
+      "image": "/coconutsilkcrunch.jpeg",
+      "stock": 24,
+      "rating": 4.6
+    },
+    {
+      "id": "KWt5PiFkO6A",
+      "name": "Coconut Silk Crunch",
+      "category": "Nut Fusion",
+      "price": 439,
+      "description": "Silky coconut chocolate blended with a satisfying crunchy texture.",
+      "image": "/coconutsilkcrunch.jpeg",
+      "stock": 24,
+      "rating": 4.6
+    },
+    {
+      "id": "KWZoodaecwY",
+      "name": "Hazel Royale",
+      "category": "Nut Fusion",
+      "price": 329,
+      "description": "Royal hazelnut chocolate with a creamy texture and luxurious cocoa finish.",
+      "image": "/hazelroyale.jpeg",
+      "stock": 38,
+      "rating": 4.7
+    },
+    {
+      "id": "HPvRcR6SlI8",
+      "name": "Velvet Crown",
+      "category": "Royal Collection",
+      "price": 1199,
+      "description": "Premium crown-worthy chocolates wrapped in smooth velvet-like cocoa richness.",
+      "image": "/velvetcrown.jpeg",
+      "stock": 8,
+      "rating": 4.9
+    },
+    {
+      "id": "4xdvmlMpxTc",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "ZBw3Okstkeg",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "OoPHnIfyOew",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "zWLhjpib5Qc",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "68lXNj_h1dU",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "6SQ9R0I13OI",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "asbKUNNm1d0",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "SVKvtstZQEk",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "ow5L50yWMQk",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "13pas6qTZFA",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "6z28lGOPPRY",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
     }
+  ],
+  "wishlist": [
+    {
+      "id": "Cr-WGzQwqkE",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "MVZM0rlp-5w",
+      "name": "Velvet Crown",
+      "category": "Royal Collection",
+      "price": 1199,
+      "description": "Premium crown-worthy chocolates wrapped in smooth velvet-like cocoa richness.",
+      "image": "/velvetcrown.jpeg",
+      "stock": 8,
+      "rating": 4.9
+    },
+    {
+      "id": "qajtKx04LxM",
+      "name": "Malabar Dynasty",
+      "category": "Royal Collection",
+      "price": 699,
+      "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
+      "image": "/malabardynasty.jpeg",
+      "stock": 12,
+      "rating": 5
+    },
+    {
+      "id": "wicM1dr6i6U",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "uGCeujbNuB0",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "hhKTqjEn6MQ",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "1VAyJMhuK0o",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "DmG0G7EuFsE",
+      "name": "Malabar Dynasty",
+      "category": "Royal Collection",
+      "price": 699,
+      "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
+      "image": "/malabardynasty.jpeg",
+      "stock": 12,
+      "rating": 5
+    },
+    {
+      "id": "FqKPRU-ETHY",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "zDefvyiKQ_8",
+      "product": {
+        "id": "11",
+        "name": "Whey Nadu Crunch",
+        "category": "High Protein",
+        "price": 389,
+        "description": "Protein-packed crunchy chocolate bar with a bold Kerala-inspired twist.",
+        "image": "/wheynadu.jpeg",
+        "stock": 22,
+        "rating": 4.7
+      }
+    },
+    {
+      "productId": "1",
+      "product": {
+        "id": "1",
+        "name": "Dark Velvet",
+        "category": "Dark",
+        "price": 349,
+        "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+        "image": "/darkvelvet.jpeg",
+        "stock": 50,
+        "rating": 4.8
+      },
+      "id": "XynWmJe6TYE"
+    },
+    {
+      "productId": "9",
+      "name": "Malabar Dynasty",
+      "category": "Royal Collection",
+      "price": 699,
+      "id": "-hBiaX4fX4M"
+    },
+    {
+      "id": "lTaX9qg0IVE",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "CSHgPnKHWEA",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "4VrVxHjhYDA",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "Cx6DGGbtAgA",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "NPVTlIpKFck",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    }
+   
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }

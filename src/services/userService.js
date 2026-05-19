@@ -10,11 +10,8 @@ export const RegisterUser = async (user) => {
 
 export const LoginUser = async (email, password) => {
   try {
-    console.log('Fetching all users from:', `${BASE}/users`);
-    // Fetch all users and filter on client side
+    // console.log('Fetching all users from:', `${BASE}/users`);
     const res = await axios.get(`${BASE}/users`);
-    // console.log('All users fetched:', res.data);
-    
     const matchedUsers = res.data.filter(
       user => user.email === email && user.password === password
     );

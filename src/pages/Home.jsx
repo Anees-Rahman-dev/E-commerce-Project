@@ -52,7 +52,7 @@ export default function Home() {
             </p>
             <h1 className="text-6xl md:text-7xl font-black leading-tight tracking-tight font-serif mt-6 bungee-shade-regular">
               Chocolate is <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500 bungee-shade-regular">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500  bungee-shade-regular">
                 Happiness
               </span>
             </h1>
@@ -371,8 +371,8 @@ export default function Home() {
           <div>
             <h4 className="text-white font-semibold mb-3">Account</h4>
             <ul className="space-y-2 text-sm">
-              <li className="hover:text-white cursor-pointer" onClick={() => navigate("/login")}>Login</li>
-              <li className="hover:text-white cursor-pointer" onClick={() => navigate("/register")}>Register</li>
+              <li className="hover:text-white cursor-pointer" >Login</li>
+              <li className="hover:text-white cursor-pointer" >Register</li>
               <li className="hover:text-white cursor-pointer" onClick={() => navigate("/orders")}>My Orders</li>
               <li className="hover:text-white cursor-pointer" onClick={() => navigate("/wishlist")}>Wishlist</li>
             </ul>

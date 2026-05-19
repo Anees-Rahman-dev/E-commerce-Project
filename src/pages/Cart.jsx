@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { removeFromCart, updateQuantity } from '../redux/slices/cartSlice'
+import { removeCartFromDb } from '../services/CartService'
+import toast from 'react-hot-toast'
 function Cart() {
 
   const navigate = useNavigate()
@@ -49,7 +51,7 @@ function Cart() {
               <button
                 onClick={() =>
                   item.quantity === 1
-                    ? dispatch(removeFromCart(item.id)) + alert(`${item.name} removed from the cart`)
+                    ? dispatch(removeFromCart(item.id)) + toast.success(`${item.name} removed from the cart`)
                     : dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
                 }
                 className="px-3 py-1 bg-gray-100 hover:bg-gray-200"
@@ -59,7 +61,7 @@ function Cart() {
               <span className="px-4 py-1">{item.quantity}</span>
               <button
                 onClick={() =>
-                  dispatch(item.quantity < item.stock ? updateQuantity({ id: item.id, quantity: item.quantity + 1 }) : alert(`cannot buy more than ${item.stock}`))}
+                  dispatch(item.quantity < item.stock ? updateQuantity({ id: item.id, quantity: item.quantity + 1 }) : toast.success(`cannot buy more than ${item.stock}`))}
                 className="px-3 py-1 bg-gray-100 hover:bg-gray-200"
               >
                 +

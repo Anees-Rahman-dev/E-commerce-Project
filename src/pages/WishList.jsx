@@ -86,6 +86,8 @@ import React, { useState } from 'react'
 import { addToCart } from '../redux/slices/cartSlice'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { removeWish } from '../services/CartService';
+import toast from 'react-hot-toast';
 
 export default function WishList() {
 
@@ -110,15 +112,28 @@ export default function WishList() {
     } catch {}
   };
 
-  const handleRemove = (id) => {
+  const handleRemove = async (id) => {
     const updated = wishlist.filter((item) => item.id !== id);
-
     save(updated);
+    toast.success("Removed from wishlist")
   };
 
   const handleMoveToCart = (item) => {
     dispatch(addToCart({ ...item, quantity: 1 }));
     handleRemove(item.id);
+ toast.custom((t) => (
+  <div className="bg-zinc-900 text-white px-4 py-3 rounded-xl flex items-center gap-3">
+    <span>🛒 Added to cart</span>
+
+    <button
+      onClick={() => toast.dismiss(t)}
+      className="text-sm bg-white text-black px-2 py-1 rounded"
+    >
+      Close
+    </button>
+  </div>
+));
+
   };
 
   if (wishlist.length === 0) {

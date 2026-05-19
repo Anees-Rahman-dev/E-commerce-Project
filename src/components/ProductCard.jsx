@@ -1,42 +1,77 @@
 
 import { memo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Await, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/slices/cartSlice';
+import { setCartDb, setWishDb } from '../services/CartService';
+import { Server } from 'lucide-react';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const ProductCard = memo(function ProductCard({ product }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(s => s.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user)
+  // console.log(user)
   const cartItems = useSelector((state) => state.cart.items)
   const [Quantity, setQuantity] = useState(1)
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart = async (e) => {
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login');
 
     const existingItem = cartItems.find((find) => find.id === product.id)
 
     if (existingItem && existingItem.quantity >= product.stock) {
-      alert('cannot buy more than ' + product.stock)
+      toast.error('cannot buy more than ' + product.stock)
       return
     }
-dispatch(addToCart(product))
-    
+    await setCartDb(product)
+
+    dispatch(addToCart(product))
   };
 
-  
-
-  const handleWishlist = (e) => {
+  const handleWishlist = async (e) => {
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login');
+
+
+ 
     const uid = JSON.parse(localStorage.getItem('user'))?.id;
-    const key = uid ? `wishlist_${uid}` : 'wishlist';
+     console.log('uid',uid)
+    const key = uid ? `wishlist_${uid}` : 'wishlist'; //each user gets separate wishlist_id
+     console.log('key',key)
     const current = JSON.parse(localStorage.getItem(key) || '[]');
+    console.log('curretn',current)
     if (!current.find(i => i.id === product.id)) {
       localStorage.setItem(key, JSON.stringify([...current, product]));
+
+
+    
+      // toast.success(`${product.name} added to WishList `) + navigate(`/wishlist`)
+   toast.custom((t) => (
+  <div className="bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-lg flex items-center gap-4">
+    
+    <span className="text-sm font-medium">
+      🤍 Added to wishlist
+    </span>
+
+    <button
+      onClick={() => {navigate("/wishlist")
+        toast.dismiss(t)}}
+      className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90 transition"
+    >
+      View
+    </button>
+
+  </div>
+));
+    } else {
+      toast.error('item already added to wishlist')
     }
-    alert(`${product.name} added to WishList go to wishList`) + navigate(`/wishlist`)
+    await setWishDb(product)
+
   };
 
   return (
@@ -49,7 +84,7 @@ dispatch(addToCart(product))
           src={product.image.startsWith('http') ? product.image : `http://localhost:5173${product.image}`}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          loading="lazy"                  //  lazy load images
+          loading="lazy"
         />
         {product.stock === 0 && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">

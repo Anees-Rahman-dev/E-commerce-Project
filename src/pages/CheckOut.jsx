@@ -3,6 +3,7 @@ import { PlaceNewOrder } from '../services/OrderService';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../redux/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function CheckOut() {
 
@@ -55,7 +56,7 @@ export default function CheckOut() {
       dispatch(clearCart());
       navigate("/order-success", { state: { order: createdOrder } });
     } catch (err) {
-      alert("Order failed. Please try again.");
+      toast.error("Order failed. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -6,13 +6,14 @@ import { Provider } from 'react-redux'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { store } from './redux/store.js'
-
+import { Toaster } from "react-hot-toast"
 const queryClient = new QueryClient()
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient} >
       <Provider store={store} >
         <BrowserRouter >
+        <Toaster />
         <App />
         </BrowserRouter>
       </Provider>
