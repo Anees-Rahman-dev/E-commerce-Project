@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { addToCart } from '../redux/slices/cartSlice';
 import { getProductById } from '../services/ProductService';
-
+import Tilt from 'react-parallax-tilt'
 function ProductDetails() {
 
   const { id } = useParams();
@@ -95,15 +95,26 @@ function ProductDetails() {
       </button>
 
       <div className=" mt-20 flex flex-col md:flex-row gap-10">
-        <div className="rounded-2xl overflow-hidden shadow bg-grey flex items-center justify-center h-80 w-full md:w-96">
-          <img
-            src={product.image}
-            alt={product.name}
-            // Use object-contain so nothing is cut off
-            // Use p-4 to give the product some "breathing room"
-            className="w-full h-full object-contain p-4"
-          />
-        </div>
+   <Tilt
+  tiltMaxAngleX={12}
+  tiltMaxAngleY={12}
+  perspective={900}
+  scale={1.03}
+  transitionSpeed={400}
+  glareEnable={true}
+  glareMaxOpacity={0.15}
+  glareColor="#ffffff"
+  glarePosition="all"
+  className="rounded-2xl w-full md:w-96"
+>
+  <div className="rounded-2xl overflow-hidden shadow flex items-center justify-center h-80 w-full">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-full h-full object-cover "
+    />
+  </div>
+</Tilt>
 
         <div className="flex-1">
           <span className="text-xs bg-amber-100 text-amber-700 px-3 py-1 rounded-full">

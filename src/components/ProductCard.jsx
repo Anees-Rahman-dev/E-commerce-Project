@@ -16,6 +16,7 @@ const ProductCard = memo(function ProductCard({ product }) {
   // console.log(user)
   const cartItems = useSelector((state) => state.cart.items)
   const [Quantity, setQuantity] = useState(1)
+  const [bg, setBg] = useState(`bg-white/80`)
 
   const handleAddToCart = async (e) => {
     e.stopPropagation();
@@ -34,43 +35,59 @@ const ProductCard = memo(function ProductCard({ product }) {
 
   const handleWishlist = async (e) => {
     e.stopPropagation();
-    if (!isAuthenticated) return navigate('/login');
+    if (!isAuthenticated) return navigate('/login')
+
+    // const getUserWishlist = (user) => {
+    //   console.log(user)
+    //   const res = axios.get(`http://localhost:3001/wishlist`)
+    //   // return res.data
+    //   const isWishListAdded = res.data
+    //   console.log(res.data)
+    //   // if(isWishListAdded.find((fah)=> fah.produ))
+    // }
+    // getUserWishlist(user)
+    // // console.log(user)
 
 
- 
+
     const uid = JSON.parse(localStorage.getItem('user'))?.id;
-     console.log('uid',uid)
+    //  console.log('uid',uid)
     const key = uid ? `wishlist_${uid}` : 'wishlist'; //each user gets separate wishlist_id
-     console.log('key',key)
+    //  console.log('key',key)
     const current = JSON.parse(localStorage.getItem(key) || '[]');
-    console.log('curretn',current)
-    if (!current.find(i => i.id === product.id)) {
-      localStorage.setItem(key, JSON.stringify([...current, product]));
+    // console.log('curretn',current)
+   if (!current.find(i => i.id === product.id)) {
+  localStorage.setItem(key, JSON.stringify([...current, product]));
 
+  await setWishDb(product);
 
-    
-      // toast.success(`${product.name} added to WishList `) + navigate(`/wishlist`)
-   toast.custom((t) => (
-  <div className="bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-lg flex items-center gap-4">
-    
-    <span className="text-sm font-medium">
-      🤍 Added to wishlist
-    </span>
+  // make heart red after adding
+  setBg("bg-red-500 text-white");
 
-    <button
-      onClick={() => {navigate("/wishlist")
-        toast.dismiss(t)}}
-      className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90 transition"
-    >
-      View
-    </button>
+  toast.custom((t) => (
+    <div className="bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-lg flex items-center gap-4">
+      <span className="text-sm font-medium">
+        ❤️ Added to wishlist
+      </span>
 
-  </div>
-));
-    } else {
-      toast.error('item already added to wishlist')
-    }
-    await setWishDb(product)
+      <button
+        onClick={() => {
+          navigate("/wishlist");
+          toast.dismiss(t);
+        }}
+        className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90 transition"
+      >
+        View
+      </button>
+    </div>
+  ));
+} else {
+  toast.error("Item already added to wishlist");
+  setBg("bg-red-500 text-white");
+  
+}
+
+    // console.log(product)
 
   };
 
@@ -93,10 +110,23 @@ const ProductCard = memo(function ProductCard({ product }) {
             </span>
           </div>
         )}
-        <button onClick={handleWishlist}
-          className="absolute top-3 right-3 bg-white/80 hover:bg-white w-8 h-8 rounded-full flex items-center justify-center shadow transition">
-          🤍
-        </button>
+        <button
+  onClick={handleWishlist}
+  className={`
+    absolute top-3 right-3
+    ${bg}
+    hover:bg-white
+    w-9 h-9
+    rounded-full
+    flex items-center justify-center
+    shadow-lg
+    transition-all duration-300
+  `}
+>
+  <span className="text-xl">
+    ♡
+  </span>
+</button>
       </div>
 
       <div className="p-4">
