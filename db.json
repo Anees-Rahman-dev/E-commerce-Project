@@ -5,119 +5,136 @@
       "name": "Anees",
       "email": "anees@gmail.com",
       "password": "123456",
-      "role": "admin"
+      "role": "admin",
+      "isBlocked": false
     },
     {
       "id": "2",
       "name": "Sarah",
       "email": "sarah@gmail.com",
       "password": "123456",
-      "role": "user"
+      "role": "user",
+      "isBlocked": true
     },
     {
       "name": "safa",
       "email": "safa@gmail.com",
       "password": "228888",
       "role": "user",
-      "id": "6uoSB5EzS8k"
+      "id": "6uoSB5EzS8k",
+      "isBlocked": false
     },
     {
       "name": "zoro",
       "email": "zoro@gmail.com",
       "password": "zoro998",
       "role": "user",
-      "id": "4QjpEd2hQYc"
+      "id": "4QjpEd2hQYc",
+      "isBlocked": true
     },
     {
       "name": "newUser",
       "email": "newUser@gmail.com",
       "password": "123456",
       "role": "user",
-      "id": "f-YOX4XtroY"
+      "id": "f-YOX4XtroY",
+      "isBlocked": true
     },
     {
       "name": "akhil",
       "email": "akhil@gmail.com",
       "password": "22334455",
       "role": "user",
-      "id": "zJJ0T1GL6dU"
+      "id": "zJJ0T1GL6dU",
+      "isBlocked": true
     },
     {
       "name": "theertha",
       "email": "theertha@gmail.com",
       "password": "332244",
       "role": "user",
-      "id": "0Y_WrfSTm4k"
+      "id": "0Y_WrfSTm4k",
+      "isBlocked": true
     },
     {
       "name": "raj",
       "email": "raj@gmail.com",
       "password": "445566",
       "role": "user",
-      "id": "DevF3pLROI8"
+      "id": "DevF3pLROI8",
+      "isBlocked": true
     },
     {
       "name": "boopathi",
       "email": "boopathi@gmail.com",
       "password": "12344",
       "role": "user",
-      "id": "EA4pLHPTJbM"
+      "id": "EA4pLHPTJbM",
+      "isBlocked": true
     },
     {
       "name": "shalu",
       "email": "shalu@gmail.com",
       "password": "223344",
       "role": "user",
-      "id": "NS24ARc9VEM"
+      "id": "NS24ARc9VEM",
+      "isBlocked": true
     },
     {
       "name": "niyas",
       "email": "niyas@gmail.com",
       "password": "12345",
       "role": "user",
-      "id": "WdKDyddHxeI"
+      "id": "WdKDyddHxeI",
+      "isBlocked": true
     },
     {
       "name": "anfas",
       "email": "anfas@gmail.com",
       "password": "112233",
       "role": "user",
-      "id": "9TiApVo333s"
+      "id": "9TiApVo333s",
+      "isBlocked": true
     },
     {
       "name": "arshad",
       "email": "arshad@gmail.com",
       "password": "12345",
       "role": "user",
-      "id": "j56oFBPQrtA"
+      "id": "j56oFBPQrtA",
+      "isBlocked": true
     },
     {
       "name": "mallu",
       "email": "mallu@gmail.com",
       "password": "12345",
       "role": "user",
-      "id": "tugaQaTNk6s"
+      "id": "tugaQaTNk6s",
+      "isBlocked": true
     },
     {
       "name": "nami",
       "email": "nami@gmail.com",
       "password": "12345",
       "role": "user",
-      "id": "l3YS_7Jpm2A"
+      "id": "l3YS_7Jpm2A",
+      "isBlocked": true
     },
     {
       "name": "kiki",
       "email": "kiki@gmail.com",
       "password": "12345",
       "role": "user",
-      "id": "qGamVgX31R4"
+      "id": "qGamVgX31R4",
+      "isBlocked": true
     },
     {
       "name": "user",
       "email": "user@gmail.com",
       "password": "12345",
       "role": "user",
-      "id": "jOxFU4jDV6I"
+      "id": "jOxFU4jDV6I",
+      "isBlocked": true
     }
   ],
   "products": [
@@ -320,6 +337,20 @@
       "image": "/hazelroyale.jpeg",
       "stock": 38,
       "rating": 4.7
+    },
+    {
+      "name": "dark nut",
+      "price": "444",
+      "category": "Dark",
+      "stock": "9",
+      "id": "Nt9Du_yrSBg"
+    },
+    {
+      "name": "dark nut",
+      "price": "444",
+      "category": "Dark",
+      "stock": "9",
+      "id": "6hhnYWecQBg"
     }
   ],
   "orders": [
@@ -698,6 +729,70 @@
       "status": "placed",
       "date": "2026-05-17T13:19:29.562Z",
       "id": "RkaEj4Oz3p4"
+    },
+    {
+      "userId": "DevF3pLROI8",
+      "items": [
+        {
+          "productId": "8",
+          "name": "Zamorin Gold",
+          "quantity": 9,
+          "price": 289
+        },
+        {
+          "productId": "6",
+          "name": "Royalty",
+          "quantity": 1,
+          "price": 319
+        },
+        {
+          "productId": "11",
+          "name": "Whey Nadu Crunch",
+          "quantity": 2,
+          "price": 389
+        },
+        {
+          "productId": "12",
+          "name": "Malabar Muscle Bar",
+          "quantity": 2,
+          "price": 309
+        },
+        {
+          "productId": "19",
+          "name": "Coconut Silk Crunch",
+          "quantity": 3,
+          "price": 439
+        },
+        {
+          "productId": "18",
+          "name": "Malabar Nut Royale",
+          "quantity": 1,
+          "price": 899
+        },
+        {
+          "productId": "14",
+          "name": "PowerBite Elite",
+          "quantity": 2,
+          "price": 469
+        },
+        {
+          "productId": "1",
+          "name": "Dark Velvet",
+          "quantity": 2,
+          "price": 349
+        },
+        {
+          "productId": "3",
+          "name": "Malabar Noir",
+          "quantity": 1,
+          "price": 279
+        }
+      ],
+      "total": 8447,
+      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
+      "status": "placed",
+      "date": "2026-05-21T03:27:42.014Z",
+      "id": "bOr6adsZBak"
     }
   ],
   "cart": [
@@ -994,6 +1089,26 @@
       "image": "/cocoamaharaja.jpeg",
       "stock": 0,
       "rating": 4.6
+    },
+    {
+      "id": "B52t3ViaGRQ",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "DqW0vVNiphs",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

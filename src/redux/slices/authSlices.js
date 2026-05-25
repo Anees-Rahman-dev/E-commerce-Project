@@ -41,7 +41,7 @@ const authSlice = createSlice({
       // keep those intact across logins. Clearing in-memory slices is handled
       // by dispatching appropriate actions (e.g. `clearCart`).
       localStorage.removeItem("user");
-      console.log('User logged out');
+      // console.log('User logged out');
     },
   },
 });

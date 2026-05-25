@@ -102,7 +102,7 @@ export default function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center gap-4">
                 <span className="text-md opacity-80 cousine-bold">
-                  Hi, {user?.name.toUpperCase() || "User"}
+                  Hi, <span className="text-amber-400">{user?.name.toUpperCase() || "User"}</span>
                 </span>
 
                 <button

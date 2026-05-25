@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUserOrders } from "../../services/OrderService";
+import { getUserOrders,getAllOrders,changeOrderStatus} from "../../services/OrderService";
 
 export const fetchOrders = createAsyncThunk(
   "orders/fetchOrders",
@@ -11,6 +11,20 @@ export const fetchOrders = createAsyncThunk(
     }
   }
 );
+
+export const fetchAllOrders = createAsyncThunk(
+  'orders/fetchAllProducts',
+  async () => {
+    return await getAllOrders()
+  }
+)
+
+export const updateOrderStatus = createAsyncThunk(
+  'orders/updateOrderStatus',
+  async ({id,status}) => {
+    return await changeOrderStatus(id,status)
+  }
+)
 
 const orderSlice = createSlice({
   name: "orders",
@@ -36,7 +50,20 @@ const orderSlice = createSlice({
       .addCase(fetchOrders.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
-      });
+      })
+
+      .addCase(fetchAllOrders.fulfilled,(state,action) => {
+        state.orders = action.payload;
+      })
+
+      .addCase(updateOrderStatus.fulfilled, (state,action) => {
+        const index = state.orders.findIndex(
+          order => order.id === action.payload.id
+        )
+        if(index !== -1){
+          state.orders[index] = action.payload
+        }
+      })
   },
 });
 

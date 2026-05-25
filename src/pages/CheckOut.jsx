@@ -11,7 +11,7 @@ export default function CheckOut() {
 
   const dispatch = useDispatch()
   const { items } = useSelector((state) => state.cart);
-  console.log(items)
+  // console.log(items)
   const { user } = useSelector((state) => state.auth);
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 

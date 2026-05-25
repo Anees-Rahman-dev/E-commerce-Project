@@ -5,6 +5,7 @@ import { LoginUser } from '../services/userService';
 import { loginSuccess } from '../redux/slices/authSlices';
 import { replaceCart } from '../redux/slices/cartSlice';
 import { Eye, EyeOff } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -27,16 +28,31 @@ export default function Login() {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const users = await LoginUser(form.email.trim(), form.password.trim());
+    
     try {
-      const users = await LoginUser(form.email.trim(), form.password.trim());
       // console.log('Login response:', users);
       if (!users || users.length === 0) {
         setError('Invalid email or password.');
         return;
       }
       const user = users[0];
+      console.log(user)
+    if (user.isBlocked) {
+      toast.error(`${user.name} temporarily banned by Admin`)
+      return
+    }
       dispatch(loginSuccess(user));
-      // Load the user's cart (namespaced key) into redux state
+
+
+      // console.log('role ', user.role)
+      if (user.role === 'admin') {
+        navigate('/dashboard');
+      } else {
+        navigate('/');
+      }
+
       try {
         const stored = JSON.parse(localStorage.getItem(`cart_${user.id}`) || '[]');
         dispatch(replaceCart(stored));
@@ -44,7 +60,6 @@ export default function Login() {
         // ignore
       }
       // console.log('Dispatched user to auth state:', user);
-      navigate('/');
     } catch (err) {
       console.error('Login error:', err);
       setError('Something went wrong. Try again.');
@@ -56,7 +71,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-amber-50">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-amber-900 mb-2">Welcome Back 🍫</h1>
+        <h1 className="text-2xl font-bold text-amber-900 mb-2 ">Welcome Back </h1>
         <p className="text-sm text-gray-500 mb-6">Sign in to your account</p>
 
         {error && (

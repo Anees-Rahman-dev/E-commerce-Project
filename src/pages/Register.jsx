@@ -35,7 +35,7 @@ export default function Register() {
       return
     } else {
       try {
-        await RegisterUser({ ...form, role: "user" });
+        await RegisterUser({ ...form, role: "user"});
         navigate("/login");
       } catch {
         setError("Registration failed. Try again.");

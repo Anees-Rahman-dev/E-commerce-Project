@@ -8,7 +8,11 @@ import { useNavigate } from "react-router-dom";
 import BounceCards from "../components/BounceCards";
 import DrawOutlineButton from "../components/HoverButton";
 import Tilt from 'react-parallax-tilt'
+import toast from "react-hot-toast";
+
 const CATEGORIES = ["All", "Dark", "Royal Collection", "High Protein", "Nut Fusion"];
+
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -19,6 +23,15 @@ export default function Home() {
   const [sort, setSort] = useState("");
 
   const { items, status } = useSelector((state) => state.products);
+  const user = useSelector((state) => state.auth.user)
+
+  useEffect(() => {
+    if(user && user.role === 'admin'){
+      toast.error('admin cannot be in home')
+      navigate('/dashboard')
+    }
+  },[user,navigate])
+
   // console.log("items:", items)
   const safeItems = Array.isArray(items) ? items : [];
   useEffect(() => {

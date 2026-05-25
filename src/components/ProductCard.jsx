@@ -18,6 +18,14 @@ const ProductCard = memo(function ProductCard({ product }) {
   const [Quantity, setQuantity] = useState(1)
   const [bg, setBg] = useState(`bg-white/80`)
 
+  if (!product) return null;
+
+  const imageSrc = product.image
+    ? product.image.startsWith('http')
+      ? product.image
+      : `http://localhost:5173${product.image}`
+    : 'https://via.placeholder.com/400';
+
   const handleAddToCart = async (e) => {
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login');
@@ -98,8 +106,8 @@ const ProductCard = memo(function ProductCard({ product }) {
     >
       <div className="relative overflow-hidden h-52">
         <img
-          src={product.image.startsWith('http') ? product.image : `http://localhost:5173${product.image}`}
-          alt={product.name}
+          src={imageSrc}
+          alt={product?.name || 'Product image'}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />

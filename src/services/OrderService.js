@@ -6,3 +6,9 @@ export const PlaceNewOrder = async (order) =>
 
 export const getUserOrders = async (userId) =>
   (await api.get(`/orders?userId=${userId}`)).data;
+
+export const getAllOrders = async () =>
+  (await api.get(`/orders`)).data;
+
+export const changeOrderStatus = async (id, status) =>
+  (await api.patch(`/orders/${id}`, { status })).data
