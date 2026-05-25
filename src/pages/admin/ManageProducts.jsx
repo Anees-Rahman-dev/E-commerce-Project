@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteProduct, fetchProducts, editProduct, addProduct } from '../../redux/slices/productSlice'
+import axios from 'axios'
+import { deleteProduct, fetchProducts, editProduct, addProduct,fetchLimitedProducts } from '../../redux/slices/productSlice'
 export default function ManageProducts() {
 
   const products = useSelector((state) => state.products.items)
-
+  const pages = useSelector((state) => state.products.pages)
+console.log(products)
   const [form, setForm] = useState({
     name: '',
     price: '',
     category: '',
     stock: ''
   })
-
+const [page,setPage] = useState(1)
   const [editingId, setEditingId] = useState(null)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchProducts())
-  }, [dispatch])
-
+    dispatch(fetchLimitedProducts(page))
+    // console.log(fetchProductss)
+  }, [dispatch,page])
 
 
   const handleInput = (e) => {
@@ -168,7 +170,29 @@ export default function ManageProducts() {
     </table>
 
   </div>
+<div className="flex gap-4 mt-6">
 
+  <button
+    onClick={() => setPage(page - 1)}
+    disabled={page === 1}
+    className="bg-orange-500 px-4 py-2 rounded"
+  >
+    Prev
+  </button>
+
+  <span className="text-lg font-bold">
+    Page {page}
+  </span>
+
+  <button
+  disabled={page === pages}
+    onClick={() => setPage(page + 1)}
+    className="bg-orange-500 px-4 py-2 rounded"
+  >
+    Next
+  </button>
+
+</div>
 </div>
   )
 }

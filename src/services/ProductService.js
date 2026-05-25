@@ -28,3 +28,9 @@ export const removeProduct = async (id) => {
     await api.delete(`/products/${id}`)
   
 }
+
+// export const fetchItems = async (page) => {
+
+//    const res = await api.get(`/products?_page=${page}&_limit=5`)
+//     return res.data
+// }

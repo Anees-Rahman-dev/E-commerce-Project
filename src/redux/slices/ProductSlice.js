@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getAllProducts, createProduct, removeProduct, updateProduct } from '../../services/productService';
+import axios from 'axios';
 
 
 export const fetchProducts = createAsyncThunk(
@@ -8,6 +9,16 @@ export const fetchProducts = createAsyncThunk(
         return await getAllProducts();
     }
 );
+export const fetchLimitedProducts = createAsyncThunk(
+    'products/fetchLimited',
+    async (page) => {
+        const res = await axios.get(
+            `http://localhost:3001/products?_per_page=5&_page=${page}`
+        )
+
+        return res.data
+    }
+)
 
 export const addProduct = createAsyncThunk(
     'products/addProduct',
@@ -18,8 +29,8 @@ export const addProduct = createAsyncThunk(
 
 export const editProduct = createAsyncThunk(
     'products/editProduct',
-    async ({ id, updatedData }) => {
-        return await updateProduct(id, updatedData)
+    async (products) => {
+        return await updateProduct(products.id, products.updatedData)
     }
 )
 
@@ -35,7 +46,9 @@ const productSlice = createSlice({
     initialState: {
         items: [],
         status: 'idle',
-        error: null
+        error: null,
+        pages: 1,
+        currentPage: 1
 
     },
 
@@ -73,6 +86,11 @@ const productSlice = createSlice({
                 state.items = state.items.filter(
                     item => item.id !== action.payload
                 )
+            })
+
+            .addCase(fetchLimitedProducts.fulfilled, (state, action) => {
+                state.items = action.payload.data
+                state.pages = action.payload.pages
             })
 
     },
