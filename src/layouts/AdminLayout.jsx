@@ -157,21 +157,28 @@ export default function AdminLayout() {
                 </nav>
 
                 {/* Logout */}
-                <button
-                    onClick={HandleLogin}
-                    className="
-                        mt-10
-                        bg-orange-500
-                        hover:bg-orange-600
-                        px-4
-                        py-2
-                        rounded-full
-                        transition
-                        w-full
-                    "
-                >
-                    {open ? 'LogOut' : '🚪'}
-                </button>
+               <button
+  onClick={HandleLogin}
+  className="
+    mt-10
+    w-full
+    py-2
+    rounded-full
+    font-semibold
+    text-white
+    transition-all
+    duration-300
+    shadow-lg
+    hover:scale-105
+    active:scale-95
+    bg-gradient-to-r
+    from-amber-500
+    to-yellow-400
+    hover:shadow-amber-500/50
+  "
+>
+  {open ? 'LogOut' : '🚪'}
+</button>
 
             </aside>
 

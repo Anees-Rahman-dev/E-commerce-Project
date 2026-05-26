@@ -33,7 +33,12 @@ export const editProduct = createAsyncThunk(
         return await updateProduct(products.id, products.updatedData)
     }
 )
-
+export const updateStock = createAsyncThunk(
+    'products/updateStock',
+    async(id,data) => {
+        return await updateProductStock(id,data)
+    }
+)
 export const deleteProduct = createAsyncThunk(
     'products/deleteProduct',
     async (id) => {
@@ -49,7 +54,6 @@ const productSlice = createSlice({
         error: null,
         pages: 1,
         currentPage: 1
-
     },
 
     reducers: {},
@@ -91,6 +95,10 @@ const productSlice = createSlice({
             .addCase(fetchLimitedProducts.fulfilled, (state, action) => {
                 state.items = action.payload.data
                 state.pages = action.payload.pages
+            })
+
+            .addCase(updateStock.fulfilled,(state,action) => {
+                state.items = action.payload
             })
 
     },

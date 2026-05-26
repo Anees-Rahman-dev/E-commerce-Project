@@ -29,8 +29,10 @@ export const removeProduct = async (id) => {
   
 }
 
-// export const fetchItems = async (page) => {
-
-//    const res = await api.get(`/products?_page=${page}&_limit=5`)
-//     return res.data
-// }
+export const updateProductStock = async (id,data) => {
+    const res = await api.patch(`
+        /products/${id}`,
+    data
+)
+    return res.data
+}

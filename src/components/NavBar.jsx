@@ -99,27 +99,62 @@ export default function Navbar() {
               )}
             </Link>
 
-            {isAuthenticated ? (
-              <div className="flex items-center gap-4">
-                <span className="text-md opacity-80 cousine-bold">
-                  Hi, <span className="text-amber-400">{user?.name.toUpperCase() || "User"}</span>
-                </span>
+           {isAuthenticated ? (
+  <div className="flex items-center gap-4">
+    
+    <span className="text-md opacity-80 font-semibold">
+      Hi, 
+      <span className="text-amber-400 ml-1">
+        {user?.name.toUpperCase() || "USER"}
+      </span>
+    </span>
 
-                <button
-                  onClick={handleLogout}
-                  className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-full transition cousine-bold"
-                >
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <Link
-                to="/login"
-                className="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-full transition"
-              >
-                Login
-              </Link>
-            )}
+    <button
+      onClick={handleLogout}
+      className="
+        bg-gradient-to-r 
+        from-amber-400 
+        to-yellow-500
+        hover:from-yellow-400 
+        hover:to-amber-500
+        text-black
+        font-bold
+        px-5 
+        py-2
+        rounded-full
+        shadow-lg
+        hover:scale-105
+        transition-all
+        duration-300
+      "
+    >
+      Logout
+    </button>
+
+  </div>
+) : (
+  <Link
+    to="/login"
+    className="
+      bg-gradient-to-r 
+      from-amber-400 
+      to-yellow-500
+      hover:from-yellow-400 
+      hover:to-amber-500
+      text-white
+      font-bold
+      px-5 
+      py-2
+      rounded-full
+      shadow-lg
+      hover:scale-105
+      transition-all
+      duration-300
+    "
+  >
+    Login
+  </Link>
+)}
           </div>
         </div>
 

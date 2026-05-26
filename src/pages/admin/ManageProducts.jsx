@@ -143,23 +143,39 @@ const [page,setPage] = useState(1)
               {product.stock}
             </td>
 
-            <td className="p-3 flex gap-2">
+            <td className="p-3 flex gap-3">
 
-              <button
-                onClick={() => handleEdit(product)}
-                className="bg-blue-500 px-3 py-1 rounded-md"
-              >
-                Edit
-              </button>
+  <button
+    onClick={() => handleEdit(product)}
+    className="
+      px-4 py-2 rounded-xl
+      font-semibold text-white
+      bg-gradient-to-r from-amber-400 to-yellow-500
+      hover:from-yellow-400 hover:to-amber-500
+      shadow-lg hover:shadow-amber-500/40
+      hover:scale-105 active:scale-95
+      transition-all duration-300
+    "
+  >
+    Edit
+  </button>
 
-              <button
-                onClick={() => handeDelete(product.id)}
-                className="bg-red-500 px-3 py-1 rounded-md"
-              >
-                Delete
-              </button>
+  <button
+    onClick={() => handeDelete(product.id)}
+    className="
+      px-4 py-2 rounded-xl
+      font-semibold text-white
+      bg-gradient-to-r from-rose-500 to-amber-600
+      hover:from-red-500 hover:to-rose-600
+      shadow-lg hover:shadow-red-500/40
+      hover:scale-105 active:scale-95
+      transition-all duration-300
+    "
+  >
+    Delete
+  </button>
 
-            </td>
+</td>
 
           </tr>
 

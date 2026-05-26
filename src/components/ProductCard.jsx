@@ -26,6 +26,7 @@ const ProductCard = memo(function ProductCard({ product }) {
       : `http://localhost:5173${product.image}`
     : 'https://via.placeholder.com/400';
 
+    
   const handleAddToCart = async (e) => {
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login');

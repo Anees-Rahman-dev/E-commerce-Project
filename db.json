@@ -14,7 +14,7 @@
       "email": "sarah@gmail.com",
       "password": "123456",
       "role": "user",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "name": "safa",
@@ -54,7 +54,7 @@
       "password": "332244",
       "role": "user",
       "id": "0Y_WrfSTm4k",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "name": "raj",
@@ -62,7 +62,7 @@
       "password": "445566",
       "role": "user",
       "id": "DevF3pLROI8",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "name": "boopathi",
@@ -70,7 +70,7 @@
       "password": "12344",
       "role": "user",
       "id": "EA4pLHPTJbM",
-      "isBlocked": true
+      "isBlocked": false
     },
     {
       "name": "shalu",
@@ -355,271 +355,8 @@
   ],
   "orders": [
     {
-      "id": "1",
-      "userId": 2,
-      "items": [
-        {
-          "productId": 1,
-          "name": "Dark Velvet 70%",
-          "quantity": 2,
-          "price": 349
-        },
-        {
-          "productId": 4,
-          "name": "Salted Caramel Truffle",
-          "quantity": 1,
-          "price": 449
-        }
-      ],
-      "total": 1147,
-      "status": "delivered",
-      "address": "123 MG Road, Kanhangad, Kerala",
-      "date": "2025-04-10T10:30:00Z"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Malabar Dark",
-          "quantity": 4,
-          "price": 299
-        }
-      ],
-      "total": 1196,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T04:32:19.886Z",
-      "id": "ud2Ylq0cWus"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Malabar Dark",
-          "quantity": 2,
-          "price": 299
-        },
-        {
-          "productId": "3",
-          "name": "Malabar Noir",
-          "quantity": 1,
-          "price": 279
-        }
-      ],
-      "total": 877,
-      "address": "thaistreets, bangkok, undefineddd, 2233",
-      "status": "placed",
-      "date": "2026-05-15T04:40:47.370Z",
-      "id": "RNW6YquGuuI"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "9",
-          "name": "Malabar Dynasty",
-          "quantity": 12,
-          "price": 699
-        }
-      ],
-      "total": 8388,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T05:09:35.462Z",
-      "id": "1k_YrThVo68"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Malabar Dark",
-          "quantity": 3,
-          "price": 299
-        }
-      ],
-      "total": 897,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T08:43:34.924Z",
-      "id": "ekc05cuf4gg"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "5",
-          "name": "Coffee Coast Dark",
-          "quantity": 1,
-          "price": 369
-        }
-      ],
-      "total": 369,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T09:03:04.854Z",
-      "id": "RwkMPK6kaKc"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "20",
-          "name": "Hazel Royale",
-          "quantity": 1,
-          "price": 329
-        }
-      ],
-      "total": 329,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T09:48:14.068Z",
-      "id": "ouCKHAGB9lo"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "20",
-          "name": "Hazel Royale",
-          "quantity": 1,
-          "price": 329
-        }
-      ],
-      "total": 329,
-      "address": "sm street, edappal, afff, 1234e",
-      "status": "placed",
-      "date": "2026-05-15T09:50:56.379Z",
-      "id": "hYzic96BbdE"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Dark Velvet",
-          "quantity": 6,
-          "price": 349
-        }
-      ],
-      "total": 2094,
-      "address": "sm street, edappal, afff, 1234e",
-      "status": "placed",
-      "date": "2026-05-15T10:16:33.450Z",
-      "id": "dyEAOqXvjAg"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "3",
-          "name": "Malabar Noir",
-          "quantity": 1,
-          "price": 279
-        }
-      ],
-      "total": 279,
-      "address": "sm street, edappal, afff, 1234e",
-      "status": "placed",
-      "date": "2026-05-15T10:16:53.675Z",
-      "id": "7OiHQtaP3Vg"
-    },
-    {
       "userId": "EA4pLHPTJbM",
-      "items": [
-        {
-          "productId": "6",
-          "name": "Royalty",
-          "quantity": 2,
-          "price": 319
-        }
-      ],
-      "total": 638,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T10:38:19.712Z",
-      "id": "tp3_vCuT8PU"
-    },
-    {
-      "userId": "f-YOX4XtroY",
-      "items": [
-        {
-          "productId": "4",
-          "name": "Monsoon Dark",
-          "quantity": 1,
-          "price": 449
-        },
-        {
-          "productId": "1",
-          "name": "Dark Velvet",
-          "quantity": 1,
-          "price": 349
-        }
-      ],
-      "total": 798,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T10:55:07.163Z",
-      "id": "ol7F0_7vaxo"
-    },
-    {
-      "userId": "NS24ARc9VEM",
-      "items": [
-        {
-          "productId": "10",
-          "name": "Velvet Crown",
-          "quantity": 1,
-          "price": 1199
-        }
-      ],
-      "total": 1199,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-15T16:03:21.248Z",
-      "id": "l8R0jmLeZf4"
-    },
-    {
-      "userId": "EA4pLHPTJbM",
-      "items": [
-        {
-          "productId": "9",
-          "name": "Malabar Dynasty",
-          "quantity": 1,
-          "price": 699
-        },
-        {
-          "productId": "4",
-          "name": "Monsoon Dark",
-          "quantity": 1,
-          "price": 449
-        }
-      ],
-      "total": 1148,
-      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
-      "status": "placed",
-      "date": "2026-05-16T07:11:13.707Z",
-      "id": "SeqV7-0yHjo"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "10",
-          "name": "Velvet Crown",
-          "quantity": 8,
-          "price": 1199
-        }
-      ],
-      "total": 9592,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-17T10:00:32.832Z",
-      "id": "zvpZheX8Ww8"
-    },
-    {
-      "userId": "DevF3pLROI8",
+      "name": "boopathi",
       "items": [
         {
           "productId": "4",
@@ -629,170 +366,61 @@
         }
       ],
       "total": 449,
-      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
-      "status": "placed",
-      "date": "2026-05-17T10:01:24.299Z",
-      "id": "y17ZMJEFHY8"
+      "address": "Dog street, newyork, paris, 1234",
+      "status": "Delivered",
+      "date": "2026-05-26T04:59:52.914Z",
+      "id": "K_3nsHeT1v4"
     },
     {
       "userId": "DevF3pLROI8",
+      "name": "raj",
       "items": [
-        {
-          "productId": "9",
-          "name": "Malabar Dynasty",
-          "quantity": 1,
-          "price": 699
-        }
-      ],
-      "total": 699,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-17T10:03:05.321Z",
-      "id": "7knjgA3iCt0"
-    },
-    {
-      "userId": "EA4pLHPTJbM",
-      "items": [
-        {
-          "productId": "6cA31rqIiX4",
-          "name": "Malabar Dynasty",
-          "quantity": 2,
-          "price": 699
-        }
-      ],
-      "total": 1398,
-      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
-      "status": "placed",
-      "date": "2026-05-17T10:05:09.019Z",
-      "id": "E6TbIlXeHNA"
-    },
-    {
-      "userId": "EA4pLHPTJbM",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Malabar Dark",
-          "quantity": 1,
-          "price": 299
-        }
-      ],
-      "total": 299,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-17T10:06:16.635Z",
-      "id": "k2UMjn6POVg"
-    },
-    {
-      "userId": "EA4pLHPTJbM",
-      "items": [
-        {
-          "productId": "9",
-          "name": "Malabar Dynasty",
-          "quantity": 1,
-          "price": 699
-        }
-      ],
-      "total": 699,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-17T10:07:53.321Z",
-      "id": "oERp_VqNDH8"
-    },
-    {
-      "userId": "9TiApVo333s",
-      "items": [
-        {
-          "productId": "4",
-          "name": "Monsoon Dark",
-          "quantity": 1,
-          "price": 449
-        }
-      ],
-      "total": 449,
-      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
-      "status": "placed",
-      "date": "2026-05-17T10:14:11.797Z",
-      "id": "g_wocNPm1NU"
-    },
-    {
-      "userId": "l3YS_7Jpm2A",
-      "items": [
-        {
-          "productId": "4",
-          "name": "Monsoon Dark",
-          "quantity": 2,
-          "price": 449
-        }
-      ],
-      "total": 898,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-17T13:19:29.562Z",
-      "id": "RkaEj4Oz3p4"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "items": [
-        {
-          "productId": "8",
-          "name": "Zamorin Gold",
-          "quantity": 9,
-          "price": 289
-        },
-        {
-          "productId": "6",
-          "name": "Royalty",
-          "quantity": 1,
-          "price": 319
-        },
-        {
-          "productId": "11",
-          "name": "Whey Nadu Crunch",
-          "quantity": 2,
-          "price": 389
-        },
-        {
-          "productId": "12",
-          "name": "Malabar Muscle Bar",
-          "quantity": 2,
-          "price": 309
-        },
-        {
-          "productId": "19",
-          "name": "Coconut Silk Crunch",
-          "quantity": 3,
-          "price": 439
-        },
-        {
-          "productId": "18",
-          "name": "Malabar Nut Royale",
-          "quantity": 1,
-          "price": 899
-        },
-        {
-          "productId": "14",
-          "name": "PowerBite Elite",
-          "quantity": 2,
-          "price": 469
-        },
         {
           "productId": "1",
           "name": "Dark Velvet",
-          "quantity": 2,
-          "price": 349
-        },
-        {
-          "productId": "3",
-          "name": "Malabar Noir",
           "quantity": 1,
-          "price": 279
+          "price": 349
         }
       ],
-      "total": 8447,
+      "total": 349,
       "address": "seyey64y6, pollachi, Tamilnadu, 642123",
       "status": "placed",
-      "date": "2026-05-21T03:27:42.014Z",
-      "id": "bOr6adsZBak"
+      "date": "2026-05-26T05:26:00.020Z",
+      "id": "sVPPjnDl9AQ"
+    },
+    {
+      "userId": "0Y_WrfSTm4k",
+      "name": "theertha",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Dark Velvet",
+          "quantity": 3,
+          "price": 349
+        }
+      ],
+      "total": 1047,
+      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
+      "status": "placed",
+      "date": "2026-05-26T07:09:47.564Z",
+      "id": "pktOHkF3chk"
+    },
+    {
+      "userId": "0Y_WrfSTm4k",
+      "name": "theertha",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Dark Velvet",
+          "quantity": 1,
+          "price": 349
+        }
+      ],
+      "total": 349,
+      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
+      "status": "placed",
+      "date": "2026-05-26T07:16:49.836Z",
+      "id": "iBVGqwcrovE"
     }
   ],
   "cart": [
@@ -907,6 +535,46 @@
       "image": "/zamoringold.jpeg",
       "stock": 40,
       "rating": 4.3
+    },
+    {
+      "id": "WGJ4ZVA6DHE",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 50,
+      "rating": 4.8
+    },
+    {
+      "id": "k5hcAYpx3bY",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 50,
+      "rating": 4.8
+    },
+    {
+      "id": "jmkqZbn2mEg",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 50,
+      "rating": 4.8
+    },
+    {
+      "id": "1Nupm2cxdnc",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 50,
+      "rating": 4.8
     }
   ],
   "wishlist": [
@@ -1102,6 +770,46 @@
     },
     {
       "id": "DqW0vVNiphs",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "jKII5LZYp4o",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "1o6b6dpp5Kg",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "6gcesU2P12g",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": 449,
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "EwxjcNpXWT0",
       "name": "Monsoon Dark",
       "category": "Dark",
       "price": 449,

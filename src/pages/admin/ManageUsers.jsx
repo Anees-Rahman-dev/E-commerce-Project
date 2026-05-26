@@ -33,9 +33,6 @@ export default function ManageUsers() {
           Manage Users
         </h1>
 
-        <p className="text-gray-300 mt-2">
-          Block or unblock users
-        </p>
       </div>
 
       {/* Table Container */}
@@ -84,19 +81,25 @@ export default function ManageUsers() {
 
                 <td className="p-4">
 
-                  <button
-                    onClick={() => handleBtn(user)}
-                    className={`
-                       px-4 py-2 rounded-lg font-medium text-white
-                       transition-all duration-300 ease-in-out
-                       transform hover:scale-105 active:scale-95
-                       ${user.isBlocked
-                       ? 'bg-green-500 hover:bg-green-600'
-                       : 'bg-red-500 hover:bg-red-600'}`}
-                  >
-                    {user.isBlocked ? 'UnBlock' : 'Block'}
-                  </button>
+<button
+  onClick={() => handleBtn(user)}
+  className={`
+    relative px-2.5 py-2 rounded-full font-semibold
+    transition-all duration-300 overflow-hidden
+    shadow-lg hover:scale-105 active:scale-95
 
+    ${user.isBlocked
+      ? 'bg-gradient-to-r from-amber-500 to-yellow-400 hover:shadow-amber-500/50'
+      : 'bg-gradient-to-r from-rose-500 to-amber-600'
+    }
+  `}
+>
+
+  <span className="relative z-10 text-white">
+    {user.isBlocked ? 'Unblock ' : 'Block User'}
+  </span>
+
+</button>
                 </td>
 
               </tr>

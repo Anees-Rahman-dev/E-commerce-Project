@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../redux/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import axios from 'axios';
+import { updateStock } from '../redux/slices/productSlice';
 
 export default function CheckOut() {
 
@@ -11,8 +13,10 @@ export default function CheckOut() {
 
   const dispatch = useDispatch()
   const { items } = useSelector((state) => state.cart);
-  // console.log(items)
+  const product =  useSelector((state) => state.products.items)
+  console.log(typeof(items))
   const { user } = useSelector((state) => state.auth);
+  console.log(user)
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
   const [loading, setLoading] = useState(false)
@@ -42,6 +46,7 @@ export default function CheckOut() {
     try {
       const createdOrder = await PlaceNewOrder({
         userId: user.id,
+        name : user.name,
         items: items.map((i) => ({
           productId: i.id,
           name: i.name,
@@ -55,6 +60,8 @@ export default function CheckOut() {
       });
       dispatch(clearCart());
       navigate("/order-success", { state: { order: createdOrder } });
+      const newStock = product.stock - items.quantity
+  await dispatch(updateStock(items.id,newStock))
     } catch (err) {
       toast.error("Order failed. Please try again.");
     } finally {
