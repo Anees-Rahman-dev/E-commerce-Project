@@ -17,6 +17,7 @@ import ManageOrders from './pages/admin/ManageOrders'
 import ManageProducts from './pages/admin/ManageProducts'
 import ManageUsers from './pages/admin/ManageUsers'
 import AdminLayout from './layouts/AdminLayout'
+import UserDetails from './components/UserDetails'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path='/wishlist' element={<ProtectedRoute><WishList /></ProtectedRoute>} />
         <Route path='/checkout' element={<ProtectedRoute><CheckOut /></ProtectedRoute>} />
         <Route path='/order-success' element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
+        <Route path='/userdetails' element={<ProtectedRoute><UserDetails /></ProtectedRoute>} />
       </Route>
 
       <Route element={<AdminLayout />}>

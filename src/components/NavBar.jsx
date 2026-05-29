@@ -104,9 +104,9 @@ export default function Navbar() {
     
     <span className="text-md opacity-80 font-semibold">
       Hi, 
-      <span className="text-amber-400 ml-1">
+      <button onClick={()=>navigate("/userdetails")} className="text-amber-400 ml-1 cursor-pointer">
         {user?.name.toUpperCase() || "USER"}
-      </span>
+      </button>
     </span>
 
     <button
@@ -117,7 +117,7 @@ export default function Navbar() {
         to-yellow-500
         hover:from-yellow-400 
         hover:to-amber-500
-        text-black
+        text-white
         font-bold
         px-5 
         py-2

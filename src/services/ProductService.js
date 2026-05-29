@@ -22,6 +22,7 @@ export const updateProduct = async (id, updateData) => {
         updateData
     )
     return res.data
+    console.log(res.data)
 }
 
 export const removeProduct = async (id) => {
@@ -30,9 +31,9 @@ export const removeProduct = async (id) => {
 }
 
 export const updateProductStock = async (id,data) => {
-    const res = await api.patch(`
-        /products/${id}`,
-    data
+    const res = await api.patch( 
+        `/products/${id}`,
+         data
 )
     return res.data
 }

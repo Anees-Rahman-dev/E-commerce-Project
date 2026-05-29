@@ -5,11 +5,15 @@ import { fetchAllOrders, updateOrderStatus } from '../../redux/slices/orderSlice
 export default function ManageOrders() {
 
   const orders = useSelector((state) => state.orders.orders)
+
   const dispatch = useDispatch()
+
   const [selectedOrder, setSelectedOrder] = useState(null)
+
   useEffect(() => {
     dispatch(fetchAllOrders())
   }, [dispatch])
+  
   return (
     <div className="min-h-screen bg-[#2b0b08] text-white p-8">
 
@@ -72,10 +76,8 @@ export default function ManageOrders() {
                           id: or.id,
                           status: e.target.value
                         })
-                      )
-                    }
-                    className="bg-[#2b0b08] border border-orange-500 text-white px-3 py-2 rounded-lg outline-none focus:ring-2 focus:ring-orange-400"
-                  >
+                      )}
+                    className="bg-[#2b0b08] border border-orange-500 text-white px-3 py-2 rounded-lg outline-none focus:ring-2 focus:ring-orange-400">
 
                     <option value="Pending">
                       Pending

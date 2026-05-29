@@ -38,7 +38,7 @@ export default function Login() {
         return;
       }
       const user = users[0];
-      console.log(user)
+      // console.log(user)
     if (user.isBlocked) {
       toast.error(`${user.name} temporarily banned by Admin`)
       return

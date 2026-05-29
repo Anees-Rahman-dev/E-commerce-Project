@@ -23,6 +23,7 @@ export default function Home() {
   const [sort, setSort] = useState("");
 
   const { items, status } = useSelector((state) => state.products);
+  console.log(items)
   const user = useSelector((state) => state.auth.user)
 
   useEffect(() => {
@@ -40,7 +41,6 @@ export default function Home() {
 
   const filtered = useMemo(() => {
     return [...safeItems]
-
       .filter((p) => p.name?.toLowerCase().includes(search.toLowerCase()))
       .filter((p) => category === "All" || p.category === category)
       .sort((a, b) => {
@@ -80,12 +80,7 @@ export default function Home() {
                   .getElementById("products")
                   .scrollIntoView({ behavior: "smooth" })
               }
-              className="
-    bg-amber-500
-    hover:bg-amber-400
-    text-white
-    shadow-xl
-  "
+              className="bg-amber-500 hover:bg-amber-400 text-white shadow-xl"
             >
               Shop Now
             </DrawOutlineButton>

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllProducts, createProduct, removeProduct, updateProduct } from '../../services/productService';
+import { getAllProducts, createProduct, removeProduct, updateProduct,updateProductStock } from '../../services/productService';
 import axios from 'axios';
 
 
@@ -30,12 +30,13 @@ export const addProduct = createAsyncThunk(
 export const editProduct = createAsyncThunk(
     'products/editProduct',
     async (products) => {
-        return await updateProduct(products.id, products.updatedData)
+        const { id, ...updatedData } = products
+        return await updateProduct(id, updatedData)
     }
 )
 export const updateStock = createAsyncThunk(
     'products/updateStock',
-    async(id,data) => {
+    async({id,data}) => {
         return await updateProductStock(id,data)
     }
 )
@@ -98,7 +99,13 @@ const productSlice = createSlice({
             })
 
             .addCase(updateStock.fulfilled,(state,action) => {
-                state.items = action.payload
+                const index = state.items.findIndex(
+                    findIn => findIn.id === action.payload.id
+                )
+
+                if(index !== -1){
+                    state.items[index] = action.payload
+                }
             })
 
     },

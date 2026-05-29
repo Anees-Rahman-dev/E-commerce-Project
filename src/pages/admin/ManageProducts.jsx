@@ -6,12 +6,13 @@ export default function ManageProducts() {
 
   const products = useSelector((state) => state.products.items)
   const pages = useSelector((state) => state.products.pages)
-console.log(products)
+// console.log(products)
   const [form, setForm] = useState({
     name: '',
     price: '',
     category: '',
-    stock: ''
+    stock: '',
+    description : ''
   })
 const [page,setPage] = useState(1)
   const [editingId, setEditingId] = useState(null)
@@ -27,16 +28,18 @@ const [page,setPage] = useState(1)
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-
   const handleEdit = (product) => {
+    
     setEditingId(product.id)
     setForm({
       name: product.name,
       category: product.category,
       price: product.price,
-      stock: product.stock
-    })
+      stock: product.stock,
+      description : product.description
+    });
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -54,6 +57,7 @@ const [page,setPage] = useState(1)
       price: '',
       category: '',
       stock: '',
+      description:''
     })
     setEditingId(null)
   }
@@ -94,6 +98,10 @@ const [page,setPage] = useState(1)
     <input
       type="number"
       placeholder="Stock" name="stock" value={form.stock} onChange={handleInput} className="bg-[#522019] p-3 rounded-lg outline-none"
+    />
+    <input
+      type="text"
+      placeholder="description" name="description" value={form.description} onChange={handleInput} className="bg-[#522019] p-3 rounded-lg outline-none col-span-full"
     />
 
     <button
@@ -149,13 +157,7 @@ const [page,setPage] = useState(1)
     onClick={() => handleEdit(product)}
     className="
       px-4 py-2 rounded-xl
-      font-semibold text-white
-      bg-gradient-to-r from-amber-400 to-yellow-500
-      hover:from-yellow-400 hover:to-amber-500
-      shadow-lg hover:shadow-amber-500/40
-      hover:scale-105 active:scale-95
-      transition-all duration-300
-    "
+      font-semibold text-white bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-yellow-400 hover:to-amber-500 shadow-lg hover:shadow-amber-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
   >
     Edit
   </button>
@@ -163,14 +165,8 @@ const [page,setPage] = useState(1)
   <button
     onClick={() => handeDelete(product.id)}
     className="
-      px-4 py-2 rounded-xl
-      font-semibold text-white
-      bg-gradient-to-r from-rose-500 to-amber-600
-      hover:from-red-500 hover:to-rose-600
-      shadow-lg hover:shadow-red-500/40
-      hover:scale-105 active:scale-95
-      transition-all duration-300
-    "
+      px-4 py-2 rounded-xl 
+      font-semibold text-white bg-gradient-to-r from-rose-500 to-amber-600 hover:from-red-500 hover:to-rose-600 shadow-lg hover:shadow-red-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
   >
     Delete
   </button>

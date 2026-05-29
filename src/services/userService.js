@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import api from './api';
 
 const BASE = import.meta.env.VITE_API_BASE_URL;
 
@@ -26,13 +27,20 @@ export const LoginUser = async (email, password) => {
 
 export const getAllUsers = async () => {
     const res = await axios.get(`${BASE}/users`)
+   
     return res.data
 }
 
 export const updateUserStatus = async (id,isBlocked) => {
-  console.log(id,isBlocked)
+  // console.log(id,isBlocked)
   const res = await axios.patch(`${BASE}/users/${id}`,
     {isBlocked}
 )       
   return res.data
+}
+
+export const getById = async (id) => {
+  const res = await axios.get(`${BASE}/users/${id}`)
+  return res.data
+  console.log(res.data)
 }

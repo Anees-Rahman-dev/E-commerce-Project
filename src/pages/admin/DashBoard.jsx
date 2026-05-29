@@ -72,6 +72,7 @@ export default function DashBoard() {
   const orders = useSelector((state) => state.orders.orders)
 
   const totalProducts = products.length
+  // console.log(totalProducts)
   const totalUsers = users.length
   const totalOrders = orders.length
 
@@ -79,14 +80,15 @@ export default function DashBoard() {
     (sum, order) => sum + Number(order.total || 0),
     0
   )
+// console.log(totalRevenue);
 
   const dispatch = useDispatch()
 
-useEffect(() => {
-  dispatch(fetchProducts())
-  dispatch(fetchAllUsers())
-  dispatch(fetchAllOrders())
-}, [dispatch])
+  useEffect(() => {
+    dispatch(fetchProducts())
+    dispatch(fetchAllUsers())
+    dispatch(fetchAllOrders())
+  }, [dispatch])
 
   // BAR GRAPH
   const summaryData = [
@@ -149,96 +151,96 @@ useEffect(() => {
 
       </div>
 
-     {/* CHARTS */}
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+      {/* CHARTS */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
 
-  {/* BAR CHART */}
-  <div className="bg-[#3b140f] rounded-2xl p-5 h-[380px]">
+        {/* BAR CHART */}
+        <div className="bg-[#3b140f] rounded-2xl p-5 h-[380px]">
 
-    <h2 className="text-xl font-bold text-orange-300 mb-6">
-      Store Summary
-    </h2>
+          <h2 className="text-xl font-bold text-orange-300 mb-6">
+            Store Summary
+          </h2>
 
-    <ResponsiveContainer width="100%" height="85%">
-      <BarChart data={summaryData}>
+          <ResponsiveContainer width="100%" height="85%">
+            <BarChart data={summaryData}>
 
-        <XAxis dataKey="name" stroke="#fff" />
-        <YAxis stroke="#fff" />
-        <Tooltip />
+              <XAxis dataKey="name" stroke="#fff" />
+              <YAxis stroke="#fff" />
+              <Tooltip />
 
-        <Bar
-          dataKey="value"
-          fill="#f97316"
-          radius={[8, 8, 0, 0]}
-        />
+              <Bar
+                dataKey="value"
+                fill="#f97316"
+                radius={[4, 50, 0, 0]}
+              />
 
-      </BarChart>
-    </ResponsiveContainer>
+            </BarChart>
+          </ResponsiveContainer>
 
-  </div>
+        </div>
 
-  {/* PIE CHART */}
-  <div className="bg-[#3b140f] rounded-2xl p-5 h-[380px]">
+        {/* PIE CHART */}
+        <div className="bg-[#3b140f] rounded-2xl p-5 h-[380px]">
 
-    <h2 className="text-xl font-bold text-orange-300 mb-6">
-      Revenue Overview
-    </h2>
+          <h2 className="text-xl font-bold text-orange-300 mb-6">
+            Revenue Overview
+          </h2>
 
-    <ResponsiveContainer width="100%" height="85%">
-      <PieChart>
+          <ResponsiveContainer width="100%" height="85%">
+            <PieChart>
 
-        <Pie
-          data={pieData}
-          dataKey="value"
-          cx="50%"
-          cy="50%"
-          outerRadius={100}
-          label
-        >
-          {pieData.map((entry, index) => (
-            <Cell
-              key={index}
-              fill={COLORS[index % COLORS.length]}
+              <Pie
+                data={pieData}
+                dataKey="value"
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                label
+              >
+                {pieData.map((entry, index) => (
+                  <Cell
+                    key={index}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+
+              <Tooltip />
+
+            </PieChart>
+          </ResponsiveContainer>
+
+        </div>
+
+      </div>
+
+      {/* LINE CHART */}
+      <div className="bg-[#3b140f] rounded-2xl p-5 h-[400px] mt-8">
+
+        <h2 className="text-xl font-bold text-orange-300 mb-6">
+          Revenue Trend
+        </h2>
+
+        <ResponsiveContainer width="100%" height="85%">
+
+          <LineChart data={revenueData}>
+
+            <XAxis dataKey="name" stroke="#fff" />
+            <YAxis stroke="#fff" />
+            <Tooltip />
+
+            <Line
+              type="monotone"
+              dataKey="revenue"
+              stroke="#f97316"
+              strokeWidth={4}
             />
-          ))}
-        </Pie>
 
-        <Tooltip />
+          </LineChart>
 
-      </PieChart>
-    </ResponsiveContainer>
+        </ResponsiveContainer>
 
-  </div>
-
-</div>
-
-{/* LINE CHART */}
-<div className="bg-[#3b140f] rounded-2xl p-5 h-[400px] mt-8">
-
-  <h2 className="text-xl font-bold text-orange-300 mb-6">
-    Revenue Trend
-  </h2>
-
-  <ResponsiveContainer width="100%" height="85%">
-
-    <LineChart data={revenueData}>
-
-      <XAxis dataKey="name" stroke="#fff" />
-      <YAxis stroke="#fff" />
-      <Tooltip />
-
-      <Line
-        type="monotone"
-        dataKey="revenue"
-        stroke="#f97316"
-        strokeWidth={4}
-      />
-
-    </LineChart>
-
-  </ResponsiveContainer>
-
-</div>
+      </div>
     </div>
   )
 }

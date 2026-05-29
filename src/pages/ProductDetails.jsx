@@ -4,10 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { addToCart } from '../redux/slices/cartSlice';
 import { getProductById } from '../services/ProductService';
 import Tilt from 'react-parallax-tilt'
+import toast from 'react-hot-toast';
+import { removeWish } from '../services/CartService';
 function ProductDetails() {
 
   const { id } = useParams();
-  console.log(id)
+  // console.log(id)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -18,25 +20,23 @@ function ProductDetails() {
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
-    console.log(product)
+    // console.log(product)
     getProductById(id)
       .then((res) => setProduct(res))
       .finally(() => setLoading(false))
-    console.log(id)
+    // console.log(id)
   }, [id])
 
 
-  // const handleAddToCart = () => {
-  //   if (!isAuthenticated) return navigate(`/login`);
-  //   dispatch(addToCart({ ...product, quantity }))
-  //   setAdded(true)
-
-  // }
-
   const handleAddToCart = () => {
     if (!isAuthenticated) return navigate(`/login`);
+
+    if(product.stock <= 0){
+      toast.error('Out Of Stock')
+return
+    }
     dispatch(addToCart({ ...product, quantity }))
-    console.log(product.name, quantity)
+    // console.log(product.name, quantity)
     setAdded(true)
   }
 
@@ -51,30 +51,28 @@ function ProductDetails() {
 
     return () => clearTimeout(timer);
   }, [added]);
-  //    useEffect(() => {
-  //   let timer;
-
-  //   if (added) {     csandgue 
-  //     timer = setTimeout(() => {
-  //       setAdded(false);
-  //     }, 2000);
-  //   }
-
-  //   return () => clearTimeout(timer);
-  // }, [added]);
 
 
-  const handleWishlist = () => {
+  const handleWishlist = async () => {
     if (!isAuthenticated) return navigate(`/login`);
+
     const uid = JSON.parse(localStorage.getItem("user"))?.id;
     const key = uid ? `wishlist_${uid}` : 'wishlist';
     const current = JSON.parse(localStorage.getItem(key) || '[]');
     const exists = current.find((i) => i.id === product.id);
+    
     if (!exists) {
       localStorage.setItem(key, JSON.stringify([...current, product]));
-      alert("Added to wishlist!");
+      toast.success("Added to wishlist!");
     } else {
-      alert("Already in wishlist!");
+      const updated = current.filter((i) => i.id !== product.id);
+      localStorage.setItem(key, JSON.stringify(updated));
+      try {
+        await removeWish(exists.id);
+      } catch (error) {
+        console.warn('Failed to delete wishlist item from backend:', error);
+      }
+      toast.success('Removed from wishlist');
     }
   };
 
@@ -169,14 +167,7 @@ function ProductDetails() {
               >
                 {added ? "✓ Added!" : "Add to Cart"}
               </button>
-
-
-              {/* <button
-                onClick={handleAddToCart}
-                className="bg-amber-800 text-white px-8 py-2 rounded-lg hover:bg-amber-900 transition"
-              >
-                {added ? "✓ Added!" : "Add to Cart"}
-              </button> */}
+  
 
               <button
                 onClick={handleWishlist}

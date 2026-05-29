@@ -13,8 +13,9 @@ export default function CheckOut() {
 
   const dispatch = useDispatch()
   const { items } = useSelector((state) => state.cart);
-  const product =  useSelector((state) => state.products.items)
-  console.log(typeof(items))
+  const product = useSelector((state) => state.products.items)
+  // console.log(typeof (items))
+  console.log(items)
   const { user } = useSelector((state) => state.auth);
   console.log(user)
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -46,7 +47,7 @@ export default function CheckOut() {
     try {
       const createdOrder = await PlaceNewOrder({
         userId: user.id,
-        name : user.name,
+        name: user.name,
         items: items.map((i) => ({
           productId: i.id,
           name: i.name,
@@ -58,10 +59,22 @@ export default function CheckOut() {
         status: "placed",
         date: new Date().toISOString(),
       });
+
+      for (let item of items) {
+        const newStock = item.stock - item.quantity;
+        await dispatch(updateStock({
+          id: item.id,
+          data: {
+            stock: newStock
+          }
+        }))
+      }
       dispatch(clearCart());
-      navigate("/order-success", { state: { order: createdOrder } });
-      const newStock = product.stock - items.quantity
-  await dispatch(updateStock(items.id,newStock))
+      navigate("/order-success", {
+        state: { order: createdOrder }
+      });
+
+
     } catch (err) {
       toast.error("Order failed. Please try again.");
     } finally {

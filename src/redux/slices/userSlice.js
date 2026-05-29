@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAllUsers,updateUserStatus } from "../../services/userService";
 import { act } from "react";
+import { getById } from "../../services/userService";
 
 export const fetchAllUsers = createAsyncThunk(
     'users/fetchAllUsers',
@@ -12,7 +13,7 @@ export const fetchAllUsers = createAsyncThunk(
 export const blockUser = createAsyncThunk (
     'users/blockUser',
     async (id) => {
-        console.log(id)
+        // console.log(id)
         return await updateUserStatus(id,true)
     }
 )
@@ -21,7 +22,14 @@ export const unBlockUser = createAsyncThunk(
     'users/unBlockUser',
     async (id) => {
         return await updateUserStatus(id,false)
-        console.log(id)
+        // console.log(id)
+    }
+)
+
+export const getUserById = createAsyncThunk(
+    'users/getUserById',
+    async (id) => {
+return await getById(id)
     }
 )
 
@@ -29,6 +37,7 @@ const userSlice = createSlice({
     name : 'users',
     initialState : {
         users : [],
+        singleUser : null,
         status : 'idle',
         error : null
     },
@@ -70,6 +79,10 @@ const userSlice = createSlice({
             if(index !== -1){
                 state.users[index] = action.payload
             }
+        })
+
+        .addCase(getUserById.fulfilled,(state,action) => {
+            state.singleUser = action.payload
         })
     },
 })

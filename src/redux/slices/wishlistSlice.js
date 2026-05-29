@@ -8,10 +8,17 @@ const wishListSlice = createSlice ( {
 
     reducers : {
     addToWishList : (state,action) => {
-
+        const existingItem = state.wishlist.find(item => item.id === action.payload.id);
+        
+        if (!existingItem) {
+            state.wishlist.push(action.payload);
+        } else {
+            
+            state.wishlist = state.wishlist.filter(item => item.id !== action.payload.id);
+        }
     },
     removeFromWisList : (state,action) => {
-
+        state.wishlist = state.wishlist.filter(item => item.id !== action.payload);
     }
     }
 })
