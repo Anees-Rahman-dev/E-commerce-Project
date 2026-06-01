@@ -25,13 +25,11 @@ export default function UserDetails() {
   }
 
   const handleSave = () => {
-    console.log(address)
-
+    // console.log(address)
     // dispatch update address here
-
     setEditing(false)
   }
-//w-24
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center p-6 mt-12">
 

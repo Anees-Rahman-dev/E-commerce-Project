@@ -17,10 +17,7 @@ export default function Navbar() {
 
   const cartItems = useSelector((state) => state.cart.items);
 
-  const cartCount = cartItems.reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
+  const cartCount = cartItems.length;
 
   const closeMenu = () => setMenuOpen(false);
 

@@ -7,6 +7,7 @@ import { setCartDb, setWishDb, removeWish } from '../services/CartService';
 import { Server } from 'lucide-react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { deleteWish } from '../redux/slices/wishlistSlice';
 
 const ProductCard = memo(function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -26,39 +27,39 @@ const ProductCard = memo(function ProductCard({ product }) {
       : `http://localhost:5173${product.image}`
     : 'https://via.placeholder.com/400';
 
-    
- const handleAddToCart = async (e) => {
 
-  e.stopPropagation();
+  const handleAddToCart = async (e) => {
 
-  if (!isAuthenticated) {
-    return navigate('/login');
-  }
+    e.stopPropagation();
+
+    if (!isAuthenticated) {
+      return navigate('/login');
+    }
 
 
-  if (product.stock <= 0) {
-    toast.error('Out OfStock')
-    return
-  }
+    if (product.stock <= 0) {
+      toast.error('Out OfStock')
+      return
+    }
 
-  const existingItem = cartItems.find(
-    (find) => find.id === product.id
-  )
-
-  if (
-    existingItem &&
-    existingItem.quantity >= product.stock
-  ) {
-    toast.error(
-      'Cannot buy more than ' + product.stock
+    const existingItem = cartItems.find(
+      (find) => find.id === product.id
     )
-    return
+
+    if (
+      existingItem &&
+      existingItem.quantity >= product.stock
+    ) {
+      toast.error(
+        'Cannot buy more than ' + product.stock
+      )
+      return
+    }
+
+    await setCartDb(product)
+
+    dispatch(addToCart(product))
   }
-
-  await setCartDb(product)
-
-  dispatch(addToCart(product))
-}
   const handleWishlist = async (e) => {
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login')
@@ -69,43 +70,43 @@ const ProductCard = memo(function ProductCard({ product }) {
     //  console.log('key',key)
     const current = JSON.parse(localStorage.getItem(key) || '[]');
     // console.log('current',current)
-   const existingItem = current.find(i => i.id === product.id);
-   
-   if (!existingItem) {
-    // Add to wishlist
-    localStorage.setItem(key, JSON.stringify([...current, product]));
-    await setWishDb(product);
-    setBg("bg-red-500 text-white");
+    const existingItem = current.find(i => i.id === product.id);
 
-    toast.custom((t) => (
-      <div className="bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-lg flex items-center gap-4">
-        <span className="text-sm font-medium">
-          ❤️ Added to wishlist
-        </span>
+    if (!existingItem) {
+      // Add to wishlist
+      localStorage.setItem(key, JSON.stringify([...current, product]));
+      await setWishDb(product);
+      setBg("bg-red-500 text-white");
 
-        <button
-          onClick={() => {
-            navigate("/wishlist");
-            toast.dismiss(t);
-          }}
-          className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90 transition"
-        >
-          View
-        </button>
-      </div>
-    ))
-  } else {
+      toast.custom((t) => (
+        <div className="bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-lg flex items-center gap-4">
+          <span className="text-sm font-medium">
+            ❤️ Added to wishlist
+          </span>
 
-    const updatedWishlist = current.filter(i => i.id !== product.id); //removing from wishlist
-    localStorage.setItem(key, JSON.stringify(updatedWishlist));
-    try {
-      await removeWish(existingItem.id);
-    } catch (error) {
-      console.warn('Failed to delete wishlist item from backend:', error);
+          <button
+            onClick={() => {
+              navigate("/wishlist");
+              toast.dismiss(t);
+            }}
+            className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90 transition"
+          >
+            View
+          </button>
+        </div>
+      ))
+    } else {
+
+      const updatedWishlist = current.filter(i => i.id !== product.id); //removing from wishlist
+      localStorage.setItem(key, JSON.stringify(updatedWishlist));
+      try {
+        await removeWish(existingItem.id);
+      } catch (error) {
+        console.warn('Failed to delete wishlist item from backend:', error);
+      }
+      setBg("bg-white/80");
+      toast.success(" Removed from wishlist");
     }
-    setBg("bg-white/80");
-    toast.success(" Removed from wishlist");
-  }
     // console.log(product)
 
   };
@@ -130,13 +131,13 @@ const ProductCard = memo(function ProductCard({ product }) {
           </div>
         )}
         <button
-  onClick={handleWishlist}
-  className={`absolute top-3 right-3 ${bg} hover:bg-white w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300`}
->
-  <span className="text-xl">
-    ♡
-  </span>
-</button>
+          onClick={handleWishlist}
+          className={`absolute top-3 right-3 ${bg} hover:bg-white w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300`}
+        >
+          <span className="text-xl">
+            ♡
+          </span>
+        </button>
       </div>
 
       <div className="p-4">
@@ -150,10 +151,10 @@ const ProductCard = memo(function ProductCard({ product }) {
             <p className="font-bold text-[#3B1F0A] text-lg">₹{product.price}</p>
             <p className="text-xs text-gray-400">⭐ {product.rating}</p>
           </div>
-          {/* <button onClick={handleAddToCart} disabled={product.stock === 0}
+          <button onClick={handleAddToCart} disabled={product.stock === 0}
             className="bg-[#3B1F0A] text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-amber-800 transition disabled:opacity-40 text-xl font-bold">
             ✢
-          </button> */}
+          </button>
         </div>
       </div>
     </div>

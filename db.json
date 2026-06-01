@@ -78,10 +78,10 @@
       "id": "1",
       "name": "Dark Velvet",
       "category": "Dark",
-      "price": 349,
+      "price": "360",
       "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
       "image": "/darkvelvet.jpeg",
-      "stock": 26,
+      "stock": "29",
       "rating": 4.8
     },
     {
@@ -275,11 +275,13 @@
       "rating": 4.7
     },
     {
-      "name": "dark nut",
-      "price": "444",
-      "category": "Dark",
-      "stock": "9",
-      "id": "Nt9Du_yrSBg"
+      "name": "newItem",
+      "price": "3222",
+      "category": "Royal Collection",
+      "stock": "2",
+      "description": "scscsadcswc",
+      "image": "",
+      "id": "gYfx_-KZKh4"
     }
   ],
   "orders": [
@@ -364,145 +366,9 @@
       ],
       "total": 349,
       "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
+      "status": "Shipped",
       "date": "2026-05-27T05:46:40.350Z",
       "id": "nFRUNkesdVY"
-    },
-    {
-      "userId": "6uoSB5EzS8k",
-      "name": "safa",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Dark Velvet",
-          "quantity": 1,
-          "price": 349
-        }
-      ],
-      "total": 349,
-      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
-      "status": "placed",
-      "date": "2026-05-27T06:08:35.896Z",
-      "id": "X0G8WVKaPjQ"
-    },
-    {
-      "userId": "DevF3pLROI8",
-      "name": "raj",
-      "items": [
-        {
-          "productId": "Nt9Du_yrSBg",
-          "name": "dark nut",
-          "quantity": 1,
-          "price": "444"
-        }
-      ],
-      "total": 444,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "Shipped",
-      "date": "2026-05-27T06:26:08.825Z",
-      "id": "MI2unCKOBNA"
-    },
-    {
-      "userId": "EA4pLHPTJbM",
-      "name": "boopathi",
-      "items": [
-        {
-          "productId": "7",
-          "name": "Cocoa Maharaja",
-          "quantity": 3,
-          "price": 329
-        }
-      ],
-      "total": 987,
-      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
-      "status": "Shipped",
-      "date": "2026-05-27T06:44:47.167Z",
-      "id": "ZBVjAg6RK_s"
-    },
-    {
-      "userId": "6uoSB5EzS8k",
-      "name": "safa",
-      "items": [
-        {
-          "productId": "9",
-          "name": "Malabar Dynasty",
-          "quantity": 3,
-          "price": 699
-        }
-      ],
-      "total": 2097,
-      "address": "Dog street, newyork, paris, 1234",
-      "status": "placed",
-      "date": "2026-05-28T15:26:26.982Z",
-      "id": "5_n-vu6g02I"
-    },
-    {
-      "userId": "6uoSB5EzS8k",
-      "name": "safa",
-      "items": [
-        {
-          "productId": "9",
-          "name": "Malabar Dynasty",
-          "quantity": 1,
-          "price": 699
-        }
-      ],
-      "total": 699,
-      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
-      "status": "placed",
-      "date": "2026-05-28T15:29:28.025Z",
-      "id": "wPGxDa-nZUY"
-    },
-    {
-      "userId": "6uoSB5EzS8k",
-      "name": "safa",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Dark Velvet",
-          "quantity": 1,
-          "price": 349
-        }
-      ],
-      "total": 349,
-      "address": "new Street, new york, new state, 1234",
-      "status": "placed",
-      "date": "2026-05-28T15:32:35.192Z",
-      "id": "ywutpDwIg4I"
-    },
-    {
-      "userId": "6uoSB5EzS8k",
-      "name": "safa",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Dark Velvet",
-          "quantity": 1,
-          "price": 349
-        }
-      ],
-      "total": 349,
-      "address": "new Street, new york, new state, 1234",
-      "status": "placed",
-      "date": "2026-05-28T15:35:34.731Z",
-      "id": "CS79iOQ82JE"
-    },
-    {
-      "userId": "6uoSB5EzS8k",
-      "name": "safa",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Dark Velvet",
-          "quantity": 4,
-          "price": 349
-        }
-      ],
-      "total": 1396,
-      "address": "new Street, new york, new state, 1234",
-      "status": "placed",
-      "date": "2026-05-29T03:57:44.295Z",
-      "id": "fowdUBXfqiA"
     }
   ],
   "cart": [
@@ -887,6 +753,156 @@
       "image": "/malabarnoir.jpeg",
       "stock": 25,
       "rating": 4.4
+    },
+    {
+      "id": "G5s7TO8C8nM",
+      "name": "Royalty",
+      "category": "Royal Collection",
+      "price": 319,
+      "description": "Luxurious chocolate crafted with a royal touch and silky premium cocoa.",
+      "image": "/royalty.jpeg",
+      "stock": 35,
+      "rating": 4.7
+    },
+    {
+      "id": "ikOAxo5LinE",
+      "name": "Zamorin Gold",
+      "category": "Royal Collection",
+      "price": 289,
+      "description": "Golden premium chocolate inspired by the legendary Zamorin heritage of Kerala.",
+      "image": "/zamoringold.jpeg",
+      "stock": 40,
+      "rating": 4.3
+    },
+    {
+      "id": "98bBVNUCcVs",
+      "name": "Coffee Coast Dark",
+      "category": "Dark",
+      "price": 369,
+      "description": "Dark chocolate blended with aromatic coastal coffee beans for a bold finish.",
+      "image": "/coffeecoastdark.jpeg",
+      "stock": 15,
+      "rating": 4.5
+    },
+    {
+      "id": "RBEwRTV5E7Y",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "3jOgJSaVEu0",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "98Nk5v6ZmXM",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "R9mHI9v_gYA",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "RgOzXZIazBE",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "2mvPCL4Ns6M",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "FmmedA7_zu0",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "ENzXWVjpRG8",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "ipn7ebdV2Jg",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "4Qm-6U42w_w",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "wprOIFbZvds",
+      "name": "Malabar Dynasty",
+      "category": "Royal Collection",
+      "price": 699,
+      "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
+      "image": "/malabardynasty.jpeg",
+      "stock": 12,
+      "rating": 5
+    },
+    {
+      "id": "f9zQ9NtRxnc",
+      "name": "Malabar Dynasty",
+      "category": "Royal Collection",
+      "price": 699,
+      "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
+      "image": "/malabardynasty.jpeg",
+      "stock": 12,
+      "rating": 5
     }
   ],
   "wishlist": [
@@ -1009,6 +1025,106 @@
       "image": "/monsoondark.jpeg",
       "stock": 20,
       "rating": 4.9
+    },
+    {
+      "id": "5OQ9SaAv8rI",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 26,
+      "rating": 4.8
+    },
+    {
+      "id": "OzViS_Rc4vg",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 26,
+      "rating": 4.8
+    },
+    {
+      "id": "iiQAzZDtyBU",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "NHIeLH40Zzk",
+      "name": "Malabar Dynasty",
+      "category": "Royal Collection",
+      "price": 699,
+      "description": "A majestic assortment of luxury chocolates celebrating the Malabar legacy.",
+      "image": "/malabardynasty.jpeg",
+      "stock": 12,
+      "rating": 5
+    },
+    {
+      "id": "8og3xgZdkGc",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 26,
+      "rating": 4.8
+    },
+    {
+      "id": "Lnd3cUeHtoU",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": 26,
+      "rating": 4.8
+    },
+    {
+      "id": "Gfa_AS4rcr8",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "Aq2hUmLjLeE",
+      "name": "Dark Velvet",
+      "category": "Dark",
+      "price": 349,
+      "description": "Smooth 70% dark chocolate with a velvety texture and bold cocoa richness.",
+      "image": "/darkvelvet.jpeg",
+      "stock": "29",
+      "rating": 4.8
+    },
+    {
+      "id": "pi4wsSbsohY",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "VeMGxyGqhbk",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

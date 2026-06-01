@@ -5,7 +5,7 @@ import { addToCart } from '../redux/slices/cartSlice';
 import { getProductById } from '../services/ProductService';
 import Tilt from 'react-parallax-tilt'
 import toast from 'react-hot-toast';
-import { removeWish } from '../services/CartService';
+import { removeWish, setCartDb } from '../services/CartService';
 function ProductDetails() {
 
   const { id } = useParams();
@@ -36,7 +36,8 @@ function ProductDetails() {
 return
     }
     dispatch(addToCart({ ...product, quantity }))
-    // console.log(product.name, quantity)
+    setCartDb(product)
+    // console.log(product, quantity)
     setAdded(true)
   }
 

@@ -102,7 +102,6 @@ const productSlice = createSlice({
                 const index = state.items.findIndex(
                     findIn => findIn.id === action.payload.id
                 )
-
                 if(index !== -1){
                     state.items[index] = action.payload
                 }

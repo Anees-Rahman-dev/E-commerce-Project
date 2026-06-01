@@ -23,7 +23,7 @@ export default function Home() {
   const [sort, setSort] = useState("");
 
   const { items, status } = useSelector((state) => state.products);
-  console.log(items)
+  // console.log(items)
   const user = useSelector((state) => state.auth.user)
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function Home() {
   }, [dispatch]);
 
   const filtered = useMemo(() => {
-    return [...safeItems]
+    return [...safeItems] //bc sort mutates the og
       .filter((p) => p.name?.toLowerCase().includes(search.toLowerCase()))
       .filter((p) => category === "All" || p.category === category)
       .sort((a, b) => {
@@ -132,8 +132,7 @@ export default function Home() {
     via-[#8B3A00]
     to-[#120701]
     text-white
-    pt-12 pb-16 px-10
-  "
+    pt-12 pb-16 px-10"
 >
   {/* TOP WAVE */}
   <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">

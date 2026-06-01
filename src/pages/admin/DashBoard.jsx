@@ -218,7 +218,7 @@ export default function DashBoard() {
       <div className="bg-[#3b140f] rounded-2xl p-5 h-[400px] mt-8">
 
         <h2 className="text-xl font-bold text-orange-300 mb-6">
-          Revenue Trend
+         Revenue Growth
         </h2>
 
         <ResponsiveContainer width="100%" height="85%">

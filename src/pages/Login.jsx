@@ -45,7 +45,6 @@ export default function Login() {
     }
       dispatch(loginSuccess(user));
 
-
       // console.log('role ', user.role)
       if (user.role === 'admin') {
         navigate('/dashboard');

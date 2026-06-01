@@ -8,20 +8,18 @@ export default function ManageUsers() {
   const users = useSelector((state) => state.users.users)
   const usersOnly = users.filter((us) => us.role === "user")
   const dispatch = useDispatch()
-  // const [isblock, setIsBlock] = useState(false)
+
   useEffect(() => {
     dispatch(fetchAllUsers())
   }, [dispatch])
   // console.log(users)
-  const handleBtn = (user) => {
 
+  const handleBtn = (user) => {
     // console.log(userStatus)
     if (user.isBlocked) {
       dispatch(unBlockUser(user.id))
-
     } else {
       dispatch(blockUser(user.id))
-
     }
   }
   return (
@@ -83,16 +81,13 @@ export default function ManageUsers() {
 
 <button
   onClick={() => handleBtn(user)}
-  className={`
-    relative px-2.5 py-2 rounded-full font-semibold
+  className={`relative px-2.5 py-2 rounded-full font-semibold
     transition-all duration-300 overflow-hidden
     shadow-lg hover:scale-105 active:scale-95
 
     ${user.isBlocked
       ? 'bg-gradient-to-r from-amber-500 to-yellow-400 hover:shadow-amber-500/50'
-      : 'bg-gradient-to-r from-rose-500 to-amber-600'
-    }
-  `}
+      : 'bg-gradient-to-r from-rose-500 to-amber-600'}`}
 >
 
   <span className="relative z-10 text-white">

@@ -1,5 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+// import { removeWish } from "../../services/CartService";
 
+export const deleteWish = createAsyncThunk(
+    'WishList/deleteWish',
+    async (id) => {
+        return await removeWish(id)
+    }
+)
 const wishListSlice = createSlice ( {
     name : 'wishlist',
     initialState : {
@@ -20,7 +27,14 @@ const wishListSlice = createSlice ( {
     removeFromWisList : (state,action) => {
         state.wishlist = state.wishlist.filter(item => item.id !== action.payload);
     }
-    }
+    },
+
+    // extraReducers : (buiders) => {
+    //     buiders
+    //     .addCase(deleteWish.fulfilled,(state,action) => {
+    //         state.wishlist = state
+    //     })
+    // }
 })
 
  export const {addToWishList,removeFromWisList} = wishListSlice.actions;
