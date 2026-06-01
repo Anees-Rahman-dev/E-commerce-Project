@@ -273,15 +273,6 @@
       "image": "/hazelroyale.jpeg",
       "stock": 38,
       "rating": 4.7
-    },
-    {
-      "name": "newItem",
-      "price": "3222",
-      "category": "Royal Collection",
-      "stock": "2",
-      "description": "scscsadcswc",
-      "image": "",
-      "id": "gYfx_-KZKh4"
     }
   ],
   "orders": [
