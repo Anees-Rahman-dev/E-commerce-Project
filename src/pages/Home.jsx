@@ -288,7 +288,7 @@ export default function Home() {
       {bestSellers.length > 0 && (
         <section className="max-w-7xl mx-auto px-8 py-16">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold font-serif text-[#3B1F0A]">
+            <h2 className="text-3xl font-bold font-serif text-[#3B1F0A] noto-serif">
               Best Selling Products
             </h2>
             <DrawOutlineButton
@@ -530,7 +530,7 @@ export default function Home() {
 
       {/* ── ALL PRODUCTS ── */}
       <section id="products" className="max-w-7xl mx-auto px-8 py-20">
-        <h2 className="text-3xl font-bold font-serif text-[#3B1F0A] mb-8">
+        <h2 className="text-3xl font-bold font-serif text-[#3B1F0A] mb-8 noto-serif">
           Our Collection
         </h2>
 

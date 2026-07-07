@@ -37,8 +37,7 @@ export default function Navbar() {
           <Link
             to="/"
             onClick={closeMenu}
-            className="text-3xl md:text-5xl font-[family-name:var(--font-luxury)] tracking-[0.12em] font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-300 to-orange-500"
-          >
+            className="text-3xl md:text-5xl font-[family-name:var(--font-luxury)] tracking-[0.12em] font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-300 to-orange-500">
             MalaBars
           </Link>
 

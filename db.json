@@ -894,6 +894,106 @@
       "image": "/malabardynasty.jpeg",
       "stock": 12,
       "rating": 5
+    },
+    {
+      "id": "DjEUqQMa6FQ",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
+    },
+    {
+      "id": "iwSLI_N6Ofc",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "yg6PgbHgJ7Q",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "-IEoemFJl8w",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "zrJLi61HVvU",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "PPGfxeKp3eU",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "jN0-DF1Zmcc",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "uZWm3pohoFI",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "clml-CgZ42Q",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
+    },
+    {
+      "id": "Zm7K7QbTuiU",
+      "name": "Malabar Nut Royale",
+      "category": "Nut Fusion",
+      "price": 899,
+      "description": "Royal assortment of nut-filled chocolates inspired by the flavors of Malabar.",
+      "image": "/malabarnutroyale.jpeg",
+      "stock": 10,
+      "rating": 5
     }
   ],
   "wishlist": [
@@ -1116,6 +1216,16 @@
       "image": "/malabardark.jpeg",
       "stock": 30,
       "rating": 4.6
+    },
+    {
+      "id": "GCk3Beylv3o",
+      "name": "Monsoon Dark",
+      "category": "Dark",
+      "price": "430",
+      "description": "Bold dark chocolate infused with the rich and moody essence of Kerala monsoons.",
+      "image": "/monsoondark.jpeg",
+      "stock": 20,
+      "rating": 4.9
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
