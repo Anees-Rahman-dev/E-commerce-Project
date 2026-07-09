@@ -55,7 +55,7 @@ export default function WishList() {
 
   if (wishlist.length === 0) {
     return (
-      <div className="text-center py-24 text-gray-500 pt-30">
+      <div className="flex flex-col justify-center items-center min-h-screen text-center py-24 text-gray-500 pt-30">
         <p className="text-5xl mb-4">🤍</p>
 
         <p className="text-xl font-medium">
@@ -64,7 +64,7 @@ export default function WishList() {
 
         <button
           onClick={() => navigate("/")}
-          className="mt-4 bg-amber-800 text-white px-6 py-2 rounded-lg hover:bg-amber-900"
+          className="mt-4 bg-amber-800 text-white px-6 py-2 rounded-lg hover:bg-amber-900 w-fit"
         >
           Explore Chocolates
         </button>
