@@ -39,7 +39,8 @@ export default function CheckOut() {
       !address.state ||
       !address.pincode
     ) {
-      return alert("Please fill all fields");
+      
+     return toast.error("Please Fill All The Fields");
     }
 
     setLoading(true);
