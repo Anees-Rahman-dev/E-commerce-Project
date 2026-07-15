@@ -27,8 +27,8 @@ function Cart() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 pt-30">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Your Cart</h1>
+    <div className=" max-w-3xl mx-auto p-6 pt-40">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6 ">Your Cart</h1>
 
       <div className="space-y-4">
         {items.map((item) => (
