@@ -24,10 +24,13 @@ export default function UserDetails() {
     })
   }
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     // console.log(address)
     // dispatch update address here
-    setEditing(false)
+    setEditing(false);
+    setAddress(address);
+console.log(address);
   }
 
   return (
