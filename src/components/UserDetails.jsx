@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Mail, User, ShieldCheck, MapPin, Pencil } from 'lucide-react'
 
@@ -8,6 +8,13 @@ export default function UserDetails() {
 
   const [editing, setEditing] = useState(false)
 
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("address"));
+    // console.log(saved)
+    if (address == null || undefined) {
+      setAddress(saved);
+    }
+  }, [])
   const [address, setAddress] = useState(
     user?.address || {
       street: '',
@@ -24,13 +31,15 @@ export default function UserDetails() {
     })
   }
 
+
   const handleSave = (e) => {
     e.preventDefault();
     // console.log(address)
     // dispatch update address here
     setEditing(false);
     setAddress(address);
-console.log(address);
+    // console.log(address);
+    localStorage.setItem("address", JSON.stringify(address));
   }
 
   return (
