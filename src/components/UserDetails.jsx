@@ -10,10 +10,12 @@ export default function UserDetails() {
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("address"));
-    // console.log(saved)
-    if (address == null || undefined) {
+    console.log(saved)
+    if (saved) {
       setAddress(saved);
+      console.log(address)
     }
+    // return address == null
   }, [])
   const [address, setAddress] = useState(
     user?.address || {
@@ -36,10 +38,10 @@ export default function UserDetails() {
     e.preventDefault();
     // console.log(address)
     // dispatch update address here
+    localStorage.setItem("address", JSON.stringify(address));
     setEditing(false);
     setAddress(address);
     // console.log(address);
-    localStorage.setItem("address", JSON.stringify(address));
   }
 
   return (
