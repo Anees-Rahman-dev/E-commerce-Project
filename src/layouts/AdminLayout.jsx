@@ -28,7 +28,7 @@ export default function AdminLayout() {
             <aside
                 className={`
                     ${open ? 'w-64' : 'w-20'}
-                    bg-gray-900 text-white p-5 transition-all duration-300`}
+                    bg-[#2b0b08] text-white p-5 transition-all duration-300`}
             >
 
                 {/* Top */}
