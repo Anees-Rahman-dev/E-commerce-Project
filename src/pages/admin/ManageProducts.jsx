@@ -216,17 +216,17 @@ export default function ManageProducts() {
                 className="border-b border-gray-700 hover:bg-[#522019]"
               >
 
-                <td className="p-3">{product.name}</td>
+                <td className="p-3 font-medium">{product.name.toUpperCase()}</td>
 
-                <td className="p-3">
+                <td className="p-3 font-medium">
                   ₹ {product.price}
                 </td>
 
-                <td className="p-3">
+                <td className="p-3 font-medium">
                   {product.category}
                 </td>
 
-                <td className="p-3">
+                <td className="p-3 font-medium">
                   {product.stock}
                 </td>
 
