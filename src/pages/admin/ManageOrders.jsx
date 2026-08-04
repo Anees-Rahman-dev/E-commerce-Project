@@ -28,15 +28,15 @@ export default function ManageOrders() {
           <thead>
             <tr className="border-b border-gray-700 text-orange-300">
 
-              <th className="p-4 text-left">Order Id</th>
+              <th className="p-4 text-left font-medium">Order Id</th>
 
-              <th className="p-4 text-left">User name</th>
+              <th className="p-4 text-left font-medium">User name</th>
 
-              <th className="p-4 text-left">Total</th>
+              <th className="p-4 text-left font-medium">Total</th>
 
-              <th className="p-4 text-left">Date</th>
+              <th className="p-4 text-left font-medium">Date</th>
 
-              <th className="p-4 text-left">Status</th>
+              <th className="p-4 text-left font-medium">Status</th>
 
             </tr>
           </thead>
