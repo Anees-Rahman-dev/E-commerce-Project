@@ -50,23 +50,23 @@ export default function ManageOrders() {
                 className="border-b border-gray-700 hover:bg-[#522019] transition"
               >
 
-                <td className="p-4 text-sm">
+                <td className="p-4 text-sm font-bold">
                   {or.id}
                 </td>
 
-                <td className="p-4 text-sm">
+                <td className="p-4 text-sm font-bold">
                   {or.name.toUpperCase()}
                 </td>
 
-                <td className="p-4 font-semibold text-orange-400">
+                <td className="p-4 font-semibold text-orange-400 font-bold">
                   ₹ {or.total}
                 </td>
 
-                <td className="p-4 text-sm text-gray-300">
+                <td className="p-4 text-sm text-gray-300 font-bold">
                   {or.date}
                 </td>
 
-                <td className="p-4">
+                <td className="p-4 font-bold">
 
                   <select
                     value={or.status}
