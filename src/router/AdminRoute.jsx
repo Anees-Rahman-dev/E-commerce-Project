@@ -6,16 +6,15 @@ import toast from 'react-hot-toast'
 
 export default function AdminRoute({ children }) {
 
-    const users = useSelector((state) => state.auth.user)
-    useEffect(() => {
-        if (!users || users.role !== 'admin') {
+    const users = useSelector((state) => state.auth?.user)
+   
+    if (!users || users.role?.toLowerCase() !== 'admin') {
             toast.error('you are not an admin')
         }
-    }, [users]);
 
-    if(!users || users.role !== 'admin'){
+    if(!users || users.role?.toLowerCase() !== 'admin'){
 
-        return <Navigate to='/login'  />
+        return <Navigate to='/login' replace/>
     }
     return children
 }

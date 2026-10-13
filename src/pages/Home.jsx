@@ -27,9 +27,8 @@ export default function Home() {
   const user = useSelector((state) => state.auth.user)
 
   useEffect(() => {
-    if(user && user.role === 'admin'){
-      toast.error('admin cannot be in home')
-      navigate('/dashboard')
+    if(user?.role?.toLowerCase() === 'admin'){
+      navigate('/dashboard',{replace : true});
     }
   },[user,navigate])
 
@@ -64,12 +63,12 @@ export default function Home() {
             <p className="text-amber-400 uppercase tracking-widest text-sm font-medium mb-3 pt-12 cousine-bold">
               Premium Kerala Chocolate
             </p>
-            <h1 className="text-6xl md:text-7xl font-black leading-tight tracking-tight font-serif mt-6 bungee-shade-regular">
-              Chocolate is <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500  bungee-shade-regular">
-                Happiness
-              </span>
-            </h1>
+           <h1 className="text-6xl md:text-7xl font-black leading-tight tracking-tight julius-sans-one-regular mt-6">
+  Chocolate is <br />
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500 julius-sans-one-regular">
+    Happiness
+  </span>
+</h1>
             <p className="text-amber-100 text-lg mt-6 mb-8 leading-relaxed carrois-gothic-sc-regular-italic">
               Handcrafted with the finest cocoa from the heart of Kerala.
               Every bar tells a story of tradition and indulgence.

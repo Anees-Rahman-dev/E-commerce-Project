@@ -1,46 +1,52 @@
 
-import axios from 'axios';
 import api from './api';
 
-const BASE = import.meta.env.VITE_API_BASE_URL;
+
 
 export const RegisterUser = async (user) => {
-  const res = await axios.post(`${BASE}/users`, user);
+  const res = await api.post('/Auth/register', user);
   return res.data;
 };
 
+
 export const LoginUser = async (email, password) => {
-  try {
-    // console.log('Fetching all users from:', `${BASE}/users`);
-    const res = await axios.get(`${BASE}/users`);
-    
-    const matchedUsers = res.data.filter(
-      user => user.email === email && user.password === password
-    );
-    // console.log('Matched users:', matchedUsers);
-    return matchedUsers;
-  } catch (error) {
-    // console.error('LoginUser Error:', error.message);
-    throw error;
-  }
+  const response = await api.post('/Auth/login', {
+    email,
+    password,
+  });
+
+  const token = response.data.token;
+
+  // Temporarily save the token so we can fetch the logged-in user
+  localStorage.setItem('token', token);
+
+  const userResponse = await api.get('/User/GetMe', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return {
+    token,
+    user: userResponse.data,
+  };
 };
 
 export const getAllUsers = async () => {
-    const res = await axios.get(`${BASE}/users`)
+
+    const res = await api.get('AdminDashboard/users')
    
     return res.data
 }
 
-export const updateUserStatus = async (id,isBlocked) => {
+export const updateUserStatus = async (id) => {
   // console.log(id,isBlocked)
-  const res = await axios.patch(`${BASE}/users/${id}`,
-    {isBlocked}
-)       
+  const res = await api.put(`AdminDashboard/users/${id}/block`);       
   return res.data
 }
 
 export const getById = async (id) => {
-  const res = await axios.get(`${BASE}/users/${id}`)
+  const res = await api.get(`AdminDashboard/users/${id}`);
   return res.data
-  console.log(res.data)
+  // console.log(res.data)
 }

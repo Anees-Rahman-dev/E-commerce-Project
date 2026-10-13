@@ -10,10 +10,15 @@ import toast from 'react-hot-toast';
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated);
+  const user = useSelector((state) => state.auth?.user);
 
   if (isAuthenticated) {
-    return <Navigate to='/' replace />;
+    return (
+      <Navigate to={user?.role?.toLowerCase() === 'admin' ? '/dashboard' : '/'}
+      replace />
+    );
   }
 
   const [form, setForm] = useState({ email: '', password: '' });
@@ -29,39 +34,44 @@ export default function Login() {
     setError('');
     setLoading(true);
 
-    const users = await LoginUser(form.email.trim(), form.password.trim());
     
     try {
       // console.log('Login response:', users);
-      if (!users || users.length === 0) {
-        setError('Invalid email or password.');
-        return;
-      }
-      const user = users[0];
-      // console.log(user)
-    if (user.isBlocked) {
-      toast.error(`${user.name} temporarily banned by Admin`)
-      return
-    }
-      dispatch(loginSuccess(user));
+    const result = await LoginUser(form.email.trim(),form.password);
 
-      // console.log('role ', user.role)
-      if (user.role === 'admin') {
-        navigate('/dashboard');
-      } else {
-        navigate('/');
-      }
+    const {user, token } = result;
+
+    dispatch(loginSuccess({user,token}));
+
+      // console.log(user)
+    if (user.role?.toLowerCase() == 'admin') {
+      
+      navigate('/dashboard');
+    }else{
+
+      navigate('/');
+    }
+
+    // Load this user's locally saved cart
+    const userId = user.userId ?? user.id;
 
       try {
-        const stored = JSON.parse(localStorage.getItem(`cart_${user.id}`) || '[]');
+        const stored = JSON.parse(localStorage.getItem(`cart_${userId}`) || '[]');
         dispatch(replaceCart(stored));
-      } catch (e) {
-        // ignore
+      } catch {
+        dispatch(replaceCart([]));
       }
+
       // console.log('Dispatched user to auth state:', user);
     } catch (err) {
       console.error('Login error:', err);
-      setError('Something went wrong. Try again.');
+
+      if(err.response?.status === 401){
+        setError(err.response.data || 'Invalid email or password, or your account is blocked.');
+      }else{
+        setError('Unable to log in. Please check your connection and try again.');
+      }
+
     } finally {
       setLoading(false);
     }

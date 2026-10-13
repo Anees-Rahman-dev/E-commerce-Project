@@ -71,6 +71,27 @@
       "role": "user",
       "id": "EA4pLHPTJbM",
       "isBlocked": false
+    },
+    {
+      "name": "bishir",
+      "email": "bishir@gmail.com",
+      "password": "12345",
+      "role": "user",
+      "id": "IxdLOguYg2g"
+    },
+    {
+      "name": "fathima",
+      "email": "fathi@gmail.com",
+      "password": "Fathi@12",
+      "role": "user",
+      "id": "7B0Zxpjx_jY"
+    },
+    {
+      "name": "bishir",
+      "email": "bishir@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "id": "LN_DKxE6yKg"
     }
   ],
   "products": [
@@ -101,7 +122,7 @@
       "price": 279,
       "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
       "image": "/malabarnoir.jpeg",
-      "stock": 25,
+      "stock": 8,
       "rating": 4.4
     },
     {
@@ -131,7 +152,7 @@
       "price": 319,
       "description": "Luxurious chocolate crafted with a royal touch and silky premium cocoa.",
       "image": "/royalty.jpeg",
-      "stock": 35,
+      "stock": 33,
       "rating": 4.7
     },
     {
@@ -261,7 +282,7 @@
       "price": 439,
       "description": "Silky coconut chocolate blended with a satisfying crunchy texture.",
       "image": "/coconutsilkcrunch.jpeg",
-      "stock": 24,
+      "stock": 23,
       "rating": 4.6
     },
     {
@@ -360,6 +381,74 @@
       "status": "Shipped",
       "date": "2026-05-27T05:46:40.350Z",
       "id": "nFRUNkesdVY"
+    },
+    {
+      "userId": "7B0Zxpjx_jY",
+      "name": "fathima",
+      "items": [
+        {
+          "productId": "3",
+          "name": "Malabar Noir",
+          "quantity": 16,
+          "price": 279
+        }
+      ],
+      "total": 4464,
+      "address": "VADAKKUMBAD, PAYYANNUR, KERALA, 670308",
+      "status": "placed",
+      "date": "2026-09-28T12:44:56.502Z",
+      "id": "_TbjOTWqq7g"
+    },
+    {
+      "userId": "2",
+      "name": "Sarah",
+      "items": [
+        {
+          "productId": "3",
+          "name": "Malabar Noir",
+          "quantity": 1,
+          "price": 279
+        }
+      ],
+      "total": 279,
+      "address": "seyey64y6, pollachi, Tamilnadu, 642123",
+      "status": "placed",
+      "date": "2026-10-08T09:34:44.302Z",
+      "id": "AEcHixxyTQ0"
+    },
+    {
+      "userId": "LN_DKxE6yKg",
+      "name": "bishir",
+      "items": [
+        {
+          "productId": "6",
+          "name": "Royalty",
+          "quantity": 2,
+          "price": 319
+        }
+      ],
+      "total": 638,
+      "address": "GoldStreet, koduvally, kozhikkode, 693463",
+      "status": "placed",
+      "date": "2026-10-11T06:39:21.917Z",
+      "id": "VVPynVyvlNk"
+    },
+    {
+      "userId": "IxdLOguYg2g",
+      "name": "bishir",
+      "items": [
+        {
+          "productId": "19",
+          "name": "Coconut Silk Crunch",
+          "quantity": 1,
+          "price": 439
+        }
+      ],
+      "total": 439,
+      "address": "GoldStreet, koduvally, kozhikkode, 693463",
+      "status": "placed",
+      "date": "2026-10-11T08:35:31.549Z",
+      "id": "vNluAunet8o"
     }
   ],
   "cart": [
@@ -994,6 +1083,176 @@
       "image": "/malabarnutroyale.jpeg",
       "stock": 10,
       "rating": 5
+    },
+    {
+      "id": "8apcZq_x8Ok",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "ovw3PIEzAo0",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "wT1uRoJEBQw",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "p82ZHyG9FPU",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "rqz4sLNKhJw",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "Sx3CM5lLzhA",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "C40uoYntqpw",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "ZsILAcrpkYU",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "OdA3Ksrocp8",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "rPjDkPAuIvk",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "U2fzzyXXORE",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "AR5TDJizvSw",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 9,
+      "rating": 4.4
+    },
+    {
+      "id": "g293M7L9crM",
+      "name": "Royalty",
+      "category": "Royal Collection",
+      "price": 319,
+      "description": "Luxurious chocolate crafted with a royal touch and silky premium cocoa.",
+      "image": "/royalty.jpeg",
+      "stock": 35,
+      "rating": 4.7
+    },
+    {
+      "id": "aIjrgwH0r3c",
+      "name": "Royalty",
+      "category": "Royal Collection",
+      "price": 319,
+      "description": "Luxurious chocolate crafted with a royal touch and silky premium cocoa.",
+      "image": "/royalty.jpeg",
+      "stock": 35,
+      "rating": 4.7
+    },
+    {
+      "id": "M3HQa3Es04Q",
+      "name": "Coconut Silk Crunch",
+      "category": "Nut Fusion",
+      "price": 439,
+      "description": "Silky coconut chocolate blended with a satisfying crunchy texture.",
+      "image": "/coconutsilkcrunch.jpeg",
+      "stock": 24,
+      "rating": 4.6
+    },
+    {
+      "id": "Maz8_B9oyvI",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 8,
+      "rating": 4.4
+    },
+    {
+      "id": "JHJwYr_KGwk",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 8,
+      "rating": 4.4
     }
   ],
   "wishlist": [
@@ -1226,6 +1485,46 @@
       "image": "/monsoondark.jpeg",
       "stock": 20,
       "rating": 4.9
+    },
+    {
+      "id": "z4aKn1hAaQw",
+      "name": "Malabar Noir",
+      "category": "Dark",
+      "price": 279,
+      "description": "Elegant noir dark chocolate inspired by the rich cocoa heritage of Malabar.",
+      "image": "/malabarnoir.jpeg",
+      "stock": 25,
+      "rating": 4.4
+    },
+    {
+      "id": "b6zbQk7ICfI",
+      "name": "Malabar Dark",
+      "category": "Dark",
+      "price": 299,
+      "description": "Intense Malabar-style dark chocolate crafted with deep roasted cocoa flavors.",
+      "image": "/malabardark.jpeg",
+      "stock": 30,
+      "rating": 4.6
+    },
+    {
+      "id": "rlAeeAFHrLY",
+      "name": "Cocoa Maharaja",
+      "category": "Royal Collection",
+      "price": 329,
+      "description": "Grand dark chocolate inspired by royal Indian flavors and rich cocoa indulgence.",
+      "image": "/cocoamaharaja.jpeg",
+      "stock": "0",
+      "rating": 4.6
+    },
+    {
+      "id": "8A06Z2dyQG8",
+      "name": "Cocoa Maharaja",
+      "category": "Royal Collection",
+      "price": 329,
+      "description": "Grand dark chocolate inspired by royal Indian flavors and rich cocoa indulgence.",
+      "image": "/cocoamaharaja.jpeg",
+      "stock": "0",
+      "rating": 4.6
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

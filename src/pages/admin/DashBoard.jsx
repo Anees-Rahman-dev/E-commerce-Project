@@ -44,6 +44,7 @@
 //     )
 // }
 
+
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../../redux/slices/productSlice'
@@ -109,6 +110,44 @@ export default function DashBoard() {
     revenue: order.total,
   }))
 
+
+  // mothly revenue
+   const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
+
+  const monthlyRevenue = months.map((month) => ({
+    name: month,
+    revenue: 0,
+  }))
+
+   orders.forEach((order) => {
+
+    if (!order.orderDate) {
+      return
+    }
+
+    const date = new Date(order.orderDate)
+
+    const monthIndex = date.getMonth()
+
+    monthlyRevenue[monthIndex].revenue += Number(
+      order.totalAmount || 0
+    )
+  })
+
+  
   const COLORS = ['#f97316', '#fb923c']
 
   return (

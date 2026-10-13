@@ -3,7 +3,11 @@
 @theme {
   --font-luxury: "Cormorant Garamond", serif;
   --font-poppins: "Poppins", sans-serif;
+  --font-quicksand: "Quicksand", sans-serif; /* Add this line */
 }
+
+/* Keep your custom helper class just in case */
+
 
 @keyframes float {
   0% {
@@ -19,6 +23,12 @@
   }
 }
 
+.quicksand-regular {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
@@ -30,7 +40,7 @@
 
 .cousine-bold {
   font-family: "Cousine", monospace;
-  font-weight: 700;
+  font-weight: 500;
   font-style: normal;
 }
 .bungee-shade-regular {
@@ -84,3 +94,12 @@
     font-style: normal;
     font-variation-settings: "wdth" 100;
 }
+
+.julius-sans-one-regular {
+  font-family: "Julius Sans One", sans-serif;
+  font-weight: 700  ;
+  font-style: normal;
+}
+
+
+
