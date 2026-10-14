@@ -36,14 +36,14 @@ export default function Login() {
 
     
     try {
-      // console.log('Login response:', users);
+   
     const result = await LoginUser(form.email.trim(),form.password);
 
     const {user, token } = result;
 
     dispatch(loginSuccess({user,token}));
 
-      // console.log(user)
+      console.log(user)
     if (user.role?.toLowerCase() == 'admin') {
       
       navigate('/dashboard');

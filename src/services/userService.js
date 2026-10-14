@@ -10,12 +10,14 @@ export const RegisterUser = async (user) => {
 
 
 export const LoginUser = async (email, password) => {
+  
   const response = await api.post('/Auth/login', {
     email,
     password,
   });
 
   const token = response.data.token;
+  console.log(token);
 
   // Temporarily save the token so we can fetch the logged-in user
   localStorage.setItem('token', token);

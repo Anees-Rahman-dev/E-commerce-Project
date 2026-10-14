@@ -1,114 +1,141 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllProducts, createProduct, removeProduct, updateProduct,updateProductStock } from '../../services/productService';
-import axios from 'axios';
-
+import {
+getAllProducts,
+createProduct,
+removeProduct,
+updateProduct,
+updateProductStock,
+} from '../../services/productService';
 
 export const fetchProducts = createAsyncThunk(
-    'products/fetchAll',
-    async () => {
-        return await getAllProducts();
-    }
+'products/fetchAll',
+async () => {
+return await getAllProducts();
+}
 );
-export const fetchLimitedProducts = createAsyncThunk(
-    'products/fetchLimited',
-    async (page) => {
-        const res = await axios.get(
-            `http://localhost:3001/products?_per_page=5&_page=${page}`
-        )
 
-        return res.data
-    }
-)
+export const fetchLimitedProducts = createAsyncThunk(
+'products/fetchLimited',
+async () => {
+// Fetch products from the ASP.NET backend.
+// Pagination can be added after confirming backend support.
+return await getAllProducts();
+}
+);
 
 export const addProduct = createAsyncThunk(
-    'products/addProduct',
-    async (product) => {
-        return await createProduct(product)
-    }
-)
+'products/addProduct',
+async (product) => {
+return await createProduct(product);
+}
+);
 
 export const editProduct = createAsyncThunk(
-    'products/editProduct',
-    async (products) => {
-        const { id, ...updatedData } = products
-        return await updateProduct(id, updatedData)
-    }
-)
+'products/editProduct',
+async ({ id, ...updatedData }) => {
+await updateProduct(id, updatedData);
+return { id, ...updatedData };
+}
+);
+
 export const updateStock = createAsyncThunk(
-    'products/updateStock',
-    async({id,data}) => {
-        return await updateProductStock(id,data)
-    }
-)
+'products/updateStock',
+async ({ id, data }) => {
+await updateProductStock(id, data);
+return { id, ...data };
+}
+);
+
 export const deleteProduct = createAsyncThunk(
-    'products/deleteProduct',
-    async (id) => {
-        await removeProduct(id)
-        return id
-    }
-)
+'products/deleteProduct',
+async (id) => {
+await removeProduct(id);
+return id;
+}
+);
+
 const productSlice = createSlice({
-    name: 'products',
-    initialState: {
-        items: [],
-        status: 'idle',
-        error: null,
-        pages: 1,
-        currentPage: 1
-    },
+name: 'products',
 
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchProducts.pending, (state) => {
-                state.status = 'loading';
-            })
-            .addCase(fetchProducts.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.items = action.payload;
-            })
-            .addCase(fetchProducts.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.payload;
+initialState: {
+items: [],
+status: 'idle',
+error: null,
+pages: 1,
+currentPage: 1,
+},
 
-            })
+reducers: {},
 
-            .addCase(addProduct.fulfilled, (state, action) => {
-                state.items.push(action.payload)
-            })
+extraReducers: (builder) => {
+builder
+.addCase(fetchProducts.pending, (state) => {
+state.status = 'loading';
+state.error = null;
+})
+.addCase(fetchProducts.fulfilled, (state, action) => {
+state.status = 'succeeded';
+state.items = action.payload;
+})
+.addCase(fetchProducts.rejected, (state, action) => {
+state.status = 'failed';
+state.error = action.error.message;
+})
 
-            .addCase(editProduct.fulfilled, (state, action) => {
 
-                const index = state.items.findIndex(
-                    item => item.id === action.payload.id
-                )
-                if (index !== -1) {
-                    state.items[index] = action.payload
-                }
-            })
+  .addCase(fetchLimitedProducts.pending, (state) => {
+    state.status = 'loading';
+    state.error = null;
+  })
+  .addCase(fetchLimitedProducts.fulfilled, (state, action) => {
+    state.status = 'succeeded';
+    state.items = action.payload;
+    state.pages = 1;
+  })
+  .addCase(fetchLimitedProducts.rejected, (state, action) => {
+    state.status = 'failed';
+    state.error = action.error.message;
+  })
 
-            .addCase(deleteProduct.fulfilled, (state, action) => {
-                state.items = state.items.filter(
-                    item => item.id !== action.payload
-                )
-            })
+  .addCase(addProduct.fulfilled, (state, action) => {
+    state.items.push(action.payload);
+  })
 
-            .addCase(fetchLimitedProducts.fulfilled, (state, action) => {
-                state.items = action.payload.data
-                state.pages = action.payload.pages
-            })
+  .addCase(editProduct.fulfilled, (state, action) => {
+    const index = state.items.findIndex(
+      (item) => (item.productId ?? item.id) === Number(action.meta.arg.id)
+    );
 
-            .addCase(updateStock.fulfilled,(state,action) => {
-                const index = state.items.findIndex(
-                    findIn => findIn.id === action.payload.id
-                )
-                if(index !== -1){
-                    state.items[index] = action.payload
-                }
-            })
+    if (index !== -1) {
+      state.items[index] = {
+        ...state.items[index],
+        ...action.payload,
+      };
+    }
+  })
 
-    },
+  .addCase(updateStock.fulfilled, (state, action) => {
+    const index = state.items.findIndex(
+      (item) => (item.productId ?? item.id) === Number(action.meta.arg.id)
+    );
 
+    if (index !== -1) {
+      state.items[index] = {
+        ...state.items[index],
+        ...action.payload,
+      };
+    }
+  })
+
+  .addCase(deleteProduct.fulfilled, (state, action) => {
+    state.items = state.items.filter(
+      (item) => (item.productId ?? item.id) !== Number(action.payload)
+    );
+  });
+
+
+},
 });
 
 export default productSlice.reducer;
+  

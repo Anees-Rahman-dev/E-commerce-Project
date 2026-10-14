@@ -42,28 +42,49 @@ export default function ManageProducts() {
     });
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (editingId) {
+    const formData = new FormData();
 
-      dispatch(editProduct({
-        id: editingId,
-        ...form
-      }))
-      toast.success('Product Updated');
-    } else {
-      dispatch(addProduct(form))
-      toast.success('Product added successfully');
+    formData.append("Name",form.name);
+    formData.append("Category",form.category);
+    formData.append("Pirce",form.price);
+    formData.append("Stock",form.stock);
+    formData.append("Description",form.description);
+    formData.append("Rating", form.rating || "0");
+
+    if(form.imageFile){
+      formData.append("ImageFile",form.imageFile);
     }
-    setForm({
-      name: '',
-      price: '',
-      category: '',
-      stock: '',
-      description: ''
-    })
-    setEditingId(null)
+
+    try{
+
+      if(editingId){
+        await dispatch(
+          editProduct({id : editingId, form: formData})
+        ).unwrap();
+         toast.success('Product Updated');
+      }else{
+        await dispatch(addProduct(formData)).unwrap();
+        toast.success('Product added successfully');
+
+      }
+
+      setForm({
+        name : "",
+        price : "",
+        category : "",
+        stock: "",
+        description: "",
+        image: "",
+        imageFile: null,
+        rating: "",
+      });
+    }catch(error){
+    console.error("Product save failed:", error);
+    }
+    
   }
 
 
@@ -153,34 +174,57 @@ export default function ManageProducts() {
       />
     </div>
 
-    <div className="md:col-span-2">
-      <label className="block text-sm font-medium text-orange-200 mb-2">
-        Description
-      </label>
-      <textarea
-        rows={4}
-        name="description"
-        value={form.description}
-        placeholder='description'
-        onChange={handleInput}
-        className="w-full bg-[#522019] border border-[#6a2a20]
-        focus:border-orange-400 focus:ring-1 focus:ring-orange-400
-        p-3 rounded-lg outline-none resize-none"
-      />
-    </div>
-    
-    {/* <div className="md:col-span-2">
-  <label className="block text-sm font-medium text-orange-200 mb-2">
+
+{/* Product Image */}
+<div className="md:col-span-1">
+  <label
+    htmlFor="imageFile"
+    className="block text-sm font-medium text-orange-200 mb-2"
+  >
     Product Image
   </label>
 
   <input
+    id="imageFile"
     type="file"
     accept="image/*"
-    onChange={handleImageChange}
-    className="w-full bg-[#522019] p-3 rounded-lg"
+    onChange={(e) => {
+      setForm((prev) => ({
+        ...prev,
+        imageFile: e.target.files[0],
+      }));
+    }}
+    required={!editingId}
+    className="w-full bg-[#522019] border border-[#6a2a20]
+    focus:border-orange-400 focus:ring-1 focus:ring-orange-400
+    p-3 rounded-lg outline-none text-orange-100
+    file:mr-4 file:py-2 file:px-4 file:rounded-md
+    file:border-0 file:bg-orange-400 file:text-[#3b160f]
+    file:font-medium file:cursor-pointer
+    hover:file:bg-orange-300"
   />
-</div> */}
+</div>
+
+{/* Description */}
+<div>
+  <label className="block text-sm font-medium text-orange-200 mb-2">
+    Description
+  </label>
+
+  <textarea
+    rows={2}
+    name="description"
+    value={form.description}
+    placeholder="Description"
+    onChange={handleInput}
+    className="w-full bg-[#522019] border border-[#6a2a20]
+    focus:border-orange-400 focus:ring-1 focus:ring-orange-400
+    p-2 rounded-lg outline-none resize-none"
+  />
+</div>
+
+
+    
   </div>
 
   <button
