@@ -25,7 +25,7 @@ export const updateProduct = async (id, updateData) => {
 
 export const removeProduct = async (id) => {
     await api.delete(`/Product/${id}`)
-  
+    console.log(id); 
 }
 
 export const updateProductStock = async (id,data) => {

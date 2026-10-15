@@ -65,8 +65,7 @@ export const deleteProduct = createAsyncThunk(
 async (id) => {
 await removeProduct(id);
 return id;
-}
-);
+});
 
 const productSlice = createSlice({
 name: 'products',
@@ -151,11 +150,8 @@ state.error = action.error.message;
   })
 
   .addCase(deleteProduct.fulfilled, (state, action) => {
-    state.items = state.items.filter(
-      (item) => (item.productId ?? item.id) !== Number(action.payload)
-    );
+    state.items = state.items.filter((item) => (item.productId ?? item.id) !== Number(action.payload));
   });
-
 
 },
 });

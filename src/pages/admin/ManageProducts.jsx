@@ -93,9 +93,9 @@ export default function ManageProducts() {
   }
 
 
-  const handeDelete = (id) => {
-    // console.log(id)
-    dispatch(deleteProduct(id))
+  const handeDelete = (product) => {
+    // console.log(product.productId)
+    dispatch(deleteProduct(product.productId))
   }
   return (
     <div className="min-h-screen bg-[#2b0b08] text-white p-8">
@@ -290,7 +290,7 @@ export default function ManageProducts() {
                   </button>
 
                   <button
-                    onClick={() => handeDelete(product.id)}
+                    onClick={() => handeDelete(product)}
                     className="
       px-4 py-2 rounded-xl 
       font-semibold text-white bg-gradient-to-r from-rose-500 to-amber-600 hover:from-red-500 hover:to-rose-600 shadow-lg hover:shadow-red-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
