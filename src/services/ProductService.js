@@ -16,12 +16,12 @@ export const createProduct = async (productData) => {
     return res.data
 }
 
+
 export const updateProduct = async (id, updateData) => {
-    const res = await api.put(`/Product/${id}`,updateData);
-    return res.data
-    
-    // console.log(res.data)
-}
+  await api.put(`/Product/${id}`, updateData);
+//   The update function doesn't try to return a response body because your backend returns 204 No Content.
+};
+
 
 export const removeProduct = async (id) => {
     await api.delete(`/Product/${id}`)
@@ -29,6 +29,6 @@ export const removeProduct = async (id) => {
 }
 
 export const updateProductStock = async (id,data) => {
-    const res = await api.patch(`/Product/${id}`, data)
+    const res = await api.put(`/Product/${id}`, data)
     return res.data
 }

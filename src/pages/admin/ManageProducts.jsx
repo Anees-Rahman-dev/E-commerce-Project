@@ -32,13 +32,16 @@ export default function ManageProducts() {
 
   const handleEdit = (product) => {
 
-    setEditingId(product.id)
+    setEditingId(product.productId);
+    // console.log(product.productId);
     setForm({
       name: product.name,
       category: product.category,
       price: product.price,
       stock: product.stock,
-      description: product.description
+      description: product.description,
+      image : product.image,
+      imageFile : product.imageFile,
     });
   }
 
@@ -49,10 +52,12 @@ export default function ManageProducts() {
 
     formData.append("Name",form.name);
     formData.append("Category",form.category);
-    formData.append("Pirce",form.price);
+    formData.append("Price", form.price);
     formData.append("Stock",form.stock);
     formData.append("Description",form.description);
     formData.append("Rating", form.rating || "0");
+
+    formData.append("Image", form.image || "pending");
 
     if(form.imageFile){
       formData.append("ImageFile",form.imageFile);
@@ -281,8 +286,7 @@ export default function ManageProducts() {
                     className="
       px-4 py-2 rounded-xl
       font-semibold text-white bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-yellow-400 hover:to-amber-500 shadow-lg hover:shadow-amber-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
-                  >
-                    Edit
+                  >Edit
                   </button>
 
                   <button

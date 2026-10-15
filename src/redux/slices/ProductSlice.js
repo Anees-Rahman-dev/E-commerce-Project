@@ -6,6 +6,7 @@ removeProduct,
 updateProduct,
 updateProductStock,
 } from '../../services/productService';
+import { Key } from 'lucide-react';
 
 export const fetchProducts = createAsyncThunk(
 'products/fetchAll',
@@ -32,18 +33,31 @@ return await createProduct(product);
 
 export const editProduct = createAsyncThunk(
 'products/editProduct',
-async ({ id, ...updatedData }) => {
-await updateProduct(id, updatedData);
-return { id, ...updatedData };
+async ({ id, form }) => {
+await updateProduct(id, form);
+return {
+  id : Number(id),
+  form : {
+    Name : form.get('Name'),
+    Category : form.get('Category'),
+    Price : form.get('Price'),
+    Stock : form.get('Stock'),
+    Description: form.get('Description'),
+    Rating: form.get('Rating'),
+    Image: form.get('Image'),
+  }//This sends the actual FormData object to updateProduct()-
+  //and separately creates a plain object for updating-
+  // //Redux state after the backend responds.
+};
 }
 );
 
 export const updateStock = createAsyncThunk(
-'products/updateStock',
-async ({ id, data }) => {
-await updateProductStock(id, data);
-return { id, ...data };
-}
+  'products/updateStock',
+  async ({ id, data }) => {
+    await updateProductStock(id, data);
+    return { id, ...data };
+  }
 );
 
 export const deleteProduct = createAsyncThunk(
@@ -103,13 +117,22 @@ state.error = action.error.message;
 
   .addCase(editProduct.fulfilled, (state, action) => {
     const index = state.items.findIndex(
-      (item) => (item.productId ?? item.id) === Number(action.meta.arg.id)
+      (item) => 
+        Number(item.productId ?? item.id) === Number(action.payload.id)
     );
 
     if (index !== -1) {
+      const updated = action.payload.form;
+
       state.items[index] = {
         ...state.items[index],
-        ...action.payload,
+        name : updated.Name,
+        Category : updated.Category,
+        price : Number(updated.Price),
+        stock: Number(updated.Stock),
+        description: updated.Description,
+        rating: Number(updated.Rating),
+        image: updated.Image || state.items[index].image,
       };
     }
   })
