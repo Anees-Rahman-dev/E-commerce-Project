@@ -33,31 +33,43 @@
 
 
 
-import axios from "axios";
 
-const BASE = import.meta.env.VITE_API_BASE_URL;
-console.log("BASE URL:", BASE);
+import api from "./api";
 
+export const setCartDb = async (productId, quantity = 1) => {
+  const response = await api.post("/cart", {
+    productId,
+    quantity,
+  });
 
-export const setCartDb = async (data) => {
-    // console.log(data)
-    const res = await axios.post(`${BASE}/cart`,data)
-    return res.data
-}
+  return response.data;
+};
 
-export const removeCartFromDb = async (id) => {
-    console.log(id)
-    const res = await axios.delete(`${BASE}/cart/${id}`)
-    return res.data
-}
+export const getCartFromDb = async () => {
+  const response = await api.get("/cart");
+  return response.data;
+};
+
+export const updateCartInDb = async (cartItemId, quantity) => {
+  const response = await api.put(`/cart/${cartItemId}`, {
+    quantity,
+  });
+
+  return response.data;
+};
+
+export const removeCartFromDb = async (cartItemId) => {
+  console.log(cartItemId)
+  const response = await api.delete(`/cart/${cartItemId}`);
+  return response.data;
+};
 
 export const setWishDb = async (data) => {
-    // console.log(data)
-    const res = await axios.post(`${BASE}/wishlist`,data)
-    return res.data
-}
+  const response = await api.post("/wishlist", data);
+  return response.data;
+};
 
 export const removeWish = async (id) => {
-  const res = await axios.delete(`${BASE}/wishlist/${id}`);
-  return res.data;
+  const response = await api.delete(`/wishlist/${id}`);
+  return response.data;
 };

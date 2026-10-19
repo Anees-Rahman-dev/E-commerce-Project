@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Home from './pages/Home'
@@ -18,8 +18,22 @@ import ManageProducts from './pages/admin/ManageProducts'
 import ManageUsers from './pages/admin/ManageUsers'
 import AdminLayout from './layouts/AdminLayout'
 import UserDetails from './components/UserDetails'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCart } from "./redux/slices/cartSlice";
 
 function App() {
+
+   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(
+    (state) => state.auth.isAuthenticated
+  );
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchCart());
+    }
+  }, [dispatch, isAuthenticated]);
   return (
 
     <Routes>

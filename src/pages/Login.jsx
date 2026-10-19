@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate, Link } from 'react-router-dom';
 import { LoginUser } from '../services/userService';
 import { loginSuccess } from '../redux/slices/authSlices';
-import { replaceCart } from '../redux/slices/cartSlice';
+import { fetchCart } from '../redux/slices/cartSlice';
 import { Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -30,11 +30,12 @@ export default function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+
     setError('');
     setLoading(true);
 
-    
     try {
    
     const result = await LoginUser(form.email.trim(),form.password);
@@ -43,25 +44,16 @@ export default function Login() {
 
     dispatch(loginSuccess({user,token}));
 
-      console.log(user)
+     dispatch(fetchCart())
+      // console.log(user)
     if (user.role?.toLowerCase() == 'admin') {
       
       navigate('/dashboard');
+
     }else{
 
       navigate('/');
     }
-
-    // Load this user's locally saved cart
-    const userId = user.userId ?? user.id;
-
-      try {
-        const stored = JSON.parse(localStorage.getItem(`cart_${userId}`) || '[]');
-        dispatch(replaceCart(stored));
-      } catch {
-        dispatch(replaceCart([]));
-      }
-
       // console.log('Dispatched user to auth state:', user);
     } catch (err) {
       console.error('Login error:', err);

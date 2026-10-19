@@ -33,9 +33,11 @@ export default function Home() {
   },[user,navigate])
 
   // console.log("items:", items)
+
   const safeItems = Array.isArray(items) ? items : [];
   useEffect(() => {
     dispatch(fetchProducts());
+    // console.log(items)
   }, [dispatch]);
 
   const filtered = useMemo(() => {
@@ -48,6 +50,7 @@ export default function Home() {
         return 0;
       });
   }, [safeItems, search, category, sort]);
+
   // console.log(safeItems)
   const bestSellers = useMemo(() =>
     safeItems.filter((p) => p.rating >= 4.8).slice(0, 3),
@@ -105,6 +108,7 @@ export default function Home() {
               { rotate: "10deg", top: "45%", left: "10%" },
               { rotate: "-8deg", top: "40%", left: "40%" },
             ]}
+            // onClick={(index) => navigate(`/`)}
           />
         </div>
         <div className="relative -mt-1 overflow-hidden leading-none">
@@ -317,7 +321,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {bestSellers.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.productId} product={product} />
             ))}
           </div>
         </section>
@@ -620,7 +624,7 @@ export default function Home() {
         {status === "succeeded" && filtered.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filtered.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.productId} product={product} />
             ))}
           </div>
         )}

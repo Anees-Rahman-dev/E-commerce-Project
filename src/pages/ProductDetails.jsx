@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
-import { addToCart } from '../redux/slices/cartSlice';
+import { fetchCart  } from '../redux/slices/cartSlice';
 import { getProductById } from '../services/ProductService';
 import Tilt from 'react-parallax-tilt'
 import toast from 'react-hot-toast';
 import { removeWish, setCartDb } from '../services/CartService';
+
 function ProductDetails() {
 
   const { id } = useParams();
   // console.log(id)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const { isAuthenticated } = useSelector((state) => state.products.items);
+
 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -20,7 +23,7 @@ function ProductDetails() {
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
-    // console.log(product)
+    console.log(product)
     getProductById(id)
       .then((res) => setProduct(res))
       .finally(() => setLoading(false))
@@ -28,18 +31,33 @@ function ProductDetails() {
   }, [id])
 
 
-  const handleAddToCart = () => {
-    if (!isAuthenticated) return navigate(`/login`);
-
-    if(product.stock <= 0){
-      toast.error('Out Of Stock')
-return
-    }
-    dispatch(addToCart({ ...product, quantity }))
-    setCartDb(product)
-    // console.log(product, quantity)
-    setAdded(true)
+const handleAddToCart = async () => {
+  if (!isAuthenticated) {
+    navigate("/login");
+    return;
   }
+
+  if (product.stock <= 0) {
+    toast.error("Out Of Stock");
+    return;
+  }
+
+  try {
+    await setCartDb(product.productId, quantity);
+    await dispatch(fetchCart()).unwrap();
+
+    setAdded(true);
+    toast.success("Added to cart");
+  } catch (error) {
+    console.error("Add to cart failed:", error);
+
+    toast.error(
+      typeof error === "string"
+        ? error
+        : error.response?.data || "Unable to add product to cart."
+    );
+  }
+};
 
   useEffect(() => {
     let timer;

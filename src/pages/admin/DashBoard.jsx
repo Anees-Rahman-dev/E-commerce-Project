@@ -78,9 +78,7 @@ export default function DashBoard() {
   const totalOrders = orders.length
 
   const totalRevenue = orders.reduce(
-    (sum, order) => sum + Number(order.total || 0),
-    0
-  )
+    (sum, order) => sum + Number(order.totalAmount  || 0),0)
 // console.log(totalRevenue);
 
   const dispatch = useDispatch()

@@ -2,12 +2,13 @@
 import { memo, useState } from 'react';
 import { Await, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux/slices/cartSlice';
-import { setCartDb, setWishDb, removeWish } from '../services/CartService';
+
+import { setCartDb,setWishDb,removeWish } from '../services/CartService';
 import { Server } from 'lucide-react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import { fetchCart } from "../redux/slices/cartSlice";
 import { deleteWish } from '../redux/slices/wishlistSlice';
+import { addValueToWillChange } from 'framer-motion';
 
 const ProductCard = memo(function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -28,38 +29,55 @@ const ProductCard = memo(function ProductCard({ product }) {
     : 'https://via.placeholder.com/400';
 
 
-  const handleAddToCart = async (e) => {
+  
+const handleAddToCart = async (e) => {
+  e.stopPropagation();
 
-    e.stopPropagation();
-
-    if (!isAuthenticated) {
-      return navigate('/login');
-    }
-
-
-    if (product.stock <= 0) {
-      toast.error('Out OfStock')
-      return
-    }
-
-    const existingItem = cartItems.find(
-      (find) => find.id === product.id
-    )
-
-    if (
-      existingItem &&
-      existingItem.quantity >= product.stock
-    ) {
-      toast.error(
-        'Cannot buy more than ' + product.stock
-      )
-      return
-    }
-
-    await setCartDb(product)
-
-    dispatch(addToCart(product))
+  // console.log(product)
+  if (!isAuthenticated) {
+    navigate("/login");
+    return;
   }
+
+  if (product.stock <= 0) {
+    toast.error("Out of stock");
+    return;
+  }
+
+  const existingItem = cartItems.find(
+    (item) => item.productId === product.productId
+  );
+
+  if (
+    (existingItem?.quantity ?? 0) >= product.stock
+  ) {
+    toast.error(`Cannot buy more than ${product.stock}`);
+    return;
+  }
+
+  try {
+    await setCartDb(product.productId, 1);
+
+    await dispatch(fetchCart()).unwrap();
+
+    if(!existingItem){
+
+      toast.success("Added to cart");
+    }else{
+      toast.success(`Added one more ${product.name} to the cart`)
+    }
+  } catch (error) {
+    console.error("Add to cart failed:", error);
+
+    toast.error(
+      typeof error === "string"
+        ? error
+        : error.response?.data ||
+          "Unable to add product to cart."
+    );
+  }
+};
+
   const handleWishlist = async (e) => {
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login')
@@ -113,7 +131,7 @@ const ProductCard = memo(function ProductCard({ product }) {
 
   return (
     <div
-      onClick={() => navigate(`/product/${product.id}`)}
+      onClick={() => navigate(`/product/${product.productId}`)}
       className="cursor-pointer bg-white rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden group"
     >
       <div className="relative overflow-hidden h-52">

@@ -118,20 +118,23 @@ state.error = action.error.message;
     const index = state.items.findIndex(
       (item) => 
         Number(item.productId ?? item.id) === Number(action.payload.id)
-    );
-
-    if (index !== -1) {
-      const updated = action.payload.form;
+    ); //gets the ID of the product from the action payload and converts it to a number too.
+    
+    if (index !== -1) {//findIndex() returns -1 if it cannot find a matching item.
+       // "Only update the product if it exists in the Redux array."
+       
+       const updated = action.payload.form;//this contains an object of string 
+       //that's why we use Number() in the below section for number fields such as price.etc.
 
       state.items[index] = {
-        ...state.items[index],
+        ...state.items[index],//This selects the exact product we found earlier.
         name : updated.Name,
         Category : updated.Category,
         price : Number(updated.Price),
         stock: Number(updated.Stock),
         description: updated.Description,
         rating: Number(updated.Rating),
-        image: updated.Image || state.items[index].image,
+        image: updated.Image || state.items[index].image, //if a image for updation won't get any image then use the existing image/
       };
     }
   })

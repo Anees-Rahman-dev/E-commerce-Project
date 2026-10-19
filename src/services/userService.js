@@ -17,7 +17,7 @@ export const LoginUser = async (email, password) => {
   });
 
   const token = response.data.token;
-  console.log(token);
+  // console.log(token);
 
   // Temporarily save the token so we can fetch the logged-in user
   localStorage.setItem('token', token);
