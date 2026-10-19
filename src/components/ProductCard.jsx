@@ -79,6 +79,7 @@ const handleAddToCart = async (e) => {
 };
 
   const handleWishlist = async (e) => {
+    
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login')
 

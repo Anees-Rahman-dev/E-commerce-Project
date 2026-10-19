@@ -14,7 +14,7 @@ function ProductDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { isAuthenticated } = useSelector((state) => state.products.items);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
 
   const [product, setProduct] = useState(null);
@@ -22,13 +22,38 @@ function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
 
+  // useEffect(() => {
+  //   console.log(product)
+  //   getProductById(id)
+  //     .then((res) => setProduct(res))
+  //     .finally(() => setLoading(false))
+  //   // console.log(id)
+  // }, [id])
+
   useEffect(() => {
-    console.log(product)
+
+    let cancelled = false;
+
+    setLoading(true);
+    setProduct(null);
+    setQuantity(1);
+
     getProductById(id)
-      .then((res) => setProduct(res))
-      .finally(() => setLoading(false))
-    // console.log(id)
-  }, [id])
+      .then((res) => {
+        if(!cancelled) setProduct(res);
+      })
+      .catch((error) => {
+        console.error("Failed to load product",error);
+        if(!cancelled)setProduct(null);
+      })
+      .finally(() => {
+        if(!cancelled) setLoading(false);
+      });
+
+      return () =>{
+        cancelled = true;
+      };
+  },[id])
 
 
 const handleAddToCart = async () => {
@@ -95,6 +120,28 @@ const handleAddToCart = async () => {
     }
   };
 
+  const handleBuyNow = () => {
+
+    if(!isAuthenticated){
+      navigate('/login');
+      return;
+    }
+
+    if(product.stock <= 0){
+      toast.error("Out of stock");
+      return;
+    }
+
+    navigate("/checkout",{
+      state : {
+        buyNow : {
+          product,
+          quantity,
+        },
+      },
+    });
+  };
+
   if (loading) {
     return <p>Loading...</p>
   }
@@ -153,54 +200,75 @@ const handleAddToCart = async () => {
             ₹{product.price}
           </p>
 
-          {product.stock === 0 ? (
-            <div className="mt-6">
-              <span className="bg-red-100 text-red-600 px-4 py-2 rounded-lg font-medium">
-                Out of Stock
-              </span>
-            </div>
-          ) : (
-            <div className="mt-6 flex items-center gap-4">
-              {/* Quantity Selector */}
-              <div className="flex items-center border rounded-lg overflow-hidden">
-                <button
-                 disabled={quantity === 1} onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-lg"
-                >
-                  -
-                </button>
-                <span className="px-5 py-2 font-medium">{quantity}</span>
-                <button
-                  onClick={() =>
-                    setQuantity((q) => Math.min(product.stock, q + 1))
-                  }
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-lg"
-                >
-                  +
-                </button>
-              </div>
+    
+{product.stock === 0 ? (
+  <div className="mt-6">
+    <span className="rounded-lg bg-red-100 px-4 py-2 font-medium text-red-600">
+      Out of Stock
+    </span>
+  </div>
+) : (
 
-              <button
-                onClick={handleAddToCart}
-                className="bg-amber-800 text-white px-8 py-2 rounded-lg hover:bg-amber-900 transition"
-              >
-                {added ? "✓ Added!" : "Add to Cart"}
-              </button>
-  
+<div className="mt-6 grid grid-cols-4 items-stretch gap-3">
+  {/* Quantity Selector */}
+  <div className="flex h-12 min-w-0 items-center overflow-hidden rounded-lg border border-gray-800">
+    <button
+      type="button"
+      disabled={quantity <= 1}
+      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+      className="h-full min-w-0 flex-1 bg-gray-100 text-lg hover:bg-gray-200 disabled:opacity-50"
+    >
+      -
+    </button>
 
-              <button
-                onClick={handleWishlist}
-                className="border border-amber-800 text-amber-800 px-6 py-2 rounded-lg hover:bg-amber-50 transition"
-              >
-                ♡ Wishlist
-              </button>
+    <span className="flex h-full min-w-0 flex-1 items-center justify-center font-medium">
+      {quantity}
+    </span>
 
-            </div>
-          )}
+    <button
+      type="button"
+      disabled={quantity >= product.stock}
+      onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
+      className="h-full min-w-0 flex-1 bg-gray-100 text-lg hover:bg-gray-200 disabled:opacity-50"
+    >
+      +
+    </button>
+  </div>
 
-          <p className="text-xs text-gray-400 mt-4">
-            {product.stock > 0 && `${product.stock} units available`}
-          </p>
+  {/* Add to Cart */}
+  <button
+    type="button"
+    onClick={handleAddToCart}
+    className="h-12 min-w-0 rounded-lg bg-amber-800 px-2 text-sm font-medium text-white transition hover:bg-amber-900 sm:text-base"
+  >
+    {added ? "✓ Added!" : "Add to Cart"}
+  </button>
+
+  {/* Buy Now */}
+  <button
+    type="button"
+    onClick={handleBuyNow}
+    className="h-12 min-w-0 rounded-lg bg-orange-800 px-2 text-sm font-medium text-white transition hover:bg-orange-700 sm:text-base"
+  >
+    Buy Now
+  </button>
+
+  {/* Wishlist */}
+  <button
+    type="button"
+    onClick={handleWishlist}
+    className="h-12 min-w-0 whitespace-nowrap rounded-lg border border-amber-800 px-1 text-sm font-medium text-amber-800 transition hover:bg-amber-50 sm:text-base"
+  >
+    ♡ Wishlist
+  </button>
+</div>
+
+
+)}
+
+<p className="mt-4 text-xs text-gray-400">
+  {product.stock > 0 && `${product.stock} units available`}
+</p>
         </div>
       </div>
     </div>

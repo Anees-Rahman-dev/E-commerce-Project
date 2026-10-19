@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function OrderSuccess() {
   const navigate = useNavigate();
@@ -8,63 +9,124 @@ export default function OrderSuccess() {
 
   useEffect(() => {
     if (!order) {
-      navigate('/orders');
+      navigate("/orders", { replace: true });
     }
   }, [order, navigate]);
 
   if (!order) return null;
 
-  return (
-    <div className="max-w-4xl mx-auto p-6 pt-30">
-      <div className="bg-white rounded-3xl shadow-lg p-8 text-center">
-        <div className="text-6xl mb-4">✅</div>
-        <h1 className="text-3xl font-bold text-gray-900">Order Placed Successfully!</h1>
-        <p className="mt-2 text-gray-600">Thank you for your purchase. Your order has been placed.</p>
+  const orderItems = order.orderItems ?? [];
+  const address = order.address;
 
-        <div className="mt-8 bg-amber-50 rounded-2xl p-6 text-left">
+  const formattedDate = order.orderDate
+    ? new Date(order.orderDate).toLocaleString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : "Not available";
+
+  return (
+    <div className="mx-auto max-w-4xl px-6 pt-30 pb-12">
+      <div className="rounded-3xl bg-white p-8 text-center shadow-lg">
+        <div className="mb-4 text-6xl">✅</div>
+
+        <h1 className="text-3xl font-bold text-gray-900">
+          Order Placed Successfully!
+        </h1>
+
+        <p className="mt-2 text-gray-600">
+          Thank you for your purchase. Your order has been placed.
+        </p>
+
+        <div className="mt-8 rounded-2xl bg-amber-50 p-6 text-left">
           <div className="mb-4">
             <p className="text-sm text-gray-500">Order Number</p>
-            <p className="font-semibold">#{order.id}</p>
+            <p className="font-semibold">#{order.orderId}</p>
           </div>
+
           <div className="mb-4">
             <p className="text-sm text-gray-500">Order Date</p>
-            <p className="font-semibold">{new Date(order.date).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+            <p className="font-semibold">{formattedDate}</p>
           </div>
+
           <div className="mb-4">
             <p className="text-sm text-gray-500">Delivery Address</p>
-            <p className="font-semibold">{order.address}</p>
+            {address && typeof address === "object" ? (
+              <div className="font-semibold">
+                <p>{address.fullName}</p>
+                <p>{address.phone}</p>
+                <p>
+                  {address.addressLine}, {address.city}, {address.state} -{" "}
+                  {address.pincode}
+                </p>
+              </div>
+            ) : (
+              <p className="font-semibold">
+                {address || "Address not available"}
+              </p>
+            )}
           </div>
-          <div className="mb-4">
-            <p className="text-sm text-gray-500">Total Paid</p>
-            <p className="font-semibold">₹{order.total}</p>
+
+          <div>
+            <p className="text-sm text-gray-500">Order Total</p>
+            <p className="font-semibold">
+              ₹{Number(order.totalAmount ?? 0).toFixed(2)}
+            </p>
           </div>
         </div>
 
         <div className="mt-6 space-y-3 text-left">
-          <h2 className="text-xl font-semibold text-gray-800">Ordered Items</h2>
-          <div className="space-y-2">
-            {order.items.map((item) => (
-              <div key={item.productId} className="flex justify-between rounded-xl bg-white p-4 border border-amber-100">
-                <div>
-                  <p className="font-medium">{item.name}</p>
-                  <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+          <h2 className="text-xl font-semibold text-gray-800">
+            Ordered Items
+          </h2>
+
+          {orderItems.length > 0 ? (
+            <div className="space-y-2">
+              {orderItems.map((item, index) => (
+                <div
+                  key={item.orderItemId ?? item.productId ?? index}
+                  className="flex items-center justify-between gap-4 rounded-xl border border-amber-100 bg-white p-4"
+                >
+                  <div>
+                    <p className="font-medium text-gray-900">
+                      {item.productName ?? item.name ?? "Product"}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Qty: {item.quantity}
+                    </p>
+                  </div>
+
+                  <p className="shrink-0 font-semibold">
+                    ₹
+                    {(
+                      Number(item.price ?? 0) * Number(item.quantity ?? 0)
+                    ).toFixed(2)}
+                  </p>
                 </div>
-                <p className="font-semibold">₹{item.price * item.quantity}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="rounded-xl bg-amber-50 p-4 text-sm text-gray-600">
+              Order placed successfully. Item details are not available in the
+              response.
+            </p>
+          )}
         </div>
 
-        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
           <button
-            onClick={() => navigate('/')}
-            className="px-6 py-3 rounded-full bg-amber-800 text-white font-medium hover:bg-amber-900"
+            onClick={() => navigate("/")}
+            className="rounded-full bg-amber-800 px-6 py-3 font-medium text-white hover:bg-amber-900"
           >
             Continue Shopping
           </button>
+
           <button
-            onClick={() => navigate('/orders')}
-            className="px-6 py-3 rounded-full border border-amber-800 text-amber-800 font-medium hover:bg-amber-50"
+            onClick={() => navigate("/orders")}
+            className="rounded-full border border-amber-800 px-6 py-3 font-medium text-amber-800 hover:bg-amber-50"
           >
             View My Orders
           </button>

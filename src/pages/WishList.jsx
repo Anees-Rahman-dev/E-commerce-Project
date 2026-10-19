@@ -84,19 +84,19 @@ export default function WishList() {
         {wishlist.map((item) => (
 
           <div
-            key={item.id}
+            key={item.productId}
             className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition"
           >
 
             <img
               src={item.image}
-              alt={item.name}
+              alt={item.productName}
               className="w-20 h-20 object-cover rounded-lg"
             />
 
             <div className="flex-1">
               <h3 className="font-semibold text-gray-800">
-                {item.name}
+                {item.productName}
               </h3>
 
               <p className="text-amber-800 font-medium">
@@ -114,7 +114,7 @@ export default function WishList() {
               </button>
 
               <button
-                onClick={() => handleRemove(item.id)}
+                onClick={() => handleRemove(item.wishListItemId)}
                 className="text-red-400 hover:text-red-600 text-xl"
               >
                 ✕
