@@ -34,6 +34,7 @@
 
 
 
+
 import api from "./api";
 
 export const setCartDb = async (productId, quantity = 1) => {
@@ -59,18 +60,25 @@ export const updateCartInDb = async (cartItemId, quantity) => {
 };
 
 export const removeCartFromDb = async (cartItemId) => {
-  console.log(cartItemId)
+  // console.log(cartItemId)
   const response = await api.delete(`/cart/${cartItemId}`);
   return response.data;
 };
 
-export const setWishDb = async (data) => {
-  console.log(data)
-  const response = await api.post("/wishlist", data);
+export const getWishDb = async () => {
+  const res = await api.get(`/wishlist`);
+  return res.data;
+}
+
+export const setWishDb = async (productId) => {
+  console.log(productId)
+  
+  const response = await api.post(`/wishlist/${productId}`);
   return response.data;
 };
 
-export const removeWish = async (id) => {
-  const response = await api.delete(`/wishlist/${id}`);
+export const removeWish = async (wishlistItemId) => {
+  const response = await api.delete(`/wishlist/${wishlistItemId}`);
   return response.data;
+
 };

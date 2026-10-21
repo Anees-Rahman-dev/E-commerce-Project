@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchCart  } from '../redux/slices/cartSlice';
-import { getProductById } from '../services/ProductService';
 import Tilt from 'react-parallax-tilt'
 import toast from 'react-hot-toast';
-import { removeWish, setCartDb } from '../services/CartService';
-
+import { getWishDb, removeWish, setCartDb, setWishDb } from '../services/CartService';
+import { getProductById, getAllProducts } from '../services/ProductService';
 function ProductDetails() {
 
   const { id } = useParams();
@@ -17,6 +16,9 @@ function ProductDetails() {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
 
+  const [relatedProducts, setRelatedProducts] = useState([]);
+const [relatedLoading, setRelatedLoading] = useState(true);
+const [quantities, setQuantities] = useState({});
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -34,26 +36,59 @@ function ProductDetails() {
 
     let cancelled = false;
 
-    setLoading(true);
-    setProduct(null);
-    setQuantity(1);
+    const loadProducts = async () =>{
+      setLoading(true);
+      setRelatedLoading(true);
+      setProduct(null);
+      setRelatedProducts([]);
 
-    getProductById(id)
-      .then((res) => {
-        if(!cancelled) setProduct(res);
-      })
-      .catch((error) => {
-        console.error("Failed to load product",error);
-        if(!cancelled)setProduct(null);
-      })
-      .finally(() => {
-        if(!cancelled) setLoading(false);
-      });
+      try {
+        const currentProduct = await getProductById(id);
 
-      return () =>{
-        cancelled = true;
-      };
+        if(cancelled)return;
+
+        setProduct(currentProduct);
+
+        const allProducts = await getAllProducts();
+
+        const currentId = currentProduct.productId ?? currentProduct.id;
+
+        const related = (Array.isArray(allProducts) ? allProducts : [])
+          .filter((item) => {
+            const itemId = item.productId ?? item.id;
+
+            return (String(itemId) !== String(currentId) &&
+            item.category?.toLowerCase() ===
+            currentProduct.category?.toLowerCase());
+          })
+          .slice(0,4);
+
+          setRelatedProducts(related);
+      }catch(error){
+        console.log("Failed to load product details:", error);
+
+        if(!cancelled){
+          setProduct(null);
+          setRelatedProducts([]);        }
+      }finally{
+        if(!cancelled){
+          setLoading(false);
+          setRelatedLoading(false);
+        }
+      }
+    };
+
+    loadProducts();
+
+    return () => {
+      cancelled = true;
+    };
   },[id])
+
+  useEffect(() => {
+  setQuantity(quantities[id] ?? 1);
+}, [id, quantities]);
+
 
 
 const handleAddToCart = async () => {
@@ -97,28 +132,49 @@ const handleAddToCart = async () => {
   }, [added]);
 
 
-  const handleWishlist = async () => {
-    if (!isAuthenticated) return navigate(`/login`);
+  
+ 
 
-    const uid = JSON.parse(localStorage.getItem("user"))?.id;
-    const key = uid ? `wishlist_${uid}` : 'wishlist';
-    const current = JSON.parse(localStorage.getItem(key) || '[]');
-    const exists = current.find((i) => i.id === product.id);
-    
-    if (!exists) {
-      localStorage.setItem(key, JSON.stringify([...current, product]));
-      toast.success("Added to wishlist!");
-    } else {
-      const updated = current.filter((i) => i.id !== product.id);
-      localStorage.setItem(key, JSON.stringify(updated));
-      try {
-        await removeWish(exists.id);
-      } catch (error) {
-        console.warn('Failed to delete wishlist item from backend:', error);
-      }
+const handleWishlist = async () => {
+  if (!isAuthenticated) {
+    navigate('/login');
+    return;
+  }
+
+  const productId = product.productId ?? product.id;
+
+  try {
+    const before = await getWishDb();
+
+    const existingItem = before.find(
+      (item) => Number(item.productId) === Number(productId)
+    );
+
+    if (existingItem) {
+
+      await removeWish(existingItem.wishlistItemId);
       toast.success('Removed from wishlist');
+
+    } else {
+
+      const addedItem = await setWishDb(productId);
+      console.log('Added wishlist item:', addedItem);
+      toast.success('Added to wishlist!');
+
     }
-  };
+  } catch (error) {
+
+    console.error(
+      'Wishlist error:',
+      error.response?.status,
+      error.response?.data || error.message
+
+    );
+
+    toast.error('Unable to update wishlist');
+  }
+};
+
 
   const handleBuyNow = () => {
 
@@ -212,27 +268,32 @@ const handleAddToCart = async () => {
 <div className="mt-6 grid grid-cols-4 items-stretch gap-3">
   {/* Quantity Selector */}
   <div className="flex h-12 min-w-0 items-center overflow-hidden rounded-lg border border-gray-800">
-    <button
-      type="button"
-      disabled={quantity <= 1}
-      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-      className="h-full min-w-0 flex-1 bg-gray-100 text-lg hover:bg-gray-200 disabled:opacity-50"
-    >
-      -
-    </button>
+   <button
+  type="button"
+  disabled={quantity <= 1}
+  onClick={() => {
+    const next = Math.max(1, quantity - 1);
+    setQuantity(next);
+    setQuantities((previous) => ({ ...previous, [id]: next }));
+  }}
+  className="h-full min-w-0 flex-1 bg-gray-100 text-lg hover:bg-gray-200 disabled:opacity-50"
+>
+  -
+</button>
+{quantity}
 
-    <span className="flex h-full min-w-0 flex-1 items-center justify-center font-medium">
-      {quantity}
-    </span>
-
-    <button
-      type="button"
-      disabled={quantity >= product.stock}
-      onClick={() => setQuantity((q) => Math.min(product.stock, q + 1))}
-      className="h-full min-w-0 flex-1 bg-gray-100 text-lg hover:bg-gray-200 disabled:opacity-50"
-    >
-      +
-    </button>
+<button
+  type="button"
+  disabled={quantity >= product.stock}
+  onClick={() => {
+    const next = Math.min(product.stock, quantity + 1);
+    setQuantity(next);
+    setQuantities((previous) => ({ ...previous, [id]: next }));
+  }}
+  className="h-full min-w-0 flex-1 bg-gray-100 text-lg hover:bg-gray-200 disabled:opacity-50"
+>
+  +
+</button>
   </div>
 
   {/* Add to Cart */}
@@ -267,10 +328,76 @@ const handleAddToCart = async () => {
 )}
 
 <p className="mt-4 text-xs text-gray-400">
-  {product.stock > 0 && `${product.stock} units available`}
+  {product.stock > 0
+    ? `${ product.stock - quantity} units in stock`
+    : "Out of stock"}
 </p>
         </div>
       </div>
+      {/* Related Products */}
+<section className="mt-16">
+  <div className="mb-6">
+    <h2 className="text-2xl font-bold text-gray-800">
+      You May Also Like
+    </h2>
+    <p className="mt-2 text-sm text-gray-500">
+      Explore more chocolates from our {product.category} collection.
+    </p>
+  </div>
+
+  {relatedLoading ? (
+    <p className="py-6 text-gray-500">Loading related products...</p>
+  ) : relatedProducts.length === 0 ? (
+    <p className="py-6 text-gray-500">
+      No other products available in this category yet.
+    </p>
+  ) : (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {relatedProducts.map((item) => (
+        <button
+          type="button"
+          key={item.productId ?? item.id}
+          onClick={() =>
+            navigate(`/product/${item.productId ?? item.id}`)
+          }
+          className="group overflow-hidden rounded-2xl border border-amber-100 bg-white text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+        >
+          <div className="h-48 overflow-hidden bg-amber-50">
+            <img
+              src={item.image}
+              alt={item.name}
+              className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <div className="p-4">
+            <span className="text-xs font-medium text-amber-700">
+              {item.category}
+            </span>
+
+            <h3 className="mt-2 line-clamp-2 font-semibold text-gray-800">
+              {item.name}
+            </h3>
+
+            <div className="mt-3 flex items-center justify-between gap-2">
+              <span className="font-bold text-amber-800">
+                ₹{item.price}
+              </span>
+
+              <span className="text-sm text-yellow-500">
+                ⭐ {item.rating ?? "New"}
+              </span>
+            </div>
+
+            <span className="mt-4 block text-sm font-medium text-amber-800 group-hover:underline">
+              View Product →
+            </span>
+          </div>
+        </button>
+      ))}
+    </div>
+  )}
+</section>
     </div>
   );
 }

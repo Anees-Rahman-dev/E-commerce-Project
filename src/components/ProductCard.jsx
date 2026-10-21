@@ -58,7 +58,7 @@ const handleAddToCart = async (e) => {
   try {
     await setCartDb(product.productId, 1);
 
-    await dispatch(fetchCart()).unwrap();
+    await dispatch(fetchCart()).unwrap(); // unwrap allows you to extract the raw payload or throw a real error directly from a dispatched action when using asyncThunk
 
     if(!existingItem){
 

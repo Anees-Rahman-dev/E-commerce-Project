@@ -1,43 +1,65 @@
 
-import React, { useState } from 'react'
-import { addToCart } from '../redux/slices/cartSlice'
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { removeWish } from '../services/CartService';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addToCart } from '../redux/slices/cartSlice';
+import { getWishDb, removeWish, setCartDb } from '../services/CartService';
 import toast from 'react-hot-toast';
+
 
 export default function WishList() {
 
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
-  const user = useSelector((s) => s.auth.user);
-  const userId = user?.id;
-  const storageKey = userId ? `wishlist_${userId}` : 'wishlist';
 
-  const [wishlist, setWishlist] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(storageKey) || '[]');
-    } catch {
-      return [];
+  const [wishlist, setWishlist] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  const loadWishList = async () => {
+
+    try{
+      const items = await getWishDb();
+      setWishlist(items);
+    }catch(error){
+      console.error('Failed to load Wishlist',error);
+      toast.error("Unable to load Wishlist");
+    }finally{
+      setLoading(false);
     }
-  });
+  }
 
-  const save = (items) => {
-    setWishlist(items);
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(items));
-    } catch { }
-  };
+  useEffect(() => {
+  loadWishList();
+  },[])
 
-  const handleRemove = async (id) => {
-    const updated = wishlist.filter((item) => item.id !== id);
-    save(updated);
-    toast.success("Removed from wishlist")
-  };
+  const handleRemove = async (wishListItemId) =>{
+    try{
+      await removeWish(wishListItemId);
+
+      setWishlist((prev) => 
+      prev.filter(
+        (i) => i.wishlistItemId !== wishListItemId ))
+         //eg 101 !== 102 true keep it.
+         // 102 !== 102 false remove it. 
+         //103 !== 102 → true, so keep it.
+        
+         toast.success(`Removed from wishlist `);
+    }catch (error) {
+      console.error(`Failed to remove wishlist item ${error}`);
+      toast.error(`Unable to remove`);
+    }
+  }
+
 
   const handleMoveToCart = (item) => {
-    dispatch(addToCart({ ...item, quantity: 1 }));
-    handleRemove(item.id);
+
+    // console.log(item)
+    // dispatch(addToCart({ ...item, quantity: 1 }));
+    setCartDb(item.productId, 1)
+
+    handleRemove(item.wishlistItemId);
     toast.custom((t) => (
       <div className="bg-zinc-900 text-white px-4 py-3 rounded-xl flex items-center gap-3">
         <span>🛒 Added to cart</span>
@@ -53,6 +75,10 @@ export default function WishList() {
 
   };
 
+  if (loading) {
+  return <p className="p-6 text-center">Loading wishlist...</p>;
+}
+  
   if (wishlist.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen text-center py-24 text-gray-500 pt-30">
@@ -79,53 +105,49 @@ export default function WishList() {
         My Wishlist
       </h1>
 
-      <div className="space-y-4">
+      
+<div className="space-y-4">
+  {wishlist.map((item) => (
+    <div
+      key={item.wishlistItemId}
+      className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition"
+    >
+      <img
+        src={item.image}
+        alt={item.productName}
+        className="w-20 h-20 object-cover rounded-lg"
+      />
 
-        {wishlist.map((item) => (
+      <div className="flex-1">
+        <h3 className="font-semibold text-gray-800">
+          {item.productName}
+        </h3>
 
-          <div
-            key={item.productId}
-            className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition"
-          >
-
-            <img
-              src={item.image}
-              alt={item.productName}
-              className="w-20 h-20 object-cover rounded-lg"
-            />
-
-            <div className="flex-1">
-              <h3 className="font-semibold text-gray-800">
-                {item.productName}
-              </h3>
-
-              <p className="text-amber-800 font-medium">
-                ₹{item.price}
-              </p>
-            </div>
-
-            <div className="flex gap-2">
-
-              <button
-                onClick={() => handleMoveToCart(item)}
-                className="bg-amber-800 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-amber-900"
-              >
-                Move to Cart
-              </button>
-
-              <button
-                onClick={() => handleRemove(item.wishListItemId)}
-                className="text-red-400 hover:text-red-600 text-xl"
-              >
-                ✕
-              </button>
-
-            </div>
-
-          </div>
-        ))}
-
+        <p className="text-amber-800 font-medium">
+          ₹{item.price}
+        </p>
       </div>
+
+      <div className="flex gap-2">
+        <button
+          onClick={() => handleMoveToCart(item)}
+          className="bg-amber-800 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-amber-900"
+        >
+          Move to Cart
+        </button>
+
+        <button
+          onClick={() => handleRemove(item.wishlistItemId)}
+          className="text-red-400 hover:text-red-600 text-xl"
+          aria-label={`Remove ${item.productName} from wishlist`}
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }
