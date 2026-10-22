@@ -67,6 +67,7 @@ export const removeCartFromDb = async (cartItemId) => {
 
 export const getWishDb = async () => {
   const res = await api.get(`/wishlist`);
+  console.log(res.data)
   return res.data;
 }
 

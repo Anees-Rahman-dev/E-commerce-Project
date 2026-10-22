@@ -3,12 +3,13 @@ import { memo, useState } from 'react';
 import { Await, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setCartDb,setWishDb,removeWish } from '../services/CartService';
+import { setCartDb,setWishDb,removeWish, getWishDb } from '../services/CartService';
 import { Server } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { fetchCart } from "../redux/slices/cartSlice";
 import { deleteWish } from '../redux/slices/wishlistSlice';
 import { addValueToWillChange } from 'framer-motion';
+import { all } from 'axios';
 
 const ProductCard = memo(function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -80,24 +81,24 @@ const handleAddToCart = async (e) => {
 
   const handleWishlist = async (e) => {
     
+    
     e.stopPropagation();
     if (!isAuthenticated) return navigate('/login')
 
-    const uid = JSON.parse(localStorage.getItem('user'))?.id;
-    //  console.log('uid',uid)
-    const key = uid ? `wishlist_${uid}` : 'wishlist'; //each user gets separate wishlist_id
-    //  console.log('key',key)
-    const current = JSON.parse(localStorage.getItem(key) || '[]');
-    // console.log('current',current)
-    const existingItem = current.find(i => i.id === product.id);
 
-    if (!existingItem) {
-      // Add to wishlist
-      localStorage.setItem(key, JSON.stringify([...current, product]));
-      await setWishDb(product);
-      setBg("bg-red-500 text-white");
+      
+      const allList = await getWishDb();
+      console.log(allList)
 
-      toast.custom((t) => (
+      const alreadyExist = allList.find((i) => Number(i.productId) === Number(product.productId));
+
+      if(!alreadyExist)
+      {
+        await setWishDb(product.productId);
+
+        setBg("bg-red-500 text-white");
+
+        toast.custom((t) => (
         <div className="bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-lg flex items-center gap-4">
           <span className="text-sm font-medium">
             ❤️ Added to wishlist
@@ -114,19 +115,58 @@ const handleAddToCart = async (e) => {
           </button>
         </div>
       ))
-    } else {
-
-      const updatedWishlist = current.filter(i => i.id !== product.id); //removing from wishlist
-      localStorage.setItem(key, JSON.stringify(updatedWishlist));
-      try {
-        await removeWish(existingItem.id);
-      } catch (error) {
-        console.warn('Failed to delete wishlist item from backend:', error);
       }
-      setBg("bg-white/80");
-      toast.success(" Removed from wishlist");
-    }
-    // console.log(product)
+      else{
+        removeWish(product.wishlistItemId);
+        setBg("bg-white/80");
+        toast.success(`${product.name} Removed from wishlist`);
+      }
+
+      // const alreadyExist = allList
+    const uid = JSON.parse(localStorage.getItem('user'))?.id;
+    //  console.log('uid',uid)
+    const key = uid ? `wishlist_${uid}` : 'wishlist'; //each user gets separate wishlist_id
+    //  console.log('key',key)
+    const current = JSON.parse(localStorage.getItem(key) || '[]');
+    // console.log('current',current)
+    const existingItem = current.find(i => i.id === product.id);
+
+    // if (!existingItem) {
+    //   // Add to wishlist
+    //   localStorage.setItem(key, JSON.stringify([...current, product]));
+    //   await setWishDb(product);
+    //   setBg("bg-red-500 text-white");
+
+    //   toast.custom((t) => (
+    //     <div className="bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-lg flex items-center gap-4">
+    //       <span className="text-sm font-medium">
+    //         ❤️ Added to wishlist
+    //       </span>
+
+    //       <button
+    //         onClick={() => {
+    //           navigate("/wishlist");
+    //           toast.dismiss(t);
+    //         }}
+    //         className="bg-white text-black text-xs px-3 py-1 rounded-lg hover:opacity-90 transition"
+    //       >
+    //         View
+    //       </button>
+    //     </div>
+    //   ))
+    // } else {
+
+    //   const updatedWishlist = current.filter(i => i.id !== product.id); //removing from wishlist
+    //   localStorage.setItem(key, JSON.stringify(updatedWishlist));
+    //   try {
+    //     await removeWish(existingItem.id);
+    //   } catch (error) {
+    //     console.warn('Failed to delete wishlist item from backend:', error);
+    //   }
+    //   setBg("bg-white/80");
+    //   toast.success(" Removed from wishlist");
+    // }
+    // // console.log(product)
 
   };
 
