@@ -6,22 +6,35 @@ import api from '../../services/api'
 export default function ManageUsers() {
 
   const users = useSelector((state) => state.users.users)
-  const usersOnly = users.filter((us) => us.role === "user")
+  console.log(users)
+  const usersOnly = users.filter((us) => us.role === "User" )
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAllUsers())
+   dispatch(fetchAllUsers())
+  
   }, [dispatch])
   // console.log(users)
 
-  const handleBtn = (user) => {
-    // console.log(userStatus)
-    if (user.isBlocked) {
-      dispatch(unBlockUser(user.id))
-    } else {
-      dispatch(blockUser(user.id))
+  const handleBtn = async (user) => {
+    // console.log(user)
+   try
+  {
+    if (user.isBlocked) 
+    {
+      await dispatch(unBlockUser(user.userId)).unwrap();
+    } 
+    else 
+    {
+     await dispatch(blockUser(user.userId)).unwrap();
     }
   }
+  catch (error)
+  {
+    console.error('Failed to update user status:', error);
+  }
+  }
+  
   return (
     <div className="min-h-screen bg-[#2b0b08] text-white p-8">
 
@@ -61,7 +74,7 @@ export default function ManageUsers() {
             {usersOnly.map((user) => (
 
               <tr
-                key={user.id}
+                key={user.userId}
                 className="border-b border-gray-700 hover:bg-[#522019] transition"
               >
 

@@ -6,7 +6,7 @@ removeProduct,
 updateProduct,
 updateProductStock,
 } from '../../services/productService';
-import { Key } from 'lucide-react';
+
 
 export const fetchProducts = createAsyncThunk(
 'products/fetchAll',

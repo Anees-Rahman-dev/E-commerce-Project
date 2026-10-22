@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAllUsers,updateUserStatus } from "../../services/userService";
 import { act } from "react";
 import { getById } from "../../services/userService";
+import { ArrowUpWideNarrow } from "lucide-react";
 
 export const fetchAllUsers = createAsyncThunk(
     'users/fetchAllUsers',
@@ -12,17 +13,38 @@ export const fetchAllUsers = createAsyncThunk(
 
 export const blockUser = createAsyncThunk (
     'users/blockUser',
-    async (id) => {
+    async (id, {dispatch}) => {
         // console.log(id)
-        return await updateUserStatus(id,true)
+       const success = await updateUserStatus(id);
+
+       if(success)
+        {
+         await dispatch(fetchAllUsers()).unwrap();
+         return success;
+        }
+        else
+        {
+        throw new Error('Failed to update user status');
+        }
+
     }
 )
 
 export const unBlockUser = createAsyncThunk(
     'users/unBlockUser',
-    async (id) => {
-        return await updateUserStatus(id,false)
-        // console.log(id)
+    async (id, { dispatch }) => {
+        
+        const success = await updateUserStatus(id);
+
+        if(success)
+        {
+        await dispatch(fetchAllUsers()).unwrap();
+        return success;
+        }
+        else
+        {
+        throw new Error('Failed to update user status');
+        }
     }
 )
 
@@ -47,6 +69,7 @@ const userSlice = createSlice({
         builder
 
         .addCase(fetchAllUsers.fulfilled, (state,action) => {
+             console.log("Updated users:", action.payload);
             state.users = action.payload;
             state.status ='succeeded'
         })
@@ -64,9 +87,10 @@ const userSlice = createSlice({
         .addCase(blockUser.fulfilled, (state,action) => {
             //   console.log(action.payload)
             const index = state.users.findIndex(
-                user => user.id === action.payload.id
+                user => user.userId === action.payload.userId
             )
-            if(index !== -1){
+            if(index !== -1){//findIndex() returns -1 if it cannot find a matching item.
+           // "Only update the product if it exists in the Redux array."
                 state.users[index] = action.payload
             }
         })
@@ -74,7 +98,7 @@ const userSlice = createSlice({
         .addCase(unBlockUser.fulfilled, (state,action) => {
             console.log(action.payload)
             const index = state.users.findIndex(
-                user => user.id === action.payload.id
+                user => user.userId === action.payload.userId
             )
             if(index !== -1){
                 state.users[index] = action.payload

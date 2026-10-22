@@ -42,9 +42,11 @@ export const getAllUsers = async () => {
 }
 
 export const updateUserStatus = async (id) => {
-  // console.log(id,isBlocked)
-  const res = await api.put(`AdminDashboard/users/${id}/block`);       
-  return res.data
+  const res = await api.put(`AdminDashboard/users/${id}/block`);
+
+  console.log("Block API response:", res.status, res.data);
+
+  return res.data;
 }
 
 export const getById = async (id) => {

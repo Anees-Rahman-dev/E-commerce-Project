@@ -55,7 +55,7 @@ export default function WishList() {
 
   const handleMoveToCart = (item) => {
 
-    // console.log(item)
+    console.log(item)
     // dispatch(addToCart({ ...item, quantity: 1 }));
     setCartDb(item.productId, 1)
 
