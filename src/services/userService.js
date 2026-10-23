@@ -28,7 +28,9 @@ export const LoginUser = async (email, password) => {
     },
   });
 
-  return {
+  console.log('token',token)
+  console.log('userResponse',userResponse)
+  return {    
     token,
     user: userResponse.data,
   };
@@ -37,15 +39,12 @@ export const LoginUser = async (email, password) => {
 export const getAllUsers = async () => {
 
     const res = await api.get('AdminDashboard/users')
-   
     return res.data
 }
 
 export const updateUserStatus = async (id) => {
   const res = await api.put(`AdminDashboard/users/${id}/block`);
-
   console.log("Block API response:", res.status, res.data);
-
   return res.data;
 }
 

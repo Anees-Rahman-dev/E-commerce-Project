@@ -87,66 +87,53 @@ export default function DashBoard() {
     dispatch(fetchProducts())
     dispatch(fetchAllUsers())
     dispatch(fetchAllOrders())
+    
   }, [dispatch])
 
-  // BAR GRAPH
+  
+  // MONTHS
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  // MONTHLY REVENUE
+  const monthlyRevenue = months.map((month) => ({
+    name: month,
+    revenue: 0,
+  }));
+
+  orders.forEach((order) => {
+    if (!order.orderDate) return;
+
+    const date = new Date(order.orderDate);
+
+    if (Number.isNaN(date.getTime())) return;
+
+    const monthIndex = date.getMonth();
+
+    monthlyRevenue[monthIndex].revenue += Number(
+      order.totalAmount ?? 0
+    );
+  });
+
+  // BAR CHART DATA
   const summaryData = [
     { name: 'Products', value: totalProducts },
     { name: 'Users', value: totalUsers },
     { name: 'Orders', value: totalOrders },
-  ]
+  ];
 
-  // PIE CHART
-  const pieData = [
-    { name: 'Revenue', value: totalRevenue },
-    { name: 'Orders', value: totalOrders * 100 },
-  ]
+  // PIE CHART: REVENUE BY MONTH
+  const pieData = monthlyRevenue.filter(
+    (month) => month.revenue > 0
+  );
 
-  // LINE GRAPH
-  const revenueData = orders.map((order, index) => ({
-    name: `Order ${index + 1}`,
-    revenue: order.total,
-  }))
+  // LINE CHART: MONTHLY REVENUE
+  const revenueData = monthlyRevenue;
 
+  const COLORS = ['#f97316', '#fb923c'];
 
-  // mothly revenue
-   const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
-
-  const monthlyRevenue = months.map((month) => ({
-    name: month,
-    revenue: 0,
-  }))
-
-   orders.forEach((order) => {
-
-    if (!order.orderDate) {
-      return
-    }
-
-    const date = new Date(order.orderDate)
-
-    const monthIndex = date.getMonth()
-
-    monthlyRevenue[monthIndex].revenue += Number(
-      order.totalAmount || 0
-    )
-  })
-
-  
-  const COLORS = ['#f97316', '#fb923c']
 
   return (
     <div className="min-h-screen bg-[#2b0b08] text-white p-6">
@@ -226,21 +213,31 @@ export default function DashBoard() {
           <ResponsiveContainer width="100%" height="85%">
             <PieChart>
 
-              <Pie
-                data={pieData}
-                dataKey="value"
-                cx="50%"
-                cy="50%"
-                outerRadius={100}
-                label
-              >
-                {pieData.map((entry, index) => (
-                  <Cell
-                    key={index}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
+              
+<Pie
+  data={pieData}
+  dataKey="revenue"
+  nameKey="name"
+  cx="50%"
+  cy="50%"
+  outerRadius={100}
+  label={({ name }) => name}
+>
+  {pieData.map((entry, index) => (
+    <Cell
+      key={entry.name}
+      fill={COLORS[index % COLORS.length]}
+    />
+  ))}
+</Pie>
+
+<Tooltip
+  formatter={(value) => [
+    `₹${Number(value).toLocaleString('en-IN')}`,
+    'Revenue',
+  ]}
+/>
+
 
               <Tooltip />
 
@@ -260,20 +257,35 @@ export default function DashBoard() {
 
         <ResponsiveContainer width="100%" height="85%">
 
-          <LineChart data={revenueData}>
+         
+<LineChart data={revenueData}>
+  <XAxis dataKey="name" stroke="#fff" />
 
-            <XAxis dataKey="name" stroke="#fff" />
-            <YAxis stroke="#fff" />
-            <Tooltip />
+  <YAxis
+    stroke="#fff"
+    tickFormatter={(value) =>
+      `₹${Number(value).toLocaleString('en-IN')}`
+    }
+  />
 
-            <Line
-              type="monotone"
-              dataKey="revenue"
-              stroke="#f97316"
-              strokeWidth={4}
-            />
+  <Tooltip
+    formatter={(value) => [
+      `₹${Number(value).toLocaleString('en-IN')}`,
+      'Revenue',
+    ]}
+  />
 
-          </LineChart>
+  <Line
+    type="monotone"
+    dataKey="revenue"
+    name="Monthly Revenue"
+    stroke="#f97316"
+    strokeWidth={4}
+    dot={{ r: 4 }}
+    activeDot={{ r: 7 }}
+  />
+</LineChart>
+
 
         </ResponsiveContainer>
 
